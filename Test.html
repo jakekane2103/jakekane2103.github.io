@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="header">
+
+        <div class="header1">
+
+            <img src="images/1200px-JRRT_logo.svg.png" alt="">
+
+            <div class="upperLeft">
+                <a href="index.html"><i class="fas fa-home fa-lg"></i></a> &emsp;&emsp;
+                <a href="contact.html">Contact Us </a> &emsp;&emsp;
+                <a href="help.html">Help </a>
+
+            </div>
+
+            <div class="h">
+                <h1>Name</h1>
+            </div>
+
+
+            <div class="upperRight">
+                <a href="stores.html">Stores </a> &emsp;&emsp;
+                <a href="login.html">Login / Sign Up </a> &emsp;&emsp;
+                <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>
+            </div>
+
+        </div>
+
+        <div class="header2">
+
+            <div class="bottomLeft">
+                <a href="books.html">Books</a>&emsp;&emsp;
+                <a class="active" href="movies.html">Movies</a>&emsp;&emsp;
+                <a href="music.html">Music</a>
+            </div>
+            <div class="search">
+                <form action="/action_page.php">
+                    <input class="searchArray" type="text" placeholder="Search for movies by keyword / title / director"
+                        name="search">
+                    <button type="submit">
+                        <p>Search</p>
+                    </button>
+                </form>
+            </div>
+            <div class="bottomRight">
+                <a href="wishlist.html">Wishlist</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="price">
+
+        <div class="choices">
+            <div id="myBtnContainer">
+                <h3>Price </h3>
+                <a class="btn" onclick="filterSelection('cars')">Under 5€ </a> <br>
+                <a class="btn" onclick="filterSelection('fruits')"> 5€ to 10€ </a> <br>
+                <a class="btn" onclick="filterSelection('colors')"> 10€ to 20€ </a> <br>
+                <a class="btn" onclick="filterSelection('animals')"> Above 20€ </a> <br>
+                <a class="btn" onclick="filterSelection('all')"> All </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="products">
+            <div class="LOTR">
+                <div class="box">
+                    <div class="filterDiv fruits">
+                        <div class="column">
+                            <a href="moviePage.html">
+                                <img src="images/inception.jpg" alt="">
+
+                                <p class="title">Inception (2010)</p> <br>
+                                <p class="author">Director: Christopher Nolan</p> <br>
+                                <p class="author">Writer: Christopher Nolan</p> <br>
+                                <p class="author">Composer: Hans Zimmer</p> <br>
+                                <p class="author">Cast: Leonardo DiCaprio, <br> &emsp;&emsp;&nbsp; Joseph
+                                    Gordon-Levitt,
+                                    <br>&emsp;&emsp; Elliot Page
+                                </p>
+                                <p class="description">A thief who steals corporate secrets through the use of
+                                    dream-sharing technology is given the inverse task of planting an idea into the
+                                    mind of </p>
+                                <p class="description1">
+                                    a C.E.O., but his tragic past may doom the project and his team to
+                                    disaster. Dominick "Dom" Cobb and Arthur are "extractors"; they perform
+                                    corporate
+                                    espionage using experimental military technology to infiltrate their targets'
+                                    subconscious and extract information through a shared dream world. Their latest
+                                    target, Saito, reveals he arranged their mission to test Cobb for a seemingly
+                                    impossible job: implanting an idea in a person's subconscious, or "inception".
+                                    Saito wants Cobb to convince Robert, the son of Saito's competitor Maurice
+                                    Fischer, to dissolve his father's company. Saito promises to clear Cobb's
+                                    criminal status, which prevents him from returning home to his children.
+                                </p>
+                                <p class="inStock">In Stock</p>
+                                <p class="bookPrice">8,99€</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterDiv cars">
+                        <div class="column">
+                            <a href="moviePage.html">
+                                <img src="images/interstellarMovie.jpg" alt="">
+
+                                <p class="title">Interstellar (2014)</p> <br>
+                                <p class="author">Director: Christopher Nolan</p> <br>
+                                <p class="author">Writers: Christopher Nolan, <br> &emsp;&emsp;&emsp;&nbsp;&nbsp;
+                                    Jonathan Nolan</p> <br>
+                                <p class="author">Composer: Hans Zimmer</p> <br>
+                                <p class="author">Cast: Matthew McConaughey, <br> &emsp;&emsp;&nbsp; Anne Hathaway,
+                                    <br>&emsp;&emsp;&nbsp; Jessica Chastain
+                                </p>
+                                <p class="description">Set in a future where a failing Earth puts humanity on the
+                                    brink of extinction, it sees an intrepid team
+                                </p>
+                                <p class="description1">
+                                    of NASA scientists, engineers and pilots attempt to find a new habitable planet,
+                                    via interstellar travel. In 2067, crop blights and dust storms threaten
+                                    humanity's survival. Cooper, a widowed engineer and former NASA pilot turned
+                                    farmer, lives with his father-in-law, Donald, his 15-year-old son, Tom, and
+                                    10-year-old daughter, Murphy "Murph". After a dust storm, strange dust patterns
+                                    inexplicably appear in Murphy's bedroom; she attributes the anomaly to a ghost.
+                                    Cooper eventually deduces the patterns were caused by gravity variations and
+                                    they represent geographic coordinates in binary code. Cooper follows the
+                                    coordinates to a secret NASA facility headed by Professor John Brand.
+
+
+                                </p>
+                                <p class="inStock">In Stock</p>
+                                <p class="bookPrice">9,99€</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterDiv cars">
+                        <div class="column">
+                            <a href="moviePage.html">
+                                <img src="images/darkKnightMovie.jpg" alt="">
+
+                                <p class="title">The Dark Knight (2008)</p> <br>
+                                <p class="author">Director: Christopher Nolan</p> <br>
+                                <p class="author">Writers: Christopher Nolan, <br> &emsp;&emsp;&emsp;&nbsp;&nbsp;
+                                    Jonathan Nolan</p> <br>
+                                <p class="author">Composer: Hans Zimmer</p> <br>
+                                <p class="author">Cast: Christian Bale, <br> &emsp;&emsp; Heath Ledger,
+                                    <br>&emsp;&emsp; Gary Oldman
+                                </p>
+                                <p class="description">When the menace known as the Joker wreaks havoc and chaos on
+                                    the people of Gotham, Batman </p>
+                                <p class="description1">
+                                    must accept one of the greatest psychological and
+                                    physical tests of his ability to fight injustice. A gang of criminals rob a
+                                    Gotham City mob bank; the Joker manipulates them into
+                                    murdering each other for a higher share until only he remains, escaping with the
+                                    money. Batman, District Attorney Harvey Dent and Lieutenant Jim Gordon form an
+                                    alliance to rid Gotham of organized crime. Bruce Wayne is impressed with Dent's
+                                    idealism and offers to support his career; he believes that, with Dent as
+                                    Gotham's protector, he can give up being Batman and lead a normal life with
+                                    Rachel Dawes—even though she and Dent are dating.
+                                </p>
+                                <p class="inStock">In Stock</p>
+                                <p class="bookPrice">8,92€</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="PJ">
+                <div class="box">
+                    <div class="filterDiv cars">
+                        <div class="column1">
+                            <a href="moviePage.html">
+                                <img src="images/dune.PNG" alt="">
+                                <p class="title">Dune (2021)</p> <br>
+                                <p class="author">Director: Denis Villeneuve</p> <br>
+                                <p class="author">Writer: Jon Spaihts, <br> &emsp;&emsp;&nbsp;&nbsp;&nbsp; Denis
+                                    Villeneuve</p> <br>
+                                <p class="author">Composer: Hans Zimmer</p> <br>
+                                <p class="author">Cast: Timothée Chalamet, <br> &emsp;&emsp;&nbsp; Rebecca Ferguson,
+                                    <br>&emsp;&emsp;&nbsp; Oscar Isaac, <br>&emsp;&emsp;&nbsp; Jason Momoa
+                                </p>
+                                <p class="description">Feature adaptation of Frank Herbert's science fiction novel,
+                                </p>
+                                <p class="description1">
+                                    about the son of a noble family entrusted with the protection of the most
+                                    valuable asset and most vital element in the galaxy. A mythic and emotionally
+                                    charged hero's journey, "Dune" tells the story of Paul Atreides, a brilliant and
+                                    gifted young man born into a great destiny beyond his understanding, who must
+                                    travel to the most dangerous planet in the universe to ensure the future of his
+                                    family and his people. As malevolent forces explode into conflict over the
+                                    planet's exclusive supply of the most precious resource in existence-a commodity
+                                    capable of unlocking humanity's greatest potential-only those who can conquer
+                                    their fear will survive.
+                                </p>
+
+                                <div class="costAvail">
+                                    <p class="preOrder">Pre-order</p>
+                                    <p class="bookPrice">12,99€</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterDiv cars">
+                        <div class="column1">
+                            <a href="moviePage.html">
+                                <img src="images/starWars3Movie.jpg" alt="">
+                                <p class="title">Star Wars: Episode III - Revenge of the Sith (2005)</p> <br>
+                                <p class="author">Director: George Lucas</p> <br>
+                                <p class="author">Writer: George Lucas</p>
+                                <br>
+                                <p class="author">Composer: John Williams</p> <br>
+                                <p class="author">Cast: Hayden Christensen, <br> &emsp;&emsp; Ewan McGregor,
+                                    <br>&emsp;&emsp; Natalie Portman, <br>&emsp;&emsp; Ian McDiarmid
+                                </p>
+                                <p class="description">Three years into the Clone Wars, the Jedi rescue Palpatine
+                                    from </p>
+                                <p class="description1">
+                                    Count Dooku. As Obi-Wan pursues a new threat, Anakin acts as a double agent
+                                    between the Jedi Council and Palpatine and is lured into a sinister plan to rule
+                                    the galaxy.
+                                </p>
+                                <div class="costAvail">
+                                    <p class="inStock">In Stock</p>
+                                    <p class="bookPrice">9,74€</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterDiv animals">
+                        <div class="column1">
+                            <a href="moviePage.html">
+                                <img src="images/backToTheFutureMovie.PNG" alt="">
+                                <p class="title">Back to the Future (1985)</p> <br>
+                                <p class="author">Director: Robert Zemeckis</p> <br>
+                                <p class="author">Writer:
+                                    Robert Zemeckis, <br> &emsp;&emsp;&emsp; Bob Gale</p> <br>
+                                <p class="author">Composer: Alan Silvestri</p> <br>
+                                <p class="author">Cast:
+                                    Michael J. Fox, <br> &emsp;&emsp; Christopher Lloyd,
+                                    <br>&emsp;&emsp; Lea Thompson, <br>&emsp;&emsp; Crispin Glover
+                                </p>
+                                <p class="description">In 1985, Marty McFly is a typical teenager living in Hill
+                                    Valley, </p>
+                                <p class="description1">
+                                    California. Marty's meek father George is bullied by his supervisor,
+                                    Biff Tannen. His mother Lorraine is a depressed alcoholic, and his older
+                                    siblings are professional and social failures. Marty's band is rejected for a
+                                    music contest. He confides in his girlfriend, Jennifer Parker, about fears of
+                                    becoming like his parents despite his ambitions.
+                                </p>
+                                <div class="costAvail">
+                                    <p class="outOfStock">Out of Stock</p>
+                                    <p class="bookPrice">5,41€</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="ASOIAF">
+                <div class="box">
+                    <div class="filterDiv colors">
+                        <div class="column2">
+                            <a href="moviePage.html">
+                                <img src="images/the good the bad and the ugly.jpg" alt="">
+                                <p class="title">The Good, the Bad and <br> the Ugly (1966)</p> <br>
+                                <p class="author">Director: Sergio Leone</p> <br>
+                                <p class="author">Writer: Luciano Vincenzoni, <br> &emsp;&emsp; Sergio Leone, <br>
+                                    &emsp;&emsp; Agenore Incrocci</p> <br>
+                                <p class="author">Composer: Hans Zimmer</p> <br>
+                                <p class="author">Cast: Clint Eastwood, <br> &emsp;&emsp; Lee Van Cleef,
+                                    <br>&emsp;&emsp; Eli Wallach
+                                </p>
+                                <p class="description">A bounty hunting scam joins two
+                                </p>
+                                <p class="description1">
+                                    men in an uneasy alliance
+                                    against a third in a race to find a fortune in gold buried in a remote cemetery.
+                                    In 1862, during the American Civil War, a mercenary known as "Angel Eyes"
+                                    interrogates former Confederate soldier Stevens, whom Angel Eyes is contracted
+                                    to kill, about Jackson, a fugitive who stole a cache of Confederate gold.
+                                    Learning Jackson's new alias "Bill Carson", Angel Eyes kills Stevens and then
+                                    his employer Baker so he can find the gold himself. Bandit Tuco Ramirez is
+                                    rescued from bounty hunters by a nameless drifter to whom Tuco refers as
+                                    "Blondie", who delivers him to the local sheriff to collect his $2,000 bounty.
+                                    As Tuco is about to be hanged, Blondie severs Tuco's noose by shooting it, and
+                                    sets him free. The two escape on horseback and split the bounty. They repeat the
+                                    process in other towns until Blondie grows weary of Tuco's complaints and
+                                    strands him in the desert.
+                                </p>
+                                <div class="costAvail">
+                                    <p class="outOfStock">Out of Stock</p>
+                                    <p class="bookPrice">5,12€</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterDiv colors">
+                        <div class="column2">
+                            <a href=moviePage.html"">
+                                <img src="images/casablancaMovie.jpg" alt="">
+                                <p class="title">Casablanca (1942)</p> <br>
+                                <p class="author">Director: Michael Curtiz</p> <br>
+                                <p class="author">Writer: Julius J. Epstein, <br> &emsp;&emsp; Philip G. Epstein,
+                                    <br>
+                                    &emsp;&emsp; Howard Koch
+                                </p> <br>
+                                <p class="author">Composer: Max Steiner</p> <br>
+                                <p class="author">Cast: Humphrey Bogart, <br> &emsp;&emsp; Ingrid Bergman
+                                </p>
+                                <p class="description">A cynical expatriate American cafe owner struggles to decide
+                                    whether or not to help his former lover and
+                                </p>
+                                <p class="description1">
+                                    her fugitive husband escape the
+                                    Nazis in French Morocco. In December 1941, American expatriate Rick Blaine owns
+                                    a nightclub and gambling
+                                    den in Casablanca. "Rick's Café Américain" attracts a varied clientele,
+                                    including Vichy French and German officials, refugees desperate to reach the
+                                    neutral United States, and those who prey on them. Although Rick professes to be
+                                    neutral in all matters, he ran guns to Ethiopia during the Second
+                                    Italo-Ethiopian War and fought on the Republican side in the Spanish Civil War.
+                                </p>
+                                <div class="costAvail">
+                                    <p class="inStock">In Stock</p>
+                                    <p class="bookPrice">5,99€</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterDiv fruits">
+                        <div class="column2">
+                            <a href="moviePage.html">
+                                <img src="images/godfatherMovie.jpg" alt="">
+                                <p class="title">The Godfather (1972)</p> <br>
+                                <p class="author">Director:
+                                    Francis Ford Coppola</p> <br>
+                                <p class="author">Writer:
+                                    Mario Puzo, <br> &emsp;&emsp;&emsp; Francis Ford Coppola</p> <br>
+                                <p class="author">Composer: Hans Zimmer</p> <br>
+                                <p class="author">Cast: Marlon Brando, <br> &emsp;&emsp; Al Pacino,
+                                    <br>&emsp;&emsp; James Caan
+                                </p>
+                                <p class="description">The Godfather follows Vito Corleone, Don of the Corleone
+                                    family, as he passes the mantel to his unwilling
+                                </p>
+                                <p class="description1">
+                                    son, Michael. In 1945 New York City, at his daughter Connie's wedding to Carlo,
+                                    Vito Corleone,
+                                    the Don of the Corleone crime family listens to requests. His youngest son,
+                                    Michael, who was a Marine during World War II, introduces his girlfriend, Kay
+                                    Adams, to his family at the reception. Johnny Fontane, a popular singer and
+                                    Vito's godson, seeks Vito's help in securing a movie role; Vito dispatches his
+                                    consigliere, Tom Hagen, to Los Angeles to persuade studio head Jack Woltz to
+                                    give Johnny the part. Woltz refuses until he wakes up in bed with the severed
+                                    head of his prized stallion.
+                                </p>
+                                <div class="costAvail">
+                                    <p class="outOfStock">Out of Stock</p>
+                                    <p class="bookPrice">6,49€</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        // Show filtered elements
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        // Hide elements that are not selected
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current control button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+
+</body>
+
+</html>
