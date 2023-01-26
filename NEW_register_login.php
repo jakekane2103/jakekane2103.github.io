@@ -1,106 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="register_log.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
 <?php
-    session_start();
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $conn = new mysqli('localhost', 'root', '', 'rocnikovy');
-    if ($conn->connect_error) {
-        die("Connection Failed : " . $conn->connect_error);
-    } else {
-        // check for duplicate email
-        $query = "SELECT email FROM newregister WHERE email=?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows > 0) {
-            echo "Email already exists";
-            $stmt->close();
-            $conn->close();
-            exit();
+$page = "register";
+include 'header.php';
+
+?>
+
+    <div class="back">
+
+
+
+        <div class="container">
+            <div class="row col-md-6 col-md-offset-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h1>Sign Up</h1>
+                    </div>
+                    <div class="panel-body">
+                        <form action="includes/signup.inc.php" method="post">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" class="form-control" name="name" />
+                            </div>
+                      
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="uid">Username</label>
+                                <input type="text" class="form-control"  name="uid" />
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pwd">Password</label>
+                                <input type="password" class="form-control"  name="pwd" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pwdrepeat">Repeat Password</label>
+                                <input type="password" class="form-control"  name="pwdrepeat" />
+                            </div>
+
+                            <div class="formBtn">
+                                <button type="submit" name="submit">Sign Up</button>
+                            </div>
+                            
+                        </form>
+
+
+<?php
+    if (isset($_GET["error"])) {
+        if ($_GET["error"] == "emptyinput") {
+            echo "<p>Fill in all fields!</p>";
         }
-        //validate email
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Invalid email format";
-            $stmt->close();
-            $conn->close();
-            exit();
+        else if ($_GET["error"] == "invaliduid") {
+            echo "<p>Choose a proper username!</p>";
         }
-        $stmt = $conn->prepare("INSERT INTO newregister (name, email, password) VALUES (?, ?, ?)");
-		$stmt->bind_param("sss", $name, $email, $password);
-        if($stmt->execute()){
-            $_SESSION["email"] = $email;
-            $_SESSION["name"] = $name;
-            echo "Registration Successful";
-        }else{
-            echo "Error: " . $conn->error;
+        else if ($_GET["error"] == "invalidemail") {
+            echo "<p>Choose a proper email!</p>";
         }
-        $stmt->close();
-        $conn->close();
+        else if ($_GET["error"] == "passwordsdontmatch") {
+            echo "<p>Passwords don't match!</p>";
+        }
+        else if ($_GET["error"] == "stmtfailed") {
+            echo "<p>Something went wrong, try again!</p>";
+        }
+        else if ($_GET["error"] == "usernametaken") {
+            echo "<p>Username already taken!</p>";
+        }
+        else if ($_GET["error"] == "none") {
+            echo "<p>You have signed up!</p>";
+        }
     }
-	
+?>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+        
+</body>
+
+</html>
 
 
-   
-
-	/*
-    session_start();
-$email = $_POST['email'];
-$password = $_POST['password'];
-$conn = new mysqli('localhost', 'root', '', 'rocnikovy');
-
-if ($conn->connect_error) {
-    die("Connection Failed : " . $conn->connect_error);
-} else {
-    // check if email exists
-    $query = "SELECT email, password FROM newregister WHERE email=?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-    $stmt->bind_result($email, $hashed_password);
-    if ($stmt->num_rows > 0) {
-        if ($stmt->fetch()){
-            //check if the entered password matches the stored hashed password
-            if (password_verify($password, $hashed_password)){
-                $_SESSION["email"] = $email;
-                echo "Login Successful";
-            } else {
-                echo "Incorrect password";
-            }
-        }
-    } else {
-        echo "Email not found";
-    }
-    $stmt->close();
-    $conn->close();
-}
-
-
-
- 
-
-    $firstName = $_POST['name'];
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	
-	// Database connection
-	$conn = new mysqli('localhost','root','','rocnikovy');
-	if($conn->connect_error){
-		echo "$conn->connect_error";
-		die("Connection Failed : ". $conn->connect_error);
-	} else {
-		$stmt = $conn->prepare("insert into newregister(name, email, password) 
-		values(?, ?, ?)");
-		$stmt->bind_param("sss", $name, $email, $password);
-		$execval = $stmt->execute();
-		echo $execval;
-		echo "Registration successfully...";
-		$stmt->close();
-		$conn->close();
-	}
-
-*/
-
-	?>

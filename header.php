@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,27 +29,25 @@
                 <div class="upperRight">
                     <a href="stores.html <?php if($page == "stores") echo "class='active'"; ?>">Stores </a> &emsp;&emsp;
                     <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>&emsp;&emsp; 
-					<a href="NEW_login.php" <?php if($page == "login") "class='active'"; ?>>
-						
-						<?php
 
-                    	    if(isset($_SESSION['email'])){
-							  	
-								echo "Welcome ";
-                     	       echo $_SESSION['email']; 
-                     	   }
-                     	   else{
-                            if($page == "login")
-					 	         echo '<a href="NEW_login.php" class= "active" >Login / Sign Up </a>';
-
-                                 else
-                                 echo '<a href="NEW_login.php" >Login / Sign Up </a>';
-                     	   }                		  
-						?>
-					
-					
-					</a>
-					
+                <?php
+                    if (isset($_SESSION["useruid"])) {
+                        if($page == "profile") 
+                        {
+                            echo '<a href="profilePage.php" class="active">Profile Page</a>&emsp;&emsp;';
+                            echo '<a href="includes/logout.inc.php">Log Out</a>';
+                        }
+                        else{
+                            echo '<a href="profilePage.php">Profile Page</a>&emsp;&emsp;';
+                            echo '<a href="includes/logout.inc.php">Log Out</a>';
+                        }
+                        
+                    }
+                    else {
+                        echo '<a href="NEW_register_login.php" >Sign Up</a>&emsp;&emsp;';
+                        echo '<a href="NEW_login.php">Login</a>';
+                    }
+                ?>
 					
                 </div>
             </div>

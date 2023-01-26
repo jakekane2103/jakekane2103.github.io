@@ -1,40 +1,3 @@
-<?php
-
-    session_start();
-
-    //connect to the database
-    $conn = mysqli_connect("localhost", "root", "", "rocnikovy");
-
-    //get the form data
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-    //query the database
-    $query = "SELECT * FROM newregister WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $query);
-
-    //check if there is a match
-    if(mysqli_num_rows($result) == 1) {
-
-        //login the user
-        $_SESSION['email'] = $email;
-        header("location: index.php");
-    } else {
-        //show an error message
-        echo "Invalid email or password";
-    }
-
-    //close the connection
-    $_SESSION['email'] = $email;
-    mysqli_close($conn);
-    }
-    
-    
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -50,8 +13,7 @@
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 
 <?php
 
@@ -62,45 +24,69 @@ include 'header.php';
 
     <div class="back">
 
+
+
         <div class="container">
             <div class="row col-md-6 col-md-offset-3">
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
-                        <h1>Login</h1>
+                        <h1>Log In</h1>
                     </div>
                     <div class="panel-body">
-                        <form action="NEW_login.php" method="post">
+                        <form action="includes/login.inc.php" method="post">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" />
+                                <label for="name">Username/Email</label>
+                                <input type="text" class="form-control" name="uid" />
                             </div>
+                      
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" />
+                                <label for="pwd">Password</label>
+                                <input type="password" class="form-control"  name="pwd" />
                             </div>
-                            <div>
-                            <?php
-                    	    if(isset($_SESSION['email'])){
-								echo '<a href="logout.php" class="btn btn-primary">Logout </a>';
-                     	    }
 
-                     	   else{
-					 	         echo '<input type="submit" class="btn btn-primary" value="Login" />'; 
-                                
-                     	   }                		
-                             
-						?>
-
-                        <a href="NEW_register_login.php">Register Now!</a>
-                                
+                            <div class="formBtn">
+                            <button type="submit" name="submit">Log In</button>
                             </div>
+
                         </form>
+
+
+<?php
+    if (isset($_GET["error"])) {
+        if ($_GET["error"] == "emptyinput") {
+            echo "<p>Fill in all fields!</p>";
+        }
+        else if ($_GET["error"] == "wronglogin") {
+            echo "<p>Incorrect login information!</p>";
+        }
+        else if ($_GET["error"] == "invalidemail") {
+            echo "<p>Choose a proper email!</p>";
+        }
+        else if ($_GET["error"] == "passwordsdontmatch") {
+            echo "<p>Passwords don't match!</p>";
+        }
+        else if ($_GET["error"] == "stmtfailed") {
+            echo "<p>Something went wrong, try again!</p>";
+        }
+        else if ($_GET["error"] == "usernametaken") {
+            echo "<p>Username already taken!</p>";
+        }
+        else if ($_GET["error"] == "none") {
+            echo "<p>You have signed up!</p>";
+        }
+    }
+?>
+
+
                     </div>
+
                 </div>
             </div>
         </div>
-          
+
         </div>
+
+
 
         
 </body>

@@ -34,12 +34,12 @@ class Db
 		PDO::ATTR_EMULATE_PREPARES => false,
 	);
 
-	/**
+	/** 
 	 * Připojí se k databázi pomocí daných údajů
-	 * @param string $host Název hostitele
-	 * @param string $database Název databáze
-	 * @param string $user Uživatelské jméno
-	 * @param string $password Heslo
+	 * @param string $host = "localhost";
+	 * @param string $database = "rocnikovy";
+	 * @param string $user = "root";
+	 * @param string $password = "";
 	 */
 	public static function connect($host, $database, $user, $password)
 	{
@@ -133,7 +133,7 @@ class Db
 
 	/**
 	 * Umožňuje snadnou modifikaci záznamu v databázi pomocí asociativního pole
-	 * @param string $table Název tabulky
+	 * @param string $table rocnikovy
 	 * @param array $data Asociativní pole, kde jsou klíče sloupce a hodnoty hodnoty
 	 * @param string $condition Řetězec s SQL podmínkou (WHERE)
 	 * @return mixed
