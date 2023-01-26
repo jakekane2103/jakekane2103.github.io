@@ -1,0 +1,91 @@
+.all{
+    margin-top: 1%;
+}
+/*-----------------LEFT----------------------*/
+
+.left{
+    display: flex;
+    float: left;
+    width: 25%;
+    margin-left: 7%;
+    background-color: rgb(179, 91, 91);
+    height: 78.8%;
+}
+
+.profileImg img{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 50%;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content{
+    font-size: 160%;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*-----------------RIGHT TOP----------------------*/
+
+
+.right{
+    display: flex;
+    float: right;
+    margin-right: 7%;
+    width: 60%;
+    background-color: rgb(250, 211, 163);
+    height: 48.8%;
+}
+
+.userInfo{
+  text-align: left;
+  margin-left: 7%;
+  margin-bottom: 5%;
+}
+
+
+.info {
+    width: 200%;
+    display: flex;
+    
+    margin-top: 12%;
+    border-bottom: 1px rgb(150, 150, 150) solid;
+}
+
+.info h2{
+    font-size: 300%;
+}
+
+.php{
+    font-size: 200%;
+    margin-left: 15%;
+    margin-top: 3%;
+}
+
+/*-----------------RIGHT BOTTOM----------------------*/
+.rightBot{
+    display: flex;
+    float: right;
+    margin-right: 7%;
+    width: 60%;
+    background-color: rgb(163, 215, 250);
+    height: 28%;
+    margin-top: 1%;
+}
+
+.purchases{
+    width: 50%;
+}
+.purchases h2{
+    margin-left: 7%;
+    margin-top: 5%;
+    font-size: 250%;
+    font-weight: 900;
+}

@@ -112,14 +112,18 @@ function loginUser($conn, $username, $pwd) {
         exit();
     }
     else if ($checkPwd === true) {
+        
         session_start();
         $_SESSION["userid"] = $uidExists["usersId"];
         $_SESSION["useruid"] = $uidExists["usersUid"];
+        $_SESSION["userisadmin"] = $uidExists["usersIsAdmin"];
+
         header("location: ../index.php");
+        
         exit();
     }
+    
 }
-
 
 function emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description) {
     $result;
@@ -136,13 +140,28 @@ function addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description) {
     $sql = "INSERT INTO produkt (nazov, img, autor, cena, rating, description) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profilePage.php?error=stmtfailed");
+        header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
 
         mysqli_stmt_bind_param($stmt, "ssssss", $nazov, $img, $autor, $cena, $rating, $description);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../adminPage.php?error=none");
+        exit();
+}
+
+
+function updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description) {
+    $sql = "UPDATE produkt SET nazov = ?, img = ?, autor = ?, cena = ?, rating = ?, description = ? WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../adminPage.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ssssssi", $nazov, $img, $autor, $cena, $rating, $description, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profilePage.php?error=none");
+    header("location: ../adminPage.php?error=none");
     exit();
 }

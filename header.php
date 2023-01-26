@@ -31,18 +31,36 @@
                     <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>&emsp;&emsp; 
 
                 <?php
-                    if (isset($_SESSION["useruid"])) {
+                    if (isset($_SESSION['userisadmin']) && $_SESSION['userisadmin'] === 1) {
                         if($page == "profile") 
+                        {                     
+                                echo '<a href="adminPage.php" class="active">Admin Panel</a>&emsp;&emsp;';
+                                echo '<a href="includes/logout.inc.php">Log Out</a>';     
+                        }            
+                        else 
                         {
+                                echo '<a href="adminPage.php">Admin Panel</a>&emsp;&emsp;';
+                                echo '<a href="includes/logout.inc.php">Log Out</a>';  
+                        }
+                    }    
+
+                    else if (isset($_SESSION['userisadmin']) && $_SESSION['userisadmin'] !== 1)
+                    {
+                        if($page == "profile") 
+                        {                          
                             echo '<a href="profilePage.php" class="active">Profile Page</a>&emsp;&emsp;';
-                            echo '<a href="includes/logout.inc.php">Log Out</a>';
+                            echo '<a href="includes/logout.inc.php">Log Out</a>';     
+                            
+                            
                         }
-                        else{
+                        else 
+                        {
                             echo '<a href="profilePage.php">Profile Page</a>&emsp;&emsp;';
-                            echo '<a href="includes/logout.inc.php">Log Out</a>';
+                            echo '<a href="includes/logout.inc.php">Log Out</a>'; 
                         }
-                        
+                            
                     }
+                                        
                     else {
                         echo '<a href="NEW_register_login.php" >Sign Up</a>&emsp;&emsp;';
                         echo '<a href="NEW_login.php">Login</a>';

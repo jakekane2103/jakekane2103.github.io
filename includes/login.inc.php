@@ -14,8 +14,10 @@ if (isset($_POST["submit"])) {
     }
 
     loginUser($conn, $username, $pwd);
+    
 }
 else {
-    header("location: ../NEW_login.php");
+   
+    header("location: ../index.php");
         exit();
 }

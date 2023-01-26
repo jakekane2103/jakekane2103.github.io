@@ -1,9 +1,31 @@
+<?php
+
+$page = "profile";
+include 'header.php';
+    
+    require_once 'includes/dbh.inc.php';
+    require_once 'includes/functions.inc.php';
+
+    $query = "SELECT * FROM users where usersUid = '$_SESSION[useruid]'";
+
+    $result = mysqli_query($conn, $query);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        $name = '<td>' . $row['usersName'] . '</td>';
+        $mail = '<td>' . $row['usersEmail'] . '</td>';
+        $uid = '<td>' . $row['usersUid'] . '</td>';
+    }
+
+   
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Registration Page</title>
-    <link rel="stylesheet" href="register_log.css">
+    <link rel="stylesheet" href="profilePage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,74 +37,74 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 
-<?php
+<section class="all">
+<section class="left">
+    <div class="profileImg">
+        <img src="images/profile.png" alt="">
 
-$page = "profile";
-include 'header.php';
+        <div class="content">
 
-?>
+        <?php
+        echo $name;
+        ?>
 
-
-<div class="container">
-            <div class="row col-md-6 col-md-offset-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading text-center">
-                        <h1>Add Product</h1>
-                    </div>       
-                        <form action="includes/profilePage.inc.php" method="post">
-                            <div class="form-group">
-                                <label for="nazov">Name</label>
-                                <input type="text" class="form-control" name="nazov" />
-                            </div>
-                      
-                            <div class="form-group">
-                                <label for="img">Image</label>
-                                <input type="text" class="form-control" name="img" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="autor">Author</label>
-                                <input type="text" class="form-control"  name="autor" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="cena">Price</label>
-                                <input type="text" class="form-control"  name="cena" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="rating">Rating</label>
-                                <input type="text" class="form-control"  name="rating" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">Descritpion</label>
-                                <input type="text" class="form-control"  name="description" />
-                            </div>
-
-                            <div class="formBtn">
-                                <button type="submit" name="submit">ADD PRODUCT</button>
-                            </div>
-                            
-                        </form>
-
-
-<?php
-    if (isset($_GET["error"])) {
-        if ($_GET["error"] == "emptyinput") {
-            echo "<p>Fill in all fields!</p>";
-        }
-        else if ($_GET["error"] == "stmtfailed") {
-            echo "<p>Something went wrong, try again!</p>";
-        }
         
-    }
-?>
-
-                   
-        </div>
+    
     </div>
+    </div>
+    
+    
+
+</section>
+
+<section class="right">
+<div class="userInfo">
+    
+    <div class="info">
+
+    <h2>Full Name</h2>
+    <div class="php">
+        <?php
+            echo $name;
+        ?>
+    </div>
+        
+    </div>
+    <div class="info">
+        <h2>Username</h2>
+        
+        <div class="php">
+        <?php
+            echo $uid;
+        ?>
 </div>
+        
+    </div>
+
+    <div class="info">
+        <h2>Email</h2>
+<div class="php">
+        <?php
+            echo $mail;
+        ?>
+</div>
+
+        
+    </div>
+   
+</div>
+
+
+</section>
+
+
+<section class="rightBot">
+<div class="purchases">
+<h2>Recent Purchases</h2>
+</div>
+</section>
+</section>
+
 
     
         
@@ -91,3 +113,6 @@ include 'header.php';
 </html>
 
 
+<?php
+mysqli_close($conn);
+?>
