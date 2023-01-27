@@ -1,3 +1,8 @@
+<?php
+    $page = "music";
+    include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="moviePage.css">
+    <link rel="stylesheet" href="musicPage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
     <title>Bookshop/Movies/Inception</title>
@@ -15,128 +20,132 @@
 
 
     <section>
-        <div class="header">
-
-            <div class="header1">
-
-                <img src="images/1200px-JRRT_logo.svg.png" alt="">
-
-                <div class="upperLeft">
-                    <a class="home" href="index.html"><i class="fas fa-home fa-lg"></i></a> &emsp;&emsp;
-                    <a href="contact.html">Contact Us</a> &emsp;&emsp;
-                    <a href="help.html">Help</a>
-
-                </div>
-
-                <div class="h">
-                    <h1>Name</h1>
-                </div>
-
-
-                <div class="upperRight">
-                    <a href="stores.html">Stores </a> &emsp;&emsp;
-                    <a href="register_login.html">Login / Sign Up </a> &emsp;&emsp;
-                    <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>
-                </div>
-
-            </div>
-
-            <div class="header2">
-
-                <div class="bottomLeft">
-                    <a href="books.html">Books</a>
-                    <a class="active" href="movies.html">Movies</a>
-                    <a href="music.html">Music</a>
-                </div>
-                <div class="search">
-                    <form action="/action_page.php">
-                        <input class="searchArray" type="text"
-                            placeholder="Search for books by keyword / title / author" name="search">
-                        <button type="submit">
-                            <p>Search</p>
-                        </button>
-                    </form>
-                </div>
-                <div class="bottomRight">
-                    <a href="wishlist.html">Wishlist</a>
-                </div>
-            </div>
-
-        </div>
-
+        
         <div class="bookPage">
 
             <div class="bookBox0">
-                <img src="images/inception.jpg" alt="">
+                <img src="images/Ridetl.png" alt="">
+               
                 <div class="text">
-                    <h2>Inception</h2>
+                    <h2>Ride the Lightning</h2>
                     <div class="ratingBook">
                         <p class="stars">★</p>
-                        <a>8.8 / 10 (2 189 651 ratings on </a>
-                        <a href="https://www.imdb.com/title/tt1375666/">IMDb</a>
+                        <a>4.06 / 5 (28,703 ratings on </a>
+                        <a href="https://rateyourmusic.com/release/album/metallica/ride-the-lightning/">RYM</a>
                         <a>)</a>
                     </div>
-                    <div class="space">
-                        <p>2010 | PG-13 | 2h 28m</p>
+                    <div class="band">
+                        <img src="images/metallica.jpg" alt="">
                     </div>
-
-
-
                     <div class="author">
-                        <p>Director: </p>
+                        <p>Artist: </p>
                     </div>
                     <div class="author1">
-                        <p>Christopher Nolan</p>
+                        <p>	Metallica</p>
                     </div>
                     <br>
 
                     <div class="author">
-                        <p>Writer: </p>
+                        <p>Type: </p>
                     </div>
                     <div class="author1">
-                        <p>Christopher Nolan</p>
+                        <p>Album</p>
                     </div>
                     <br>
 
                     <div class="author">
-                        <p>Composer: </p>
+                        <p>Genre: </p>
                     </div>
                     <div class="author1">
-                        <p>Hans Zimmer</p>
+                        <p>Thrash Metal</p>
                     </div>
                     <br>
-
+                    
                     <div class="author">
-                        <p>Cast: </p>
+                        <p>Length: </p>
                     </div>
                     <div class="author1">
-                        <p>Leonardo DiCaprio | Joseph Gordon-Levitt | Elliot Page | Tom Hardy</p>
+                        <p>47:25</p>
                     </div>
-
+                    <br>
+                    
+                    <div class="author">
+                        <p>Released: </p>
+                    </div>
+                    <div class="author1">
+                        <p>30 July 1984</p>
+                    </div>
+                    
                     <div class="descBook">
-                        <p>A thief who steals corporate secrets through the use of dream-sharing technology is given the
-                            inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the
-                            project and his team to disaster.</p>
-                        <br>
-                        <p>Inception is a 2010 science fiction action film written and directed by Christopher
-                            Nolan, who also produced the film with Emma Thomas, his wife. The film stars Leonardo
-                            DiCaprio as a professional thief who steals information by infiltrating the subconscious of
-                            his targets. He is offered a chance to have his criminal history erased as payment for the
-                            implantation of another person's idea into a target's subconscious. The ensemble cast
-                            includes Ken Watanabe, Joseph Gordon-Levitt, Marion Cotillard, Elliot Page,[a] Tom Hardy,
-                            Dileep Rao, Cillian Murphy, Tom Berenger, and Michael Caine.</p>
-                        <br>
                        
+                      <div class="tracklist">
+                        <li>1. Fight Fire With Fire</li>
+                        <p> 4:44</p>
+                        <br>
+                        <li>2. Ride the Lightning</li>
+                        <p>6:37</p>
+                        <br>
+                        <li>3. For Whom the Bell Tolls</li>
+                        <p> 5:11</p>
+                        <br>
+                        <li>4. Fade to Black</li>
+                        <p>6:55</p>
+                        <br>
+                        <li>5. Trapped Under Ice</li>
+                        <p>4:04</p>
+                        <br>
+                        <li>6. Escape</li>
+                        <p>4:24</p>
+                        <br>
+                        <li>7. Creeping Death</li>
+                        <p>6:36</p>
+                        <br>
+                        <li>8. The Call of Ktulu</li>
+                        <p>8:55</p>
+                        <img src="images/rideback.jpg" alt="">
+                      </div>  
                     </div>
+                    <div class="bandMember">
+                        <br>
+                        <div class="author">
+                            <p>James Hetfield – </p>
+                        </div>
+                        <div class="author1">
+                            <p>	lead vocals, rhythm guitar</p>
+                        </div>
+                        <br>
+    
+                        <div class="author">
+                            <p>Kirk Hammett – </p>
+                        </div>
+                        <div class="author1">
+                            <p>lead guitar, backing vocals&emsp;</p>
+                        </div>
+                        <br>
+    
+                        <div class="author">
+                            <p>Cliff Burton –  </p>
+                        </div>
+                        <div class="author1">
+                            <p>bass, backing vocals</p>
+                        </div>
+                        <br>
+                        
+                        <div class="author">
+                            <p>Lars Ulrich –  </p>
+                        </div>
+                        <div class="author1">
+                            <p>drums, percussion</p>
+                        </div>
 
+                    </div>
                 </div>
-
 
             </div>
 
             <div class="bookBox1">
                 <div class="textMoney">
-                    <h2>19.99 €</h2>
+                    <h2>27.99 €</h2>
                     <h3>In Stock</h3>
                     <div class="one">
                         <p>Free delivery worldwide</p>
@@ -187,7 +196,7 @@
                         <p>Publisher: </p>
                     </div>
                     <div class="details1">
-                        <p>14 Oct 2021</p>
+                        <p>Blackened Studios</p>
                     </div>
                     <br>
 
@@ -195,7 +204,7 @@
                         <p>Publication City/Country: </p>
                     </div>
                     <div class="details1">
-                        <p>London, United Kingdom</p>
+                        <p>Los Angeles, USA</p>
                     </div>
 
                 </div>

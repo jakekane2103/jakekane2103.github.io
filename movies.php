@@ -1,3 +1,8 @@
+<?php
+    $page = "movies";
+    include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,56 +19,7 @@
 
 <body>
     <section>
-        <div class="header">
-
-            <div class="header1">
-
-                <img src="images/1200px-JRRT_logo.svg.png" alt="">
-
-                <div class="upperLeft">
-                    <a href="index.html"><i class="fas fa-home fa-lg"></i></a> &emsp;&emsp;
-                    <a href="contact.html">Contact Us </a> &emsp;&emsp;
-                    <a href="help.html">Help </a>
-
-                </div>
-
-                <div class="h">
-                    <h1>Name</h1>
-                </div>
-
-
-                <div class="upperRight">
-                    <a href="stores.html">Stores </a> &emsp;&emsp;
-                    <a href="NEW_register_login.html">Login / Sign Up </a> &emsp;&emsp;
-                    <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>
-                </div>
-
-            </div>
-
-            <div class="header2">
-
-                <div class="bottomLeft">
-                    <a href="books.html">Books</a>
-                    <a class="active" href="movies.html">Movies</a>
-                    <a href="music.html">Music</a>
-                </div>
-                <div class="search">
-                    <form action="/action_page.php">
-                        <input class="searchArray" type="text" id="myInput"
-                            placeholder="Search for movies by keyword / title / director" name="search">
-                        <button type="submit">
-                            <p>Search</p>
-                        </button>
-                    </form>
-                </div>
-                <div class="bottomRight">
-                    <a href="wishlist.html">Wishlist</a>
-                </div>
-            </div>
-
-        </div>
-
-
+        
         <div class="filter">
 
 

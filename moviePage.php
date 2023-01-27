@@ -1,3 +1,8 @@
+<?php
+    $page = "movies";
+    include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,108 +10,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bookPage.css">
+    <link rel="stylesheet" href="moviePage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
-    <title>Bookshop/Books/The Lord of the Rings</title>
+    <title>Bookshop/Movies/Inception</title>
 </head>
 
 <body>
 
 
     <section>
-        <div class="header">
-
-            <div class="header1">
-
-                <img src="images/1200px-JRRT_logo.svg.png" alt="">
-
-                <div class="upperLeft">
-                    <a class="home" href="index.html"><i class="fas fa-home fa-lg"></i></a> &emsp;&emsp;
-                    <a href="contact.html">Contact Us</a> &emsp;&emsp;
-                    <a href="help.html">Help</a>
-
-                </div>
-
-                <div class="h">
-                    <h1>Name</h1>
-                </div>
-
-
-                <div class="upperRight">
-                    <a href="stores.html">Stores </a> &emsp;&emsp;
-                    <a href="register_login.html">Login / Sign Up </a> &emsp;&emsp;
-                    <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>
-                </div>
-
-            </div>
-
-            <div class="header2">
-
-                <div class="bottomLeft">
-                    <a class="active" href="books.html">Books</a>
-                    <a href="movies.html">Movies</a>
-                    <a href="music.html">Music</a>
-                </div>
-                <div class="search">
-                    <form action="/action_page.php">
-                        <input class="searchArray" type="text"
-                            placeholder="Search for books by keyword / title / author" name="search">
-                        <button type="submit">
-                            <p>Search</p>
-                        </button>
-                    </form>
-                </div>
-                <div class="bottomRight">
-                    <a href="wishlist.html">Wishlist</a>
-                </div>
-            </div>
-
-        </div>
-
+       
         <div class="bookPage">
 
             <div class="bookBox0">
-                <img src="images/lotr 1 hd.jpg" alt="">
+                <img src="images/inception.jpg" alt="">
                 <div class="text">
-                    <h2>The Lord of the Rings</h2>
+                    <h2>Inception</h2>
                     <div class="ratingBook">
                         <p class="stars">★</p>
-                        <a>4.37 / 5 (2 518 596 ratings on </a>
-                        <a href="https://www.goodreads.com/book/show/3263607-the-fellowship-of-the-ring">goodreads</a>
+                        <a>8.8 / 10 (2 189 651 ratings on </a>
+                        <a href="https://www.imdb.com/title/tt1375666/">IMDb</a>
                         <a>)</a>
                     </div>
+                    <div class="space">
+                        <p>2010 | PG-13 | 2h 28m</p>
+                    </div>
 
-                    <p>Hardback | English</p>
+
+
                     <div class="author">
-                        <p>Author: </p>
+                        <p>Director: </p>
+                    </div>
+                    <div class="author1">
+                        <p>Christopher Nolan</p>
+                    </div>
+                    <br>
+
+                    <div class="author">
+                        <p>Writer: </p>
+                    </div>
+                    <div class="author1">
+                        <p>Christopher Nolan</p>
+                    </div>
+                    <br>
+
+                    <div class="author">
+                        <p>Composer: </p>
+                    </div>
+                    <div class="author1">
+                        <p>Hans Zimmer</p>
+                    </div>
+                    <br>
+
+                    <div class="author">
+                        <p>Cast: </p>
+                    </div>
+                    <div class="author1">
+                        <p>Leonardo DiCaprio | Joseph Gordon-Levitt | Elliot Page | Tom Hardy</p>
                     </div>
 
-                    <div class="author1">
-                        <p>John Ronald Reuel Tolkien</p>
-                    </div>
-                    
-                    
-                    <br>
                     <div class="descBook">
-                        <p>Sumptuous slipcased edition of Tolkien's classic epic tale of adventure, fully illustrated in
-                            colour for the first time by the author himself. This deluxe volume is quarterbound in
-                            leather
-                            and includes many special features unique to this edition.</p>
+                        <p>A thief who steals corporate secrets through the use of dream-sharing technology is given the
+                            inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the
+                            project and his team to disaster.</p>
                         <br>
-                        <p>The Fellowship of the Ring, the first volume in the trilogy, tells of the fateful power of
-                            the
-                            One Ring. It begins a magnificent tale of adventure that will plunge the members of the
-                            Fellowship of the Ring into a perilous quest and set the stage for the ultimate clash
-                            between
-                            the powers of good and evil.</p>
+                        <p>Inception is a 2010 science fiction action film written and directed by Christopher
+                            Nolan, who also produced the film with Emma Thomas, his wife. The film stars Leonardo
+                            DiCaprio as a professional thief who steals information by infiltrating the subconscious of
+                            his targets. He is offered a chance to have his criminal history erased as payment for the
+                            implantation of another person's idea into a target's subconscious. The ensemble cast
+                            includes Ken Watanabe, Joseph Gordon-Levitt, Marion Cotillard, Elliot Page,[a] Tom Hardy,
+                            Dileep Rao, Cillian Murphy, Tom Berenger, and Michael Caine.</p>
                         <br>
-                        <p>Since it was first published in 1954, The Lord of the Rings has been a book people have
-                            treasured. Steeped in unrivalled magic and otherworldliness, its sweeping fantasy and epic
-                            adventure has touched the hearts of young and old alike. Over 100 million copies of its many
-                            editions have been sold around the world, and occasional collectors' editions become prized
-                            and
-                            valuable items of publishing.</p>
+                       
                     </div>
 
                 </div>
@@ -117,16 +94,12 @@
             <div class="bookBox1">
                 <div class="textMoney">
                     <h2>19.99 €</h2>
-                 
-                        <h3>Pre-order</h3>
-               
-                    
+                    <h3>In Stock</h3>
                     <div class="one">
                         <p>Free delivery worldwide</p>
                     </div>
-                    
-                    <p>Available. Expected delivery to Slovakia in 6-11 business days.</p>
-                    <p>Order now for expected delivery by 31. 1. 2022</p>
+                    <p>Available. Expected delivery to Slovakia in 16-21 business days.</p>
+                    <p>Order now for expected delivery to Slovakia by Christmas</p>
                     <div class="bookBtn">
                         <a href="">Add to cart</a>
                     </div>
@@ -142,7 +115,7 @@
                 <h2>Product Details</h2>
                 <div class="textDesc0">
 
-                    
+
                     <div class="details">
                         <p>Format: </p>
                     </div>
@@ -171,7 +144,7 @@
                         <p>Publisher: </p>
                     </div>
                     <div class="details1">
-                        <p>Royal Print</p>
+                        <p>14 Oct 2021</p>
                     </div>
                     <br>
 

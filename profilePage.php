@@ -47,10 +47,8 @@ include 'header.php';
         <?php
         echo $name;
         ?>
-
-        
     
-    </div>
+        </div>
     </div>
     
     
@@ -63,33 +61,32 @@ include 'header.php';
     <div class="info">
 
     <h2>Full Name</h2>
-    <div class="php">
-        <?php
-            echo $name;
-        ?>
-    </div>
+        <div class="php">
+            <?php
+                echo $name;
+            ?>
+        </div>
         
     </div>
     <div class="info">
         <h2>Username</h2>
         
         <div class="php">
-        <?php
-            echo $uid;
-        ?>
-</div>
+            <?php
+                echo $uid;
+            ?>
+        </div>
         
     </div>
 
     <div class="info">
         <h2>Email</h2>
-<div class="php">
-        <?php
-            echo $mail;
-        ?>
-</div>
+        <div class="php">
+            <?php
+                echo $mail;
+            ?>
+        </div>
 
-        
     </div>
    
 </div>

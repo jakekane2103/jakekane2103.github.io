@@ -54,109 +54,140 @@ include 'header.php';
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 
 
+<section class="forms">
+    <div class="containerAdd">
+        <div class="row col-md-12 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <h1>Add Product</h1>
+                </div>       
 
-<div class="container">
-            <div class="row col-md-6 col-md-offset-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading text-center">
-                        <h1>Add Product</h1>
-                    </div>       
-                        <form action="includes/adminPage.inc.php" method="post">
-                            <div class="form-group">
-                                <label for="nazov">Name</label>
-                                <input type="text" class="form-control" name="nazov" />
-                            </div>
-                      
-                            <div class="form-group">
-                                <label for="img">Image</label>
-                                <input type="text" class="form-control" name="img" />
+                <form ation="includes/adminPage.inc.php" method="post">
+                    <div class="form-group">
+                        <label for="nazov">Name</label>
+                        <input type="text" class="form-control" name="nazov" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img">Image</label>
+                        <input type="text" class="form-control" name="img" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="autor">Author</label>
+                        <input type="text" class="form-control"  name="autor" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cena">Price</label>
+                        <input type="text" class="form-control"  name="cena" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <input type="text" class="form-control"  name="rating" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descritpion</label> <br>
+                        <textarea id="description" class="form-control" name="description" required></textarea>
+                    </div>
+
+                    <div class="formBtn">
+                        <button type="submit" name="submit">ADD PRODUCT</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="containerUpdate">
+        <div class="row col-md-12 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <h1>Update Product</h1>
+                </div>     
+                    <form action="includes/adminPage.inc.php" method="post">
+                        <div class="form-group">
+                                <label for="id">Product ID:</label>
+                                <input type="text" class="form-control" name="id" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="autor">Author</label>
-                                <input type="text" class="form-control"  name="autor" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="cena">Price</label>
-                                <input type="text" class="form-control"  name="cena" />
+                                <label for="nazov">Product Name:</label>
+                                <input type="text" class="form-control" name="nazov" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="rating">Rating</label>
-                                <input type="text" class="form-control"  name="rating" />
+                                <label for="img">Product Image:</label>
+                                <input type="text" class="form-control" name="img" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="description">Descritpion</label>
-                                <input type="text" class="form-control"  name="description" />
+                                <label for="autor">Product Author:</label>
+                                <input type="text" class="form-control" name="autor" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cena">Product Price:</label>
+                                <input type="text" class="form-control" name="cena" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rating">Product Rating:</label>
+                                <input type="text" class="form-control" name="rating" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Product Description:</label><br>
+                                <textarea id="description" class="form-control" name="description" required></textarea>
                             </div>
 
                             <div class="formBtn">
-                                <button type="submit" name="submit">ADD PRODUCT</button>
-                            </div>
-                            
-                        </form>
+                                <button type="submit" name="update">UPDATE PRODUCT</button>
+                            </div>    
+                    </form>
 
+            </div>
         </div>
     </div>
-</div>
-         
-<div class="container">
-            <div class="row col-md-6 col-md-offset-3">
-                <div class="panel panel-primary">
+
+    <div class="containerDelete">
+        <div class="row col-md-12 col-md-offset-1">
+            <div class="panel panel-primary">
                 <div class="panel-heading text-center">
-                        <h1>Update Product</h1>
-                    </div>     
-<form action="includes/adminPage.inc.php" method="post">
-<div class="form-group">
-  <label for="id">Product ID:</label>
-  <input type="text" id="id" name="id" required>
-  </div>
-  
-  <div class="form-group">
-  <label for="nazov">Product Name:</label>
-  <input type="text" id="nazov" name="nazov" required>
-  </div>
+                    <h1>Delete Product</h1>
+                </div>     
+                    <form action="includes/adminPage.inc.php" method="post">
+                        <div class="form-group">
+                                <label for="id">Product ID:</label>
+                                <input type="text" class="form-control" name="id" required>
+                            </div>
 
-  <div class="form-group">
-  <label for="img">Product Image:</label>
-  <input type="text" id="img" name="img" required>
-  </div>
+                            <div class="form-group">
+                                <label for="nazov">Product Name:</label>
+                                <input type="text" class="form-control" name="nazov" required>
+                            </div>
 
-  <div class="form-group">
-  <label for="autor">Product Author:</label>
-  <input type="text" id="autor" name="autor" required>
-  </div>
+                            <div class="formBtn">
+                                <button type="submit" name="update">DELETE PRODUCT</button>
+                            </div>    
+                    </form>
 
-  <div class="form-group">
-  <label for="cena">Product Price:</label>
-  <input type="text" id="cena" name="cena" required>
-  </div>
-
-  <div class="form-group">
-  <label for="rating">Product Rating:</label>
-  <input type="text" id="rating" name="rating" required>
-  </div>
-
-  <div class="form-group">
-  <label for="description">Product Description:</label>
-  <textarea id="description" name="description" required></textarea>
-  </div>
-
-  <div class="formBtn">
-  <button type="submit" name="update">UPDATE PRODUCT</button>
-  </div>    
-</form>
-
-</div>
+            </div>
+        </div>
     </div>
-</div>
-         
+</section>
 
-<?php
-echo $output;
-?>
+         
+<div class="adminTable">
+    <?php
+    echo $output;
+
+    ?>
+</div>
+
     
         
 </body>
