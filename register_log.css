@@ -20,7 +20,7 @@ font-family:'Open Sans', sans-serif;
   }
 
 .formBtn button{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(83, 215, 255);
     border: 1px rgb(100, 100, 100) solid;
     border-radius: 4%;
     color: black;
@@ -50,10 +50,10 @@ font-family:'Open Sans', sans-serif;
 
 #description{
     max-width: 100%;
-    max-height: 30%;
+    height: 20%;
+    max-height: 300px;
     min-width: 100%;
     min-height: 20%;
-    height: fit-content;
     line-height: 160%;
 }
 
@@ -62,8 +62,8 @@ font-family:'Open Sans', sans-serif;
     width: 100%;
     margin-top: 1%;
     margin-bottom: 32%;
-    position: static;
     display: flex;
+
 }
 
 .forms h2{
@@ -173,6 +173,7 @@ tr {
 
 .adminTable {
     display: block;
+    min-height: 200px;
     
 }
 

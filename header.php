@@ -27,7 +27,7 @@
                     <h1>Name</h1>
                 </div>
                 <div class="upperRight">
-                    <a href="stores.php" <?php if($page == "stores") echo "class='active'"; ?>>Stores </a> &emsp;&emsp;
+                    <a href="stores.php" <?php if($page == "stores") echo "class='active'"; ?>>Stores</a> &emsp;&emsp;
                     <a href="cart.php"><i class="fas fa-shopping-basket fa-lg"></i></a>&emsp;&emsp; 
 
                 <?php

@@ -24,6 +24,9 @@ include 'header.php';
 
     $query = "SELECT * FROM faq";
     $resultfaq = mysqli_query($conn, $query);
+
+    $query = "SELECT * FROM contactMessage";
+    $resultmessage = mysqli_query($conn, $query);
     
 
 ?>
@@ -285,6 +288,27 @@ include 'header.php';
             echo '<td class="id">' . $row['id'] . '</td>'; 
             echo '<td>' . $row['question'] . '</td>'; 
             echo '<td>' . $row['answer'] . '</td>';
+            echo '</tr>';
+        }
+    ?>
+</table>
+
+<table class="adminTable">
+    <h1>MESSAGES</h1>
+    <tr class="columnNames">
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Message</th>
+    </tr>
+    <?php 
+        while ($row = mysqli_fetch_assoc($resultmessage)) 
+        {
+            echo '<tr>';
+            echo '<td class="id">' . $row['id'] . '</td>'; 
+            echo '<td>' . $row['name'] . '</td>'; 
+            echo '<td>' . $row['email'] . '</td>';
+            echo '<td>' . $row['message'] . '</td>';
             echo '</tr>';
         }
     ?>

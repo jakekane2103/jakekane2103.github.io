@@ -17,93 +17,41 @@
 </head>
 
 <body>
-    <section>
-    
-        <div class="contactWhole">
-            <img src="images/contact.jpg" alt="">
+    <section class="contactWhole">
 
-            <div class="contactWhole1">
-                <img src="images/contact.jpg" alt="">
-                <div class="contactUs">
-                    <div class="contactText">
-                        <h2>Contact Us</h2>
-                        <p>Not able to find the answer in our Help section?</p>
-                        <p>Please fill in this form:</p>
-                        <p>Fields marked * are required.</p>
-                    </div>
+        <div class="contactWhole1">
+                
+            <div class="container">
+                <div class="row col-md-12 col-md-offset-1">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            <h1>Contact Us</h1>
+                        </div>       
 
-
-                    <div class="contactForm">
-                        <div class="eachForm">
-                            <h3>Full Name *</h3>
-                            <form action="/action_page.php">
-                                <input class="searchArray1" type="text" placeholder="" name="">
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="eachForm">
-                            <h3>Email Address *</h3>
-                            <form action="/action_page.php">
-                                <input class="searchArray1" type="text" placeholder="" name="">
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="eachForm">
-                            <h3>Postcode / Zip</h3>
-                            <form action="/action_page.php">
-                                <input class="searchArray1" type="text" placeholder="" name="">
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="eachForm">
-                            <h3>Order number</h3>
-                            <form action="/action_page.php">
-                                <input class="searchArray1" type="text" placeholder="" name="">
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="eachForm">
-                            <h3>Reason *</h3>
-                            <div class="dropdown">
-                                <form action="/action_page.php">
-                                    <input class="searchArray1" type="text" placeholder="" name="">
-                                    <div class="dropdown-content">
-                                            <a href="">My order</a>
-                                            <a href="">Change my order</a>
-                                            <a href="">Cancel and return my order</a>
-                                            <a href="">Damaged item</a>
-                                            <a href="">Incorrect item</a>
-                                            <a href="">Payment</a>
-                                            <a href="">My account</a>
-                                            <a href="">Website issues</a>
-                                            <a href="">Other</a>
-                                        </button>
-                                    </div>
-                                </form>
+                        <form action="includes/contact.inc.php" method="post">
+                            <div class="form-group">
+                                <label for="nazov">Your Full Name</label>
+                                <input type="text" class="form-control" name="name" />
                             </div>
 
+                            <div class="form-group">
+                                <label for="img">Your Email</label>
+                                <input type="text" class="form-control" name="email" />
+                            </div>
 
+                            <div class="form-group">
+                                <label for="description">Your Message</label> <br>
+                                <textarea id="description" class="form-control" name="message"></textarea>
+                            </div>
 
-                            <h3>Your message *</h3>
-                            <textarea id="subject" name="subject" placeholder="Describe your issue..."
-                                style="height:200px"></textarea>
-
-                                <div class="formButton">
-                                    <a href="">Send</a>&emsp;&emsp;
-
-
-                        </div>
-
-
+                            <div class="formBtn">
+                                <button type="submit" name="contact">SEND MESSAGE</button>
+                            </div>
+                        </form>
                     </div>
-
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
 
 

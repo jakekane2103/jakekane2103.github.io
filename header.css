@@ -68,7 +68,9 @@ font-family:'Open Sans', sans-serif;
     background-color: white;
     color: black;
     border-radius: 4px;    
+    padding: 0 2px;
     transition: 0.5s;
+    margin: 0 -2px;
    
 }
 
@@ -86,10 +88,11 @@ font-family:'Open Sans', sans-serif;
     background-color: white;
     font-weight: bold;
     text-decoration: none;
-    font-size: large;
+    font-size: 120%;
+    padding: 0 2px;
     cursor: pointer;
     border-radius: 4px;
-   margin: 0 0 0 -1px;
+    margin: 0 -2px;
 }
 
 .upperRight a.active{
@@ -97,10 +100,11 @@ font-family:'Open Sans', sans-serif;
     background-color: white;
     font-weight: bold;
     text-decoration: none;
-    font-size: large;
+    font-size: 125%;
+    padding: 0 2px;
     cursor: pointer;
     border-radius: 4px;
-   margin: 0 0 0 -1px;
+    margin: 0 -2px;
 }
 
 .webName {
@@ -133,6 +137,8 @@ font-family:'Open Sans', sans-serif;
     background-color: white;
     border-radius: 4px;    
     transition: 0.5s;
+    padding: 0 2px;
+    margin: 0 -2px;
 }
 
 .upperRight i{
