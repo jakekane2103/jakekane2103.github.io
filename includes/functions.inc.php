@@ -136,6 +136,9 @@ function emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description) {
     return $result;
 }
 
+
+/*---------ADD PRODUCT----------*/
+
 function addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description) {
     $sql = "INSERT INTO produkt (nazov, img, autor, cena, rating, description) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
@@ -152,7 +155,28 @@ function addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description) {
 }
 
 
+/*---------UPDATE PRODUCT----------*/
+
 function updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description) {
+    $sql = "SELECT nazov, img, autor, cena, rating, description FROM produkt WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../adminPage.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($result)) {
+        if(empty($nazov)) $nazov = $row['nazov'];
+        if(empty($img)) $img = $row['img'];
+        if(empty($autor)) $autor = $row['autor'];
+        if(empty($cena)) $cena = $row['cena'];
+        if(empty($rating)) $rating = $row['rating'];
+        if(empty($description)) $description = $row['description'];
+    }
+    mysqli_stmt_close($stmt);
+
     $sql = "UPDATE produkt SET nazov = ?, img = ?, autor = ?, cena = ?, rating = ?, description = ? WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -164,4 +188,100 @@ function updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $descri
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");
     exit();
+}
+
+
+function idExists($conn, $id) {
+    $sql = "SELECT id FROM produkt WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+
+/*---------DELETE PRODUCT----------*/
+
+function deleteProduct($conn, $id) {
+    $sql = "DELETE FROM produkt WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../adminPage.php?error=sqlerror");
+        exit();
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        header("location: ../adminPage.php?success=deleted");
+        exit();
+    }
+}
+
+/*----------FAQ-----------*/
+
+function emptyInputFaq($question, $answer) {
+    $result;
+    if (empty($question) || empty($answer)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+
+
+function addFaq($conn, $question, $answer) {
+    $sql = "INSERT INTO faq (question, answer) VALUES (?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../adminPage.php?error=stmtfailed");
+        exit();
+    }
+
+        mysqli_stmt_bind_param($stmt, "ss", $question, $answer);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../adminPage.php?error=none");
+        exit();
+}
+
+function idExistsFaq($conn, $id) {
+    $sql = "SELECT id FROM faq WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+function deleteFaq($conn, $id) {
+    $sql = "DELETE FROM faq WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../adminPage.php?error=sqlerror");
+        exit();
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        header("location: ../adminPage.php?success=deleted");
+        exit();
+    }
 }

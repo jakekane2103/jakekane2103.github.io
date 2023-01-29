@@ -9,7 +9,6 @@ if (isset($_POST["submit"])) {
     $rating = $_POST["rating"];
     $description = $_POST["description"];
     
-
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
@@ -35,13 +34,61 @@ if(isset($_POST["update"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if(emptyInputProduct($id, $nazov, $img, $autor, $cena, $rating, $description) !== false) {
+    updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description);
+}
+
+if(isset($_POST["delete"])) {
+
+    $id = $_POST["id"];
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    if(empty($id)) {
         header("location: ../adminPage.php?error=emptyinput");
         exit();
     }
-
-    updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description);
+    if(!idExists($conn, $id)) {
+        header("location: ../adminPage.php?error=idnotfound");
+        exit();
+    }
+    deleteProduct($conn, $id);
 }
+
+if(isset($_POST["faqAdd"])) {
+
+    $question = $_POST["question"];
+    $answer = $_POST["answer"];
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    if(emptyInputFaq($question, $answer)) {
+        header("location: ../adminPage.php?error=emptyinput");
+        exit();
+    }
+    
+    addFaq($conn, $question, $answer);
+}
+
+if(isset($_POST["faqDelete"])) {
+
+    $id = $_POST["id"];
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    if(empty($id)) {
+        header("location: ../adminPage.php?error=emptyinput");
+        exit();
+    }
+    if(!idExistsFaq($conn, $id)) {
+        header("location: ../adminPage.php?error=idnotfound");
+        exit();
+    }
+    deleteFaq($conn, $id);
+}
+
 
 else {
     header("location: ../adminPage.php?error=none");

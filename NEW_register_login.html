@@ -32,18 +32,7 @@
 
             <div class="upperRight">
                 <a href="stores.html">Stores </a> &emsp;&emsp;
-                <a class="active" href="NEW_register_login.php"> 
-                     <?php
-                    	    if(isset($_SESSION['name'])){
-                                session_start();
-								echo "Welcome ";
-                     	       echo $_SESSION['name']; 
-                     	   }
-                     	   else{
-					 	         echo '<a href="NEW_login.php">Login / Sign Up </a>';
-                     	   }                		  
-						?>
-                </a> &emsp;&emsp;   
+                <a class="active" href="NEW_register_login.php"></a> &emsp;&emsp;   
                 <a href="cart.html"><i class="fas fa-shopping-basket fa-lg"></i></a>
             </div>
 
