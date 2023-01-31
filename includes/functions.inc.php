@@ -313,3 +313,20 @@ function sendMessage($conn, $name, $email, $message) {
         header("location: ../contact.php?error=none");
         exit();
 }
+
+
+/*--------MESSAGES--------*/
+
+function deleteMess($conn, $id) {
+    $sql = "DELETE FROM contactmessage WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../adminPage.php?error=sqlerror");
+        exit();
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        header("location: ../adminPage.php?success=deleted");
+        exit();
+    }
+}

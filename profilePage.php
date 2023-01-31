@@ -21,14 +21,15 @@ include 'header.php';
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Registration Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profilePage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 
@@ -61,7 +62,7 @@ include 'header.php';
     <div class="info">
 
     <h2>Full Name</h2>
-        <div class="php">
+        <div class="phpN">
             <?php
                 echo $name;
             ?>
@@ -81,7 +82,7 @@ include 'header.php';
 
     <div class="info">
         <h2>Email</h2>
-        <div class="php">
+        <div class="phpM">
             <?php
                 echo $mail;
             ?>

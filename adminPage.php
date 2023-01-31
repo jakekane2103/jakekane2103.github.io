@@ -174,6 +174,56 @@ include 'header.php';
     </div> 
 </section>
 
+
+
+<section class="tables">
+<table class="adminTable">
+    <h1>PRODUCTS</h1>
+    <tr class="columnNames">
+        <th>ID</th>
+        <th>Nazov</th>
+        <th>Autor</th>
+        <th>Cena</th>
+        <th>Rating</th>
+        <th>Description</th>
+    </tr>
+    <?php 
+        while ($row = mysqli_fetch_assoc($resultprodukt)) 
+        {
+            echo '<tr>';
+            echo '<td class="id">' . $row['id'] . '</td>'; 
+            echo '<td>' . $row['nazov'] . '</td>'; 
+            echo '<td>' . $row['autor'] . '</td>';
+            echo '<td>' . $row['cena'] . '</td>';
+            echo '<td>' . $row['rating'] . '</td>';
+            echo '<td>' . $row['description'] . '</td>';
+            echo '</tr>';
+        }
+    ?>
+</table>
+
+
+<table class="adminTable">
+    <h1>USERS</h1>
+    <tr class="columnNames">
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Username</th>
+    </tr>
+    <?php 
+        while ($row = mysqli_fetch_assoc($resultusers)) 
+        {
+            echo '<tr>';
+            echo '<td class="id">' . $row['usersId'] . '</td>'; 
+            echo '<td>' . $row['usersName'] . '</td>'; 
+            echo '<td>' . $row['usersEmail'] . '</td>';
+            echo '<td>' . $row['usersUid'] . '</td>';
+            echo '</tr>';
+        }
+    ?>
+</table>
+    
 <section class="forms">
     <div class="containerQuestionAdd">
         <div class="row col-md-12 col-md-offset-1">
@@ -225,55 +275,6 @@ include 'header.php';
     </div>
 </section>
 
-<section class="tables">
-<table class="adminTable">
-    <h1>PRODUCTS</h1>
-    <tr class="columnNames">
-        <th>ID</th>
-        <th>Nazov</th>
-        <th>Autor</th>
-        <th>Cena</th>
-        <th>Rating</th>
-        <th>Description</th>
-    </tr>
-    <?php 
-        while ($row = mysqli_fetch_assoc($resultprodukt)) 
-        {
-            echo '<tr>';
-            echo '<td class="id">' . $row['id'] . '</td>'; 
-            echo '<td>' . $row['nazov'] . '</td>'; 
-            echo '<td>' . $row['autor'] . '</td>';
-            echo '<td>' . $row['cena'] . '</td>';
-            echo '<td>' . $row['rating'] . '</td>';
-            echo '<td>' . $row['description'] . '</td>';
-            echo '</tr>';
-        }
-    ?>
-</table>
-
-
-<table class="adminTable">
-    <h1>USERS</h1>
-    <tr class="columnNames">
-        <th>ID</th>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Username</th>
-    </tr>
-    <?php 
-        while ($row = mysqli_fetch_assoc($resultusers)) 
-        {
-            echo '<tr>';
-            echo '<td class="id">' . $row['usersId'] . '</td>'; 
-            echo '<td>' . $row['usersName'] . '</td>'; 
-            echo '<td>' . $row['usersEmail'] . '</td>';
-            echo '<td>' . $row['usersUid'] . '</td>';
-            echo '</tr>';
-        }
-    ?>
-</table>
-    
-
 <table class="adminTable">
     <h1>FAQ</h1>
     <tr class="columnNames">
@@ -292,6 +293,30 @@ include 'header.php';
         }
     ?>
 </table>
+
+<section class="forms">
+    <div class="containerMessageDelete">
+        <div class="row col-md-12 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <h1>Delete Message</h1>
+                </div>       
+
+                <form action="includes/adminPage.inc.php" method="post">
+                    <div class="form-group">
+                        <label for="id">Message ID</label>
+                        <input type="text" class="form-control" name="id" required>
+                    </div>
+
+                    <div class="formBtn">
+                        <button type="submit" name="messDelete">DELETE MESSAGE</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
 <table class="adminTable">
     <h1>MESSAGES</h1>

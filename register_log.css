@@ -99,14 +99,18 @@ font-family:'Open Sans', sans-serif;
 
 .containerQuestionAdd {
     width: 200%;
-    margin: -20% -100% 0 5%;
+    margin: 10% -100% -30% 5%;
 }
 
 .containerQuestionDelete {
     width: 200%;
-    margin: -20% -80% 0 0;
+    margin: 10% -80% -30% 0;
 }
 
+.containerMessageDelete {
+    width: 200%;
+    margin: 10% -100% -35% 5%;
+}
 
 .panel {
     background-color: #fcfcfc;
@@ -151,7 +155,7 @@ font-family:'Open Sans', sans-serif;
 /*--------PRODUCT TABLE---------*/
 /*------------------------------*/
 .tables {
-    margin-top: -30%;
+    margin-top: -25%;
 }
 table {
     border-collapse: collapse;

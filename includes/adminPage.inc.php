@@ -89,8 +89,29 @@ if(isset($_POST["faqDelete"])) {
     deleteFaq($conn, $id);
 }
 
+if(isset($_POST["messDelete"])) {
+
+    $id = $_POST["id"];
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    if(empty($id)) {
+        header("location: ../adminPage.php?error=emptyinput");
+        exit();
+    }
+    if(!idExistsFaq($conn, $id)) {
+        header("location: ../adminPage.php?error=idnotfound");
+        exit();
+    }
+    deleteMess($conn, $id);
+}
+
 
 else {
     header("location: ../adminPage.php?error=none");
         exit();
 }
+
+
+
