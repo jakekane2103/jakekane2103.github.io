@@ -8,16 +8,17 @@ if (isset($_POST["submit"])) {
     $cena = $_POST["cena"];
     $rating = $_POST["rating"];
     $description = $_POST["description"];
+    $inStock = $_POST["inStock"];
     
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if(emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description) !== false) {
+    if(emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description, $inStock) !== false) {
         header("location: ../adminPage.php?error=emptyinput");
         exit();
     }
 
-    addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description);
+    addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description, $inStock);
 }
 
 if(isset($_POST["update"])) {
@@ -29,12 +30,13 @@ if(isset($_POST["update"])) {
     $cena = $_POST["cena"];
     $rating = $_POST["rating"];
     $description = $_POST["description"];
+    $inStock = $_POST["inStock"];
     
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description);
+    updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description, $inStock);
 }
 
 if(isset($_POST["delete"])) {

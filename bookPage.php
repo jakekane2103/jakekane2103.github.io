@@ -1,6 +1,24 @@
 <?php
     $page = "books";
     include 'header.php';
+
+    require_once 'includes/dbh.inc.php';
+    require_once 'includes/functions.inc.php';
+    
+    $id = $_GET['id'];
+
+    $query = "SELECT * FROM produkt where id = $id;";
+    $resultprodukt = mysqli_query($conn, $query);  
+    $product = mysqli_fetch_assoc($resultprodukt);
+    $nazov = $product['nazov'];
+    $img = $product['img'];
+    $autor = $product['autor'];
+    $cena = $product['cena'];
+    $rating = $product['rating'];
+    $description = $product['description'];
+    $inStock = $product['inStock'];
+   
+    $paragraphs = explode("/p", $description);
 ?>
     
 <!DOCTYPE html>
@@ -18,19 +36,17 @@
 
 <body>
 
-
     <section>
         
-
         <div class="bookPage">
 
             <div class="bookBox0">
-                <img src="images/lotr 1 hd.jpg" alt="">
+                <img src="<?php echo $img ?>" alt="">
                 <div class="text">
-                    <h2>The Lord of the Rings</h2>
+                    <h2> <?php echo $nazov ?>  </h2>
                     <div class="ratingBook">
                         <p class="stars">★</p>
-                        <a>4.37 / 5 (2 518 596 ratings on </a>
+                        <a><?php echo $rating ?> / 10 (2 518 596 ratings on </a>
                         <a href="https://www.goodreads.com/book/show/3263607-the-fellowship-of-the-ring">goodreads</a>
                         <a>)</a>
                     </div>
@@ -41,30 +57,16 @@
                     </div>
 
                     <div class="author1">
-                        <p>John Ronald Reuel Tolkien</p>
+                        <p><?php echo $autor ?></p>
                     </div>
                     
                     
                     <br>
                     <div class="descBook">
-                        <p>Sumptuous slipcased edition of Tolkien's classic epic tale of adventure, fully illustrated in
-                            colour for the first time by the author himself. This deluxe volume is quarterbound in
-                            leather
-                            and includes many special features unique to this edition.</p>
-                        <br>
-                        <p>The Fellowship of the Ring, the first volume in the trilogy, tells of the fateful power of
-                            the
-                            One Ring. It begins a magnificent tale of adventure that will plunge the members of the
-                            Fellowship of the Ring into a perilous quest and set the stage for the ultimate clash
-                            between
-                            the powers of good and evil.</p>
-                        <br>
-                        <p>Since it was first published in 1954, The Lord of the Rings has been a book people have
-                            treasured. Steeped in unrivalled magic and otherworldliness, its sweeping fantasy and epic
-                            adventure has touched the hearts of young and old alike. Over 100 million copies of its many
-                            editions have been sold around the world, and occasional collectors' editions become prized
-                            and
-                            valuable items of publishing.</p>
+                    <?php 
+                        foreach ($paragraphs as $paragraph) {
+                            echo "<p>" . $paragraph . "</p><br>";
+                        }?>
                     </div>
 
                 </div>
@@ -74,12 +76,22 @@
 
             <div class="bookBox1">
                 <div class="textMoney">
-                    <h2>19.99 €</h2>
+                    <h2><?php echo $cena ?>€</h2>
                  
-                        <h3>Pre-order</h3>
+                    <h3>
+                        <?php 
+                            if($inStock > 0) {
+                                echo '<p class="inStock">In Stock</p>';
+                            }
+                            else if($inStock == 0){
+                                echo '<p class="outOfStock">Out of Stock</p>';
+                            }
+                        ?>
+                    </h3>
                
-                    
-                    <div class="one">
+                </div>  
+                <div class="textBot">
+                    <div>
                         <p>Free delivery worldwide</p>
                     </div>
                     

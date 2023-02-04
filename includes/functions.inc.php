@@ -139,15 +139,15 @@ function emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description) {
 
 /*---------ADD PRODUCT----------*/
 
-function addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description) {
-    $sql = "INSERT INTO produkt (nazov, img, autor, cena, rating, description) VALUES (?, ?, ?, ?, ?, ?);";
+function addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description, $inStock) {
+    $sql = "INSERT INTO produkt (nazov, img, autor, cena, rating, description, inStock) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
 
-        mysqli_stmt_bind_param($stmt, "ssssss", $nazov, $img, $autor, $cena, $rating, $description);
+        mysqli_stmt_bind_param($stmt, "sssssss", $nazov, $img, $autor, $cena, $rating, $description, $inStock);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../adminPage.php?error=none");
@@ -157,8 +157,8 @@ function addProduct($conn, $nazov, $img, $autor, $cena, $rating, $description) {
 
 /*---------UPDATE PRODUCT----------*/
 
-function updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description) {
-    $sql = "SELECT nazov, img, autor, cena, rating, description FROM produkt WHERE id = ?";
+function updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $description, $inStock) {
+    $sql = "SELECT nazov, img, autor, cena, rating, description, inStock FROM produkt WHERE id = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
@@ -174,16 +174,17 @@ function updateProduct($conn, $id, $nazov, $img, $autor, $cena, $rating, $descri
         if(empty($cena)) $cena = $row['cena'];
         if(empty($rating)) $rating = $row['rating'];
         if(empty($description)) $description = $row['description'];
+        if(empty($inStock)) $inStock = $row['inStock'];
     }
     mysqli_stmt_close($stmt);
 
-    $sql = "UPDATE produkt SET nazov = ?, img = ?, autor = ?, cena = ?, rating = ?, description = ? WHERE id = ?;";
+    $sql = "UPDATE produkt SET nazov = ?, img = ?, autor = ?, cena = ?, rating = ?, description = ?, inStock = ? WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "ssssssi", $nazov, $img, $autor, $cena, $rating, $description, $id);
+    mysqli_stmt_bind_param($stmt, "sssssssi", $nazov, $img, $autor, $cena, $rating, $description, $inStock, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");

@@ -1,0 +1,79 @@
+.books {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.book {
+    width: 29%;
+    display: flex;
+    background-color: rgb(255, 255, 251);
+    margin: 1%;
+    padding: 10px;
+    border: 2px solid #4E505Ded;;
+}
+  
+.productImg {
+    width: 40%;
+    height: auto;
+    object-fit: scale-down;
+}
+  
+.info {
+    width: 60%;
+    padding-left: 3%;
+}
+
+.info h4{
+    color: black;
+    font-size: 140%;
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+    object-fit: scale-down;
+}
+
+.author{
+    color: black;
+    text-align: center;
+    font-size: 110%;
+    font-style: italic;
+}
+  
+.description {
+    max-height: 200px;
+    text-overflow: ellipsis;
+    content: "";
+    background: -webkit-linear-gradient(#000, rgb(228, 228, 228));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+
+.price{
+    margin-top: 3%;
+    display: inline-block;
+    color: red;
+    font-weight: 900;
+    font-size: 140%;
+    vertical-align: bottom;
+}
+
+.inStock{
+    color: green;
+    text-align: left;
+    font-weight: bold;
+    font-size: 110%;
+    vertical-align: bottom;
+}
+
+.outOfStock{
+    color: rgb(255, 8, 8);
+    text-align: left;
+    font-weight: bold;
+    font-size: 110%;
+    vertical-align: bottom;
+}
+
+.upperProductInfo {
+    height: 80%;
+}

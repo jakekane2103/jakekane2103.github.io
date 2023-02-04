@@ -89,7 +89,7 @@ include 'header.php';
 
                     <div class="form-group">
                         <label for="description">Descritpion</label> <br>
-                        <textarea id="description" class="form-control" name="description"></textarea>
+                        <textarea id="description" class="form-control" name="description" placeholder="to add new paragraph  write /p into text"></textarea>
                     </div>
 
                     <div class="formBtn">
@@ -140,7 +140,12 @@ include 'header.php';
 
                             <div class="form-group">
                                 <label for="description">Product Description</label><br>
-                                <textarea id="description" class="form-control" name="description"></textarea>
+                                <textarea id="description" class="form-control" name="description" placeholder="to add new paragraph  write /p into text"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inStock">In Stock</label>
+                                <input type="text" class="form-control" name="inStock">
                             </div>
 
                             <div class="formBtn">
@@ -186,6 +191,7 @@ include 'header.php';
         <th>Cena</th>
         <th>Rating</th>
         <th>Description</th>
+        <th>In Stock</th>
     </tr>
     <?php 
         while ($row = mysqli_fetch_assoc($resultprodukt)) 
@@ -197,6 +203,7 @@ include 'header.php';
             echo '<td>' . $row['cena'] . '</td>';
             echo '<td>' . $row['rating'] . '</td>';
             echo '<td>' . $row['description'] . '</td>';
+            echo '<td>' . $row['inStock'] . '</td>';
             echo '</tr>';
         }
     ?>
