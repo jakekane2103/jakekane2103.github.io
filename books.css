@@ -4,22 +4,10 @@ font-family:'Open Sans', sans-serif;
 
 }
 
-.sideAds{
-    
-float: left;
-width: 30%;
-
-
-}
-        /*             ----------------------------           */
-
-
-
+      
 /*--------------------------------------------------*/
 /*-----------Books------Movies------Music-----------*/
 /*--------------------------------------------------*/
-
-
 
 
 *{
@@ -30,8 +18,10 @@ width: 30%;
 
 .filter{
     padding: 15px 0 0 25px;
-    width: 14%;
-    height: 125%;
+    width: 270px;
+    max-width: 60%;
+    height: 1200px;
+    max-height: 200%;
     border: 4px solid #4E505D;
     background-color: #e2e2e2;
     position: relative;
@@ -79,6 +69,10 @@ width: 30%;
 
 .choices{
     padding: 5px;
+    border-top: #4E505D 2px solid;
+    width: 250px;
+    max-width: 90%;
+
 }
 
 .choicesLanguage{
@@ -99,38 +93,13 @@ width: 30%;
     color: red;
     margin: 15px 45px 0 28px;
      
- }
-
- .choices2 a{
-    margin: 15px 45px 0 38px;
-    text-decoration: none;
-    color: black;
-    font-size: 19px;
-    font-weight: 600;
-    cursor: pointer;
 }
-
-.choices2 a.visited{
-    color: red;
-    margin: 15px 45px 0 28px;
- }
 
 .choices h3{
-    border-top: #4E505D 2px solid;
-    width: 257px;
-    margin: 0 0 0 -35px;
-    padding: 0 0 0 30px;
-font-size: 24px;
-font-weight: bolder;
-}
-
-.choices2 h3{
     
-    width: 257px;
-    margin: 0 0 0 -35px;
     padding: 0 0 0 30px;
-font-size: 24px;
-font-weight: bolder;
+    font-size: 24px;
+    font-weight: bolder;
 }
 
 .choices a:hover{
@@ -138,14 +107,6 @@ font-weight: bolder;
     text-decoration: none;
     color: red;
 }
-
-
-.choices2 a:hover{
-    margin: 15px 45px 0 28px;
-    text-decoration: none;
-    color: red;
-}
-
 
 .reset a{
     text-decoration: none;
@@ -164,20 +125,15 @@ font-weight: bolder;
     background-color: #f44336;
 }
 
-
-
-
 .filterDiv {
-    margin: 200px;
     display: none; /* Hidden by default */
-  }
+}
   
-  /* The "show" class is added to the filtered elements */
-  .show {
-      margin: -200px 0 0 10px;
+/* The "show" class is added to the filtered elements */
+.show {
       width: 100%;
     display: block;
-  }
+}
 
 /*---------------------------------------------------------------*/
 
@@ -189,7 +145,10 @@ font-weight: bolder;
 }
   
 .book {
-    width: 29%;
+    
+    max-width: 29%;
+    height: 350px;
+    max-height: 30%;
     display: flex;
     background-color: rgb(255, 255, 251);
     margin: 1%;
@@ -198,7 +157,8 @@ font-weight: bolder;
 }
   
 .productImg {
-    width: 50%;
+    width: 300px;
+    max-width: 50%;
     height: auto;
     object-fit: cover;
 }
@@ -208,14 +168,24 @@ font-weight: bolder;
     padding-left: 3%;
 }
 
-.info h4{
+.upperProductInfo .name{
     color: black;
     font-size: 140%;
     text-align: center;
     font-weight: bold;
     margin: 5px;
     object-fit: scale-down;
+    line-height: 1.2;
+    max-height: 2.4em;
+    overflow: hidden;
+    text-decoration: none;
 }
+
+
+.info h4.two-lines {
+    font-size: 100%;
+}
+
 
 .author{
     color: black;
@@ -270,6 +240,6 @@ font-weight: bolder;
 
 
 
-html, body {
+body {
     overflow-x: hidden;
 }

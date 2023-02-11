@@ -5,7 +5,7 @@
     require_once 'includes/dbh.inc.php';
     require_once 'includes/functions.inc.php';
 
-    $query = "SELECT * FROM produkt";
+    $query = "SELECT * FROM productbooks";
     $resultprodukt = mysqli_query($conn, $query);  
 ?>
     
@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="books.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
     <title>Bookshop: Books</title>
 
@@ -31,9 +34,9 @@
         <div class="filter">
             <div class="price">
 
-                <div class="choices2">
+                <div class="choices">
                     <div id="myBtnContainer">
-                        <h3>Price </h3>
+                        <h3>Price</h3>
                         <a class="btn" onclick="filterSelection('under10')">Under 10€ </a> <br>
                         <a class="btn" onclick="filterSelection('10to20')"> 10€ to 20€ </a> <br>
                         <a class="btn" onclick="filterSelection('20to50')"> 20€ to 50€ </a> <br>
@@ -135,7 +138,9 @@
                 <img class="productImg" src="<?= $item['img'] ?>" alt="">
                 <div class="info">
                     <div class="upperProductInfo">
-                    <a href="bookPage.php?id=<?php echo $item['id']; ?>"><h4><?php echo $item['nazov']; ?></h4></a>
+                        
+                        <a href="bookPage.php?id=<?php echo $item['id']; ?>"><h4 class="name"><?php echo $item['nazov']; ?></h4></a>
+                        
                         <p class="author"> <?= $item['autor'] ?> </p>
                         <p class="description"> <?= $item['description'] ?> </p>
                     </div>
@@ -160,9 +165,8 @@
     </div>
 
 
-</body>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
 
 <script>
 
@@ -250,4 +254,25 @@
         ready()
     }
 
+
+    /*-----------Adjust Name Size------------*/
+
+    const adjustText = () => {
+    const elements = document.querySelectorAll(".upperProductInfo .name");
+    elements.forEach(element => {
+      const characters = element.textContent.length;
+      if (characters <= 10) {
+        element.style.fontSize = "140%";
+      } else if (characters <= 20) {
+        element.style.fontSize = "120%";
+      } else {
+        element.style.fontSize = "100%";
+      }
+    });
+  };
+
+  window.addEventListener("load", adjustText);
+
 </script>
+
+</body>

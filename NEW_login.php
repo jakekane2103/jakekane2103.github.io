@@ -32,7 +32,7 @@ include 'header.php';
 
 
         <div class="container">
-            <div class="row col-md-6 col-md-offset-3">
+           
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
                         <h1>Log In</h1>
@@ -54,9 +54,14 @@ include 'header.php';
                             </div>
 
                         </form>
+                    </div>
+                </div>
+        </div>
+
+    </div>
 
 
-<?php
+        <?php
     if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
             echo "<p>Fill in all fields!</p>";
@@ -81,18 +86,6 @@ include 'header.php';
         }
     }
 ?>
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        </div>
-
-
-
         
 </body>
 

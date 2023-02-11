@@ -1,6 +1,37 @@
 <?php
     $page = "movies";
     include 'header.php';
+
+    require_once 'includes/dbh.inc.php';
+    require_once 'includes/functions.inc.php';
+
+    $id = $_GET['id'];
+
+    $query = "SELECT * FROM productmovies where id = $id;";
+    $resultprodukt = mysqli_query($conn, $query);  
+    $product = mysqli_fetch_assoc($resultprodukt);
+    $nazov = $product['nazov'];
+    $img = $product['img'];
+    $director = $product['director'];
+    $cena = $product['cena'];
+    $rating = $product['rating'];
+    $pocetRating = $product['pocetRating'];
+    $linkRating = $product['linkRating'];
+    $description = $product['description'];
+    $inStock = $product['inStock'];
+    $length = $product['length'];
+    $format = $product['format'];
+    $audio = $product['audio'];
+    $age = $product['age'];
+    $composer = $product['composer'];
+    $year = $product['year'];
+    $cast0 = $product['cast0'];
+    $cast1 = $product['cast1'];
+    $cast2 = $product['cast2'];
+    $genre = $product['genre'];
+   
+    $genre = explode(",", $product['genre']);
+    $paragraphs = explode("/p", $description);
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +44,7 @@
     <link rel="stylesheet" href="moviePage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
-    <title>Bookshop/Movies/Inception</title>
+    <title>Bookshop/Movies</title>
 </head>
 
 <body>
@@ -21,20 +52,20 @@
 
     <section>
        
-        <div class="bookPage">
+        <div class="moviePage">
 
-            <div class="bookBox0">
-                <img src="images/inception.jpg" alt="">
+            <div class="movieBox0">
+                <img src="<?php echo $img ?>" alt="">
                 <div class="text">
-                    <h2>Inception</h2>
-                    <div class="ratingBook">
+                    <h2><?php echo $nazov ?></h2>
+                    <div class="ratingMovie">
                         <p class="stars">★</p>
-                        <a>8.8 / 10 (2 189 651 ratings on </a>
-                        <a href="https://www.imdb.com/title/tt1375666/">IMDb</a>
+                        <a><?php echo $rating ?> / 10 (<?php echo $pocetRating ?> ratings on </a>
+                        <a href="<?php echo $linkRating ?>/">IMDb</a>
                         <a>)</a>
                     </div>
                     <div class="space">
-                        <p>2010 | PG-13 | 2h 28m</p>
+                        <p><?php echo $year ?> | <?php echo $age ?> | <?php echo $length ?></p>
                     </div>
 
 
@@ -43,15 +74,7 @@
                         <p>Director: </p>
                     </div>
                     <div class="author1">
-                        <p>Christopher Nolan</p>
-                    </div>
-                    <br>
-
-                    <div class="author">
-                        <p>Writer: </p>
-                    </div>
-                    <div class="author1">
-                        <p>Christopher Nolan</p>
+                        <p><?php echo $director ?></p>
                     </div>
                     <br>
 
@@ -59,7 +82,7 @@
                         <p>Composer: </p>
                     </div>
                     <div class="author1">
-                        <p>Hans Zimmer</p>
+                        <p><?php echo $composer ?></p>
                     </div>
                     <br>
 
@@ -67,23 +90,29 @@
                         <p>Cast: </p>
                     </div>
                     <div class="author1">
-                        <p>Leonardo DiCaprio | Joseph Gordon-Levitt | Elliot Page | Tom Hardy</p>
-                    </div>
+                        <p><?php echo $cast0 ?> | <?php echo $cast1 ?> | <?php echo $cast2 ?></p>
+                    </div><br>
 
-                    <div class="descBook">
-                        <p>A thief who steals corporate secrets through the use of dream-sharing technology is given the
-                            inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the
-                            project and his team to disaster.</p>
-                        <br>
-                        <p>Inception is a 2010 science fiction action film written and directed by Christopher
-                            Nolan, who also produced the film with Emma Thomas, his wife. The film stars Leonardo
-                            DiCaprio as a professional thief who steals information by infiltrating the subconscious of
-                            his targets. He is offered a chance to have his criminal history erased as payment for the
-                            implantation of another person's idea into a target's subconscious. The ensemble cast
-                            includes Ken Watanabe, Joseph Gordon-Levitt, Marion Cotillard, Elliot Page,[a] Tom Hardy,
-                            Dileep Rao, Cillian Murphy, Tom Berenger, and Michael Caine.</p>
-                        <br>
-                       
+                    <div class="author">
+                        <p>Genre: </p>
+                    </div>
+                    <div class="author1">
+                        <p>
+                            <?php 
+                                foreach ($genre as $genre) {
+                                    echo "<p>" . $genre . "</p>";
+                                }  
+                            ?>
+                        </p>
+                    </div>
+                    
+
+                    <div class="descMovie">
+                    <?php 
+                        foreach ($paragraphs as $paragraph) {
+                            echo "<p>" . $paragraph . "</p><br>";
+                        }
+                    ?>
                     </div>
 
                 </div>
@@ -91,27 +120,39 @@
 
             </div>
 
-            <div class="bookBox1">
+            <div class="movieBox1">
                 <div class="textMoney">
-                    <h2>19.99 €</h2>
-                    <h3>In Stock</h3>
-                    <div class="one">
+                    <h2><?php echo $cena ?>€</h2>
+                    <h3>
+                        <?php 
+                            if($inStock > 0) {
+                                echo '<p class="inStock">In Stock</p>';
+                            }
+                            else if($inStock == 0){
+                                echo '<p class="outOfStock">Out of Stock</p>';
+                            }
+                        ?>
+                    </h3>
+                </div>
+                <div class="textBot">
+                    <div>
                         <p>Free delivery worldwide</p>
                     </div>
-                    <p>Available. Expected delivery to Slovakia in 16-21 business days.</p>
-                    <p>Order now for expected delivery to Slovakia by Christmas</p>
-                    <div class="bookBtn">
+                    
+                    <p>Available. Expected delivery to Slovakia in 6-11 business days.</p>
+                    <p>Order now for expected delivery by 31. 1. 2022</p>
+                    <div class="movieBtn">
                         <a href="">Add to cart</a>
                     </div>
                     <br>
-                    <div class="bookBtn1">
+                    <div class="movieBtn1">
                         <a href="">Add to wishlist</a>
                     </div>
 
                 </div>
             </div>
 
-            <div class="bookBox2">
+            <div class="movieBox2">
                 <h2>Product Details</h2>
                 <div class="textDesc0">
 
@@ -120,7 +161,7 @@
                         <p>Format: </p>
                     </div>
                     <div class="details1">
-                        <p>Hardback | 1248 pages</p>
+                        <p><?php echo $format ?> | <?php echo $length ?></p>
                     </div>
                     <br>
 
@@ -136,7 +177,7 @@
                         <p>Publication date </p>
                     </div>
                     <div class="details1">
-                        <p>14 Oct 2021</p>
+                        <p><?php echo $year ?></p>
                     </div>
                     <br>
 

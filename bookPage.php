@@ -7,7 +7,7 @@
     
     $id = $_GET['id'];
 
-    $query = "SELECT * FROM produkt where id = $id;";
+    $query = "SELECT * FROM productbooks where id = $id;";
     $resultprodukt = mysqli_query($conn, $query);  
     $product = mysqli_fetch_assoc($resultprodukt);
     $nazov = $product['nazov'];
@@ -15,9 +15,16 @@
     $autor = $product['autor'];
     $cena = $product['cena'];
     $rating = $product['rating'];
+    $pocetRating = $product['pocetRating'];
+    $linkRating = $product['linkRating'];
     $description = $product['description'];
     $inStock = $product['inStock'];
+    $pocetStran = $product['pocetStran'];
+    $format = $product['format'];
+    $language = $product['language'];
+    $genre = $product['genre'];
    
+    $genre = explode(",", $product['genre']);
     $paragraphs = explode("/p", $description);
 ?>
     
@@ -31,7 +38,7 @@
     <link rel="stylesheet" href="bookPage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
-    <title>Bookshop/Books/The Lord of the Rings</title>
+    <title>Bookshop/Books</title>
 </head>
 
 <body>
@@ -46,27 +53,41 @@
                     <h2> <?php echo $nazov ?>  </h2>
                     <div class="ratingBook">
                         <p class="stars">★</p>
-                        <a><?php echo $rating ?> / 10 (2 518 596 ratings on </a>
-                        <a href="https://www.goodreads.com/book/show/3263607-the-fellowship-of-the-ring">goodreads</a>
+                        <a><?php echo $rating ?> / 5 (<?php echo $pocetRating ?> ratings on </a>
+                        <a href="<?php echo $linkRating ?>">goodreads</a>
                         <a>)</a>
                     </div>
 
-                    <p>Hardback | English</p>
+                    <p><?php echo $format ?> | <?php echo $language ?></p>
                     <div class="author">
                         <p>Author: </p>
                     </div>
 
                     <div class="author1">
-                        <p><?php echo $autor ?></p>
-                    </div>
+                        <p><?php echo $autor ?></p> 
+                    </div><br>
                     
+                    <div class="genre">
+                        <p>Genre: </p>
+                    </div>
+
+                    <div class="genre1">
+                        <p>
+                            <?php 
+                                foreach ($genre as $genre) {
+                                    echo "<p>" . $genre . "</p>";
+                                } 
+                            ?>
+                        </p>
+                    </div>
                     
                     <br>
                     <div class="descBook">
                     <?php 
                         foreach ($paragraphs as $paragraph) {
                             echo "<p>" . $paragraph . "</p><br>";
-                        }?>
+                        }
+                    ?>
                     </div>
 
                 </div>
@@ -117,7 +138,7 @@
                         <p>Format: </p>
                     </div>
                     <div class="details1">
-                        <p>Hardback | 1248 pages</p>
+                        <p><?php echo $format ?> | <?php echo $pocetStran ?> pages</p>
                     </div>
                     <br>
 

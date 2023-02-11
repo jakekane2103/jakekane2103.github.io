@@ -65,11 +65,13 @@ font-family:'Open Sans', sans-serif;
 }
 
 .ratingBook p{
+    margin-bottom: 5px;
     font-size: 20px;
     display: inline-block;
 }
 
 .author{
+    margin-top: 5px;
     line-height: 25px;
     display: inline-block;
     font-weight: bold;
@@ -78,6 +80,18 @@ font-family:'Open Sans', sans-serif;
 }
 
 .author1{
+    display: inline-block;
+}
+
+.genre{
+    line-height: 25px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 0 5px;
+    
+}
+
+.genre1{
     display: inline-block;
 }
 
