@@ -140,13 +140,11 @@ font-family:'Open Sans', sans-serif;
 
 .movieBtn{
     text-align: center;
-    display: table-cell;
-    padding: 30px 20px 0 300px;
-    
+    margin-top: 10%;
+    margin-bottom: 5%;    
 } 
 
 .movieBtn a{
-    margin-left: -230px;
     display: inline-block;
     text-decoration: none;
     color: black;
@@ -155,9 +153,8 @@ font-family:'Open Sans', sans-serif;
     border-radius: 5px;
     padding: 18px 96px;
     font-size: 18px;
-    position: relative;
     cursor: pointer;
-    margin-top: 50px;
+    margin-top: 5%;
 }
 
 
@@ -170,13 +167,10 @@ font-family:'Open Sans', sans-serif;
 
 .movieBtn1{
     text-align: center;
-    display: table-cell;
-    padding: 0 20px 0 300px;
     
 } 
 
 .movieBtn1 a{
-    margin-left: -230px;
     display: inline-block;
     text-decoration: none;
     color: black;
@@ -186,7 +180,6 @@ font-family:'Open Sans', sans-serif;
     border-radius: 5px;
     padding: 18px 83px;
     font-size: 18px;
-    position: relative;
     cursor: pointer;
     margin-top: 40px;
 }

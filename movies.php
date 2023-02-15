@@ -127,12 +127,26 @@
 
     <div class="movies">
         <?php foreach ($resultprodukt as $item) : ?>
-            <div class="movie">
+            <div class="movie" style="background-color: <?php echo (($i - 1) / 6 % 3 == 0) ? '#e6e6e6' : '#d4d3d3'; ?>">
                 <img class="productImg" src="<?= $item['img'] ?>" alt="">
                 <div class="info">
                     <div class="upperProductInfo">
                         
-                        <a href="moviePage.php?id=<?php echo $item['id']; ?>"><h4 class="name"><?php echo $item['nazov']; ?></h4></a>
+                        <a href="moviePage.php?id=<?php echo $item['id']; ?>">
+                            <h4 class="name">
+                                <?php 
+                                    if (strlen($item['nazov']) < 16) {
+                                            echo '<span style="font-size: 110%">' . $item['nazov'] . '</span>';
+                                        }
+                                        else if (strlen($item['nazov']) < 20) {
+                                            echo '<span style="font-size: 100%">' . $item['nazov'] . '</span>';
+                                        }
+                                        else {
+                                            echo '<span style="font-size: 90%">' . $item['nazov'] . '</span>';
+                                        } 
+                                ?>
+                            </h4>
+                        </a>
                         
                         <p class="author"> <?= $item['director'] ?> </p>
                         <p class="description"> <?= $item['description'] ?> </p>

@@ -176,15 +176,10 @@ font-family:'Open Sans', sans-serif;
     margin: 5px;
     object-fit: scale-down;
     line-height: 1.2;
-    max-height: 2.4em;
     overflow: hidden;
     text-decoration: none;
 }
 
-
-.info h4.two-lines {
-    font-size: 100%;
-}
 
 
 .author{
@@ -243,3 +238,5 @@ font-family:'Open Sans', sans-serif;
 body {
     overflow-x: hidden;
 }
+
+

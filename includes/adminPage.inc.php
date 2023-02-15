@@ -22,19 +22,21 @@ if (isset($_POST["submit"])) {
     $genre = $_POST["genre"];
     $genre = implode("|", $_POST['genre']);
     $year = $_POST["year"];
+    $publisher = $_POST["publisher"];
+    $dimensions = $_POST["dimensions"];
 
         
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
     
-    if(emptyInputProduct($nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year) !== false) {
+    if(emptyInputProduct($nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions) !== false) {
         header("location: ../adminPage.php?error=emptyinput");
         exit();
     }
     $format = ucwords($format);
     $language = ucwords($language);
     
-    addProductBook($conn, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year);
+    addProductBook($conn, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions);
 }
     
 if(isset($_POST["update"])) {
@@ -71,6 +73,17 @@ if(isset($_POST["update"])) {
     }   
     $year = $_POST["year"];
 
+    if (empty($_POST['publisher'])) {
+        $publisher = $row['publisher'];
+    } else {
+        $publisher = $_POST['publisher'];
+    }
+    if (empty($_POST['dimensions'])) {
+        $dimensions = $row['dimensions'];
+    } else {
+        $dimensions = $_POST['dimensions'];
+    }   
+    $year = $_POST["year"];
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
@@ -79,7 +92,7 @@ if(isset($_POST["update"])) {
     $format = ucwords($format);
     $language = ucwords($language);
     
-    updateProductBook($conn, $id, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year);
+    updateProductBook($conn, $id, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions);
 }
     
 if(isset($_POST["delete"])) {
@@ -131,11 +144,12 @@ if (empty($_POST['genre'])) {
     $genre = implode("|", $_POST['genre']);
 }   
 $year = $_POST["year"];
-    
+$studio = $_POST["studio"];
+
 require_once 'dbh.inc.php';
 require_once 'functions.inc.php';
 
-if(emptyInputProduct($nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $year) !== false) {
+if(emptyInputProduct($nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $studio) !== false) {
     header("location: ../adminPage.php?error=emptyinput");
     exit();
 }
@@ -144,7 +158,7 @@ $audio = ucwords($audio);
 $age = strtoupper($age);
 $format = strtoupper($format);
 
-addProductMovie($conn, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $year);
+addProductMovie($conn, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $studio);
 }
 
 if(isset($_POST["updateMovie"])) {
@@ -191,6 +205,7 @@ $cast0 = $_POST["cast0"];
 $cast1 = $_POST["cast1"];
 $cast2 = $_POST["cast2"];
 
+
 if (empty($_POST['genre'])) {
     $genre = $row['genre'];
 } else {
@@ -198,7 +213,7 @@ if (empty($_POST['genre'])) {
 }   
 
 $year = $_POST["year"];
-    
+$studio = $_POST["studio"];
 
 
 require_once 'dbh.inc.php';
@@ -210,7 +225,7 @@ $audio = ucwords($audio);
 $age = ucwords($age);
 $genre = ucwords($genre);
 
-updateProductMovie($conn, $id, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $year);
+updateProductMovie($conn, $id, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $year, $studio);
 }
 
 if(isset($_POST["deleteMovie"])) {
@@ -253,9 +268,37 @@ if (isset($_POST["submitMusic"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
     
-    if(emptyInputMusic($albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock) !== false) {
-        header("location: ../adminPage.php?error=emptyinput");
-        exit();
+    if (isset($_POST["submitMusic"])) {
+
+        $albumName = $_POST["albumName"];
+        $albumImg = $_POST["albumImg"];
+        $genre = $_POST["genre"];
+        $bandId = $_POST["bandId"];
+        $format = $_POST["format"];
+        $price = $_POST["price"];
+        $length = $_POST["length"];
+        $releaseDate = $_POST["releaseDate"];
+        $recordLabel = $_POST["recordLabel"];
+        $recordChart = $_POST["recordChart"];
+        $inStock = $_POST["inStock"];
+            
+        require_once 'dbh.inc.php';
+        require_once 'functions.inc.php';
+        
+        $inputFields = emptyInputMusic($albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock);
+        if ($inputFields !== false) {
+            foreach ($inputFields as $key => $value) {
+                if (empty($value)) {
+                    $inputFields[$key] = null;
+                }
+            }
+        }
+        
+        $format = ucwords($format);
+        $albumName = ucwords($albumName);
+        $genre = ucwords($genre);
+        
+        addProductMusic($conn, $albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock);
     }
     
     $format = ucwords($format);
@@ -332,7 +375,7 @@ if(isset($_POST["updateMusic"])) {
     $format = ucwords($format);
     $genre = ucwords($genre);
     
-    updateProductMusic($conn, $id, $albumName, $albumImg, $genre, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock);
+    updateProductMusic($conn, $id, $albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock);
 }
 
 
@@ -364,17 +407,18 @@ if (isset($_POST["submitBand"])) {
     $bandName = $_POST["bandName"];
     $bandFormed = $_POST["bandFormed"];
     $bandCountry = $_POST["bandCountry"];
+    $bandPhoto = $_POST["bandPhoto"];
     
         
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
     
-    if(emptyInputBand($bandName, $bandFormed, $bandCountry) !== false) {
+    if(emptyInputBand($bandName, $bandFormed, $bandCountry, $bandPhoto) !== false) {
         header("location: ../adminPage.php?error=emptyinput");
         exit();
     }
        
-    addBand($conn, $bandName, $bandFormed, $bandCountry);
+    addBand($conn, $bandName, $bandFormed, $bandCountry, $bandPhoto);
 }
 
 
@@ -399,12 +443,18 @@ if (isset($_POST["updateBand"])) {
     } else {
         $bandCountry = $_POST['bandCountry'];
     }
+
+    if (empty($_POST['bandPhoto'])) {
+        $bandPhoto = $row['bandPhoto'];
+    } else {
+        $bandPhoto = $_POST['bandPhoto'];
+    }
     
         
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    updateBand($conn, $bandId, $bandName, $bandFormed, $bandCountry);
+    updateBand($conn, $bandId, $bandName, $bandFormed, $bandCountry, $bandPhoto);
 }
 
 
@@ -523,11 +573,6 @@ if (isset($_POST["submitSong"])) {
         
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
-
-    if (!idExistsSongAlbum($conn, $albumId)) {
-        header("location: ../adminPage.php?error=idnotfound");
-        exit();
-    }
     
     if(emptyInputSong($songNumber, $songName, $songLength, $albumId)) {
         header("location: ../adminPage.php?error=emptyinput");
@@ -568,11 +613,7 @@ if (isset($_POST["updateSong"])) {
         
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
-    
-    if (!idExistsSongAlbum($conn, $albumId)) {
-        header("location: ../adminPage.php?error=idnotfound");
-        exit();
-    }
+
 
     if (!idExistsSong($conn, $songId)) {
         header("location: ../adminPage.php?error=idnotfound");

@@ -175,8 +175,7 @@ font-family:'Open Sans', sans-serif;
     font-weight: bold;
     margin: 5px;
     object-fit: scale-down;
-    line-height: 1.2;
-    max-height: 2.4em;
+    
     overflow: hidden;
     text-decoration: none;
 }

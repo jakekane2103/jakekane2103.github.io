@@ -132,14 +132,28 @@
 
 
 
-        <div class="books">
+    <div class="books">
         <?php foreach ($resultprodukt as $item) : ?>
             <div class="book">
                 <img class="productImg" src="<?= $item['img'] ?>" alt="">
                 <div class="info">
                     <div class="upperProductInfo">
                         
-                        <a href="bookPage.php?id=<?php echo $item['id']; ?>"><h4 class="name"><?php echo $item['nazov']; ?></h4></a>
+                        <a href="bookPage.php?id=<?php echo $item['id']; ?>">
+                            <h4 class="name"> 
+                                <?php 
+                                    if (strlen($item['nazov']) < 16) {
+                                        echo '<span style="font-size: 110%">' . $item['nazov'] . '</span>';
+                                    }
+                                    else if (strlen($item['nazov']) < 20) {
+                                        echo '<span style="font-size: 100%">' . $item['nazov'] . '</span>';
+                                    }
+                                    else {
+                                        echo '<span style="font-size: 90%">' . $item['nazov'] . '</span>';
+                                    }
+                                ?>
+                            </h4>
+                        </a>
                         
                         <p class="author"> <?= $item['autor'] ?> </p>
                         <p class="description"> <?= $item['description'] ?> </p>
@@ -163,9 +177,6 @@
             </div>
         <?php endforeach; ?>
     </div>
-
-
-
 
 
 <script>
@@ -257,21 +268,16 @@
 
     /*-----------Adjust Name Size------------*/
 
-    const adjustText = () => {
-    const elements = document.querySelectorAll(".upperProductInfo .name");
-    elements.forEach(element => {
-      const characters = element.textContent.length;
-      if (characters <= 10) {
-        element.style.fontSize = "140%";
-      } else if (characters <= 20) {
-        element.style.fontSize = "120%";
-      } else {
-        element.style.fontSize = "100%";
-      }
-    });
-  };
+    const title = document.querySelector('a h4');
 
-  window.addEventListener("load", adjustText);
+    if (title.textContent.length < 16) {
+      title.style.fontSize = '180%';
+    } else if (title.textContent.length < 20) {
+      title.style.fontSize = '110%';
+    }
+    else
+    title.style.fontSize = '45%';
+
 
 </script>
 

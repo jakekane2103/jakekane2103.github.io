@@ -29,6 +29,7 @@
     $cast1 = $product['cast1'];
     $cast2 = $product['cast2'];
     $genre = $product['genre'];
+    $studio = $product['studio'];
    
     $genre = explode(",", $product['genre']);
     $paragraphs = explode("/p", $description);
@@ -166,15 +167,7 @@
                     <br>
 
                     <div class="details">
-                        <p>Dimensions: </p>
-                    </div>
-                    <div class="details1">
-                        <p>149 x 228 x 82mm | 1,980g</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Publication date </p>
+                        <p>Publication date:</p>
                     </div>
                     <div class="details1">
                         <p><?php echo $year ?></p>
@@ -182,19 +175,12 @@
                     <br>
 
                     <div class="details">
-                        <p>Publisher: </p>
+                        <p>Studio: </p>
                     </div>
                     <div class="details1">
-                        <p>14 Oct 2021</p>
+                        <p><?php echo $studio ?></p>
                     </div>
                     <br>
-
-                    <div class="details">
-                        <p>Publication City/Country: </p>
-                    </div>
-                    <div class="details1">
-                        <p>London, United Kingdom</p>
-                    </div>
 
                 </div>
 
@@ -204,31 +190,15 @@
                         <p>Edition: </p>
                     </div>
                     <div class="details1">
-                        <p>Special edition</p>
+                        <p>Standard edition</p>
                     </div>
                     <br>
 
                     <div class="details">
-                        <p>Edition Statement: </p>
+                        <p>Our Catalogue Number:</p>
                     </div>
                     <div class="details1">
-                        <p>Deluxe single-volume illustrated edition</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>ISBN10: </p>
-                    </div>
-                    <div class="details1">
-                        <p>0008471290</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>ISBN13: </p>
-                    </div>
-                    <div class="details1">
-                        <p>9780008471293</p>
+                        <p><?php echo $id ?></p>
                     </div>
                     <br>
 

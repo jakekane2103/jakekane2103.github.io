@@ -23,7 +23,11 @@
     $format = $product['format'];
     $language = $product['language'];
     $genre = $product['genre'];
-   
+    $year = $product['year'];
+    $publisher = $product['publisher'];
+    $dimensions = $product['dimensions'];
+    
+
     $genre = explode(",", $product['genre']);
     $paragraphs = explode("/p", $description);
 ?>
@@ -57,8 +61,9 @@
                         <a href="<?php echo $linkRating ?>">goodreads</a>
                         <a>)</a>
                     </div>
-
-                    <p><?php echo $format ?> | <?php echo $language ?></p>
+                    <div class="author1">
+                        <p><?php echo $format ?> | <?php echo $language ?></p>
+                    </div> <br>
                     <div class="author">
                         <p>Author: </p>
                     </div>
@@ -67,11 +72,11 @@
                         <p><?php echo $autor ?></p> 
                     </div><br>
                     
-                    <div class="genre">
+                    <div class="author">
                         <p>Genre: </p>
                     </div>
 
-                    <div class="genre1">
+                    <div class="author1">
                         <p>
                             <?php 
                                 foreach ($genre as $genre) {
@@ -121,7 +126,7 @@
                     <div class="bookBtn">
                         <a href="">Add to cart</a>
                     </div>
-                    <br>
+                    
                     <div class="bookBtn1">
                         <a href="">Add to wishlist</a>
                     </div>
@@ -146,7 +151,7 @@
                         <p>Dimensions: </p>
                     </div>
                     <div class="details1">
-                        <p>149 x 228 x 82mm | 1,980g</p>
+                        <p><?php echo $dimensions ?></p>
                     </div>
                     <br>
 
@@ -154,66 +159,37 @@
                         <p>Publication date </p>
                     </div>
                     <div class="details1">
-                        <p>14 Oct 2021</p>
+                        <p><?php echo $year ?></p>
                     </div>
                     <br>
 
-                    <div class="details">
-                        <p>Publisher: </p>
-                    </div>
-                    <div class="details1">
-                        <p>Royal Print</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Publication City/Country: </p>
-                    </div>
-                    <div class="details1">
-                        <p>London, United Kingdom</p>
-                    </div>
+                    
 
                 </div>
 
                 <div class="textDesc1">
 
                     <div class="details">
+                        <p>Publisher: </p>
+                    </div>
+                    <div class="details1">
+                        <p><?php echo $publisher ?></p>
+                    </div>
+                    <br>
+
+                    <div class="details">
                         <p>Edition: </p>
                     </div>
                     <div class="details1">
-                        <p>Special edition</p>
+                        <p>Standard edition</p>
                     </div>
                     <br>
 
                     <div class="details">
-                        <p>Edition Statement: </p>
+                        <p>Our Catalogue Number: </p>
                     </div>
                     <div class="details1">
-                        <p>Deluxe single-volume illustrated edition</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>ISBN10: </p>
-                    </div>
-                    <div class="details1">
-                        <p>0008471290</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>ISBN13: </p>
-                    </div>
-                    <div class="details1">
-                        <p>9780008471293</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Bestsellers rank: </p>
-                    </div>
-                    <div class="details1">
-                        <p>183</p>
+                        <p> <?php echo $id ?> </p>
                     </div>
                     <br>
 
@@ -228,5 +204,14 @@
     </section>
 </body>
 
+<script>
+const container1 = document.querySelector('.bookBox0');
+    const container1Height = container1.offsetHeight;
+  
+    // Set the height of container-2 to be equal to container-1
+    const container2 = document.querySelector('.bookBox1');
+    container2.style.height = `${container1Height}px`;
+
+</script>
 
 </html>

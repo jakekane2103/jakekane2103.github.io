@@ -262,9 +262,19 @@ tr {
 }
 
 
+.albumName {
+    font-size: 180%;
+    font-weight: 900;
+}
+
+
 body{
     overflow-x: hidden;
     
+}
+
+.registerLogin {
+    overflow-y: hidden;
 }
 
 

@@ -138,9 +138,11 @@ font-family:'Open Sans', sans-serif;
 }
   
 .album {
-    width: 20%; /* adjust the width to fit 5 columns */
+    width: 23%; /* adjust the width to fit 5 columns */
     text-align: center;
-    margin-top: 1%;
+    padding: 1%;
+    padding-top: 2%;
+    
 }
 
 .productImg {
@@ -149,6 +151,7 @@ font-family:'Open Sans', sans-serif;
 }
   
 .album h3 {
+    margin-top: 1%;
     font-size: 135%;
 }
   
@@ -160,12 +163,12 @@ font-family:'Open Sans', sans-serif;
 .album p {
     color: red;
     font-weight: 900;
-    font-size: 130%;
+    font-size: 140%;
+    margin-bottom: 1%;
 }
 
 
 
 body {
     overflow-x: hidden;
-    
 }

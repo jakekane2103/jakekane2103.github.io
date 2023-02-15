@@ -33,7 +33,7 @@ font-family:'Open Sans', sans-serif;
     width: 60%;
     display: inline-block;
     padding: 20px;
-    margin: 20px 0 10px 160px;
+    margin: 6px 0 10px 160px;
 }
 
 .bookBox0 img{
@@ -109,7 +109,7 @@ font-family:'Open Sans', sans-serif;
 .bookBox1{
     width: 20%;
     display: inline-block;
-    margin: 20px 10px;
+    margin: 6px 10px;
     position: absolute;
     height: 60%;
     
@@ -154,14 +154,10 @@ font-family:'Open Sans', sans-serif;
 
 .bookBtn{
     text-align: center;
-    display: table-cell;
-    padding: 30px 20px 0 300px;
-    
+    margin-top: 30%;
 } 
 
 .bookBtn a{
-    margin-left: -230px;
-    display: inline-block;
     text-decoration: none;
     color: black;
     border: 1px solid black;
@@ -169,9 +165,7 @@ font-family:'Open Sans', sans-serif;
     border-radius: 5px;
     padding: 18px 96px;
     font-size: 18px;
-    position: relative;
     cursor: pointer;
-    margin-top: 50px;
 }
 
 
@@ -184,14 +178,11 @@ font-family:'Open Sans', sans-serif;
 
 .bookBtn1{
     text-align: center;
-    display: table-cell;
-    padding: 0 20px 0 300px;
-    
+    margin-top: 20%;
 } 
 
 .bookBtn1 a{
-    margin-left: -230px;
-    display: inline-block;
+    
     text-decoration: none;
     color: black;
     border: 1px solid black;
@@ -200,9 +191,7 @@ font-family:'Open Sans', sans-serif;
     border-radius: 5px;
     padding: 18px 83px;
     font-size: 18px;
-    position: relative;
     cursor: pointer;
-    margin-top: 40px;
 }
 
 .bookBtn1 a:hover{
@@ -240,7 +229,7 @@ font-family:'Open Sans', sans-serif;
 }
 
 .details {
-    line-height: 25px;
+    line-height: 30px;
     display: inline-block;
     font-weight: bold;
     padding: 2px;
@@ -248,6 +237,7 @@ font-family:'Open Sans', sans-serif;
 
 .details1 {
     display: inline-block;
+
 }
 
 

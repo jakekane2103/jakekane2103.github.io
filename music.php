@@ -122,17 +122,18 @@
 
        
         <div class="albums">
-                <?php foreach ($resultprodukt as $item) : ?>
-
-                    <div class="album">
-                        <a href="musicPage.php?id=<?php echo $item['id']; ?>">
-                            <img class="productImg" src="<?php echo $item['albumImg'] ?>" alt="">
-                        </a>
-                            <h3 style="white-space: nowrap;" class="title"><?php echo $item['albumName'] ?></h3>
-                            <h4><?php echo $item['bandName'] ?></h4>
-                            <p class="bookPrice"><?php echo $item['price'] ?> €</p>
-                    </div>
-                <?php endforeach; ?>
+            <?php $i = 1; ?>
+            <?php foreach ($resultprodukt as $item) : ?>
+              <div class="album" style="background-color: <?php echo (($i - 1) / 4 % 2 == 0) ? '#e6e6e6' : '#d4d3d3'; ?>">
+                <a href="musicPage.php?id=<?php echo $item['id']; ?>">
+                  <img class="productImg" src="<?php echo $item['albumImg'] ?>" alt="">
+                </a>
+                <h3 style="white-space: nowrap;" class="title"><?php echo $item['albumName'] ?></h3>
+                <h4><?php echo $item['bandName'] ?></h4>
+                <p class="bookPrice"><?php echo $item['price'] ?> €</p>
+              </div>
+              <?php $i++; ?>
+            <?php endforeach; ?>
         </div>
     </section>
 

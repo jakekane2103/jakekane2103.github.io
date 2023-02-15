@@ -33,6 +33,9 @@ include 'header.php';
             JOIN band ON band.bandId = bandmember.bandId";
     $resultbandmember = mysqli_query($conn, $query);
 
+    $query = "SELECT * FROM songs
+            JOIN productmusic ON productmusic.id = songs.albumId";
+    $resultsongs = mysqli_query($conn, $query);
        
     $query = "SELECT * FROM users";
     $resultusers = mysqli_query($conn, $query);
@@ -66,6 +69,7 @@ include 'header.php';
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
 
 <div class="formBtn">
     <button id="bookForm">BOOKS</button>
@@ -153,6 +157,16 @@ include 'header.php';
                         <input type="radio" class="form-control option" name="format" value="Hardback"/>
                         <label for="format" class="label">Paperback</label>
                         <input type="radio" class="form-control option" name="format" value="Paperback"/>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="publisher">Publisher</label>
+                        <input type="text" class="form-control"  name="publisher" />
+                    </div>
+
+                    <div class="form-group">
+                    <label for="dimensions">Dimensions</label>
+                        <input type="text" class="form-control"  name="dimensions" placeholder="'height' x 'width' x 'thickness' | 'weight'"/>
                     </div>
 
                     <div class="form-group">
@@ -265,6 +279,11 @@ include 'header.php';
                     <div class="form-group">
                         <label for="cast2">Cast 3</label>
                         <input type="text" class="form-control"  name="cast2" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studio">Studio</label>
+                        <input type="text" class="form-control"  name="studio" />
                     </div>
 
                     <div class="form-group">
@@ -521,10 +540,10 @@ include 'header.php';
                         <label for="inStock">Availability</label>
                     </div>
                     <div class="form-groupOpt">
-                        <label for="inStock" class="label">In Stock</label>
                         <input type="radio" class="form-control option" name="inStock" value="1"/>
-                        <label for="inStock" class="label">Out of Stock</label>
+                        <label for="inStock">In Stock</label>
                         <input type="radio" class="form-control option" name="inStock" value="0"/>
+                        <label for="inStock">Out of Stock</label>
                     </div>                             
                 
                     <div class="formBtn">
@@ -554,6 +573,10 @@ include 'header.php';
                         <input type="text" class="form-control"  name="bandCountry" />
                     </div>
 
+                    <div class="form-group">
+                        <label for="pocetRating">Band Photo</label>
+                        <input type="text" class="form-control"  name="bandPhoto" />
+                    </div>
                                                 
                 
                     <div class="formBtn">
@@ -605,6 +628,16 @@ include 'header.php';
                         <div class="form-groupGenre">    
                             <input type="checkbox" class="form-control checkbox" name="bandMemberRole[]" value="Drums"/>
                             <label for="genre1" class="label">Drums</label>
+                        </div>
+
+                        <div class="form-groupGenre">    
+                            <input type="checkbox" class="form-control checkbox" name="bandMemberRole[]" value="Keyboard"/>
+                            <label for="genre1" class="label">Keyboard</label>
+                        </div>
+
+                        <div class="form-groupGenre">    
+                            <input type="checkbox" class="form-control checkbox" name="bandMemberRole[]" value="Composer"/>
+                            <label for="genre1" class="label">Composer</label>
                         </div>
 
                       </div>
@@ -674,7 +707,6 @@ include 'header.php';
         </div>
         
     </div>
-
 
     <div class="containerUpdate" id="update">
         
@@ -749,6 +781,16 @@ include 'header.php';
                         <input type="radio" class="form-control option" name="format" value="Hardback"/>
                         <label for="format" class="label">Paperback</label>
                         <input type="radio" class="form-control option" name="format" value="Paperback"/>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="publisher">Publisher</label>
+                        <input type="text" class="form-control"  name="publisher" />
+                    </div>
+
+                    <div class="form-group">
+                    <label for="dimensions">Dimensions</label>
+                        <input type="text" class="form-control"  name="dimensions" placeholder="'height' x 'width' x 'thickness' | 'weight'"/>
                     </div>
 
                     <div class="form-group">
@@ -865,6 +907,11 @@ include 'header.php';
                     <div class="form-group">
                         <label for="cast2">Cast 3</label>
                         <input type="text" class="form-control"  name="cast2" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studio">Studio</label>
+                        <input type="text" class="form-control"  name="studio" />
                     </div>
 
                     <div class="form-group">
@@ -1028,7 +1075,7 @@ include 'header.php';
             </form>
 
             <form id="formMusic2" action="includes/adminPage.inc.php" method="post" style="display:none;">
-               
+
                     <div class="panel-heading text-center">
                         <h1>Update Music Product</h1>
                     </div>       
@@ -1135,9 +1182,9 @@ include 'header.php';
                         <button type="submit" name="updateMusic">UPDATE ALBUM</button>
                     </div>
 
-                </form>
-
-              <form id="formBand2" action="includes/adminPage.inc.php" method="post" style="display:none;">
+            </form>
+       
+            <form id="formBand2" action="includes/adminPage.inc.php" method="post" style="display:none;">
           
                
                     <div class="panel-heading text-center">
@@ -1163,6 +1210,11 @@ include 'header.php';
                         <label for="pocetRating">Band Country</label>
                         <input type="length" class="form-control"  name="bandCountry" />
                     </div>                      
+
+                    <div class="form-group">
+                        <label for="pocetRating">Band Photo</label>
+                        <input type="text" class="form-control"  name="bandPhoto" />
+                    </div>
                 
                     <div class="formBtn">
                         <button type="submit" name="updateBand">UPDATE BAND</button>
@@ -1219,6 +1271,16 @@ include 'header.php';
                        <input type="checkbox" class="form-control checkbox" name="bandMemberRole[]" value="Drums"/>
                        <label for="genre1" class="label">Drums</label>
                    </div>
+
+                   <div class="form-groupGenre">    
+                            <input type="checkbox" class="form-control checkbox" name="bandMemberRole[]" value="Keyboard"/>
+                            <label for="genre1" class="label">Keyboard</label>
+                    </div>
+
+                    <div class="form-groupGenre">    
+                            <input type="checkbox" class="form-control checkbox" name="bandMemberRole[]" value="Composer"/>
+                            <label for="genre1" class="label">Composer</label>
+                    </div>
 
                  </div>
 
@@ -1409,7 +1471,7 @@ include 'header.php';
 
 <section class="tables">
 
-    <div id="tableBooks">
+    <div id="tableBooks" style="overflow-x: scroll;">
         <table class="adminTable">
             <h1>PRODUCTS BOOKS</h1>
             <tr class="columnNames">
@@ -1422,7 +1484,9 @@ include 'header.php';
                 <th>PAGES</th>
                 <th>YEAR</th>
                 <th>FORMAT</th>
-                <th>LANGUAGE</th>
+                <th>FORMAT</th>
+                <th>PUBLISHER</th>
+                <th>DIMENSIONS</th>
                 <th>GENRE</th>
                 <th>DESCRIPTION</th>
                 <th>IN STOCK</th>
@@ -1441,6 +1505,8 @@ include 'header.php';
                     echo '<td>' . $row['year'] . '</td>';
                     echo '<td>' . $row['format'] . '</td>';
                     echo '<td>' . $row['language'] . '</td>';
+                    echo '<td>' . $row['publisher'] . '</td>';
+                    echo '<td>' . $row['dimensions'] . '</td>';
                     $genre = explode(" ", $row['genre']);        
                     foreach($genre as $g) {
                         echo '<td>' .  $g . '</td>';
@@ -1466,6 +1532,7 @@ include 'header.php';
                 <th>CAST 1</th>
                 <th>CAST 2</th>
                 <th>CAST 3</th>
+                <th>STUDIO</th>
                 <th>PRICE</th>
                 <th>RATING</th>
                 <th>NUMBER OF RATINGS</th>
@@ -1490,6 +1557,7 @@ include 'header.php';
                     echo '<td>' . $row['cast0'] . '</td>';
                     echo '<td>' . $row['cast1'] . '</td>';
                     echo '<td>' . $row['cast2'] . '</td>';
+                    echo '<td>' . $row['studio'] . '</td>';
                     echo '<td>' . $row['cena'] . '</td>';
                     echo '<td>' . $row['rating'] . '</td>';
                     echo '<td>' . $row['pocetRating'] . '</td>';
@@ -1511,7 +1579,6 @@ include 'header.php';
             ?>
         </table>
     </div>
-
 
     <div id="tableMusic" style="display:none; overflow-x: scroll;">
         <table class="adminTable">
@@ -1591,22 +1658,60 @@ include 'header.php';
                 <th>ID</th>
                 <th>NAME</th>
                 <th>ROLE</th>
-                <th>BAND</th>
             </tr>
             <?php 
+
+                $currentBandName = "";
                 while ($row = mysqli_fetch_assoc($resultbandmember)) 
                 {
+                    if ($currentBandName !==$row['bandName']) {
+                        $currentBandName = $row['bandName'];
+                        echo "<tr style='border-top: thick solid;'>";
+                        echo "<td colspan='5' style='font-size: 20px; font-weight: 900;'>" . $currentBandName . "</td>";
+                        echo "</tr>";
+                    }
+                
                     echo '<tr>';
                     echo '<td class="id">' . $row['bandMemberId'] . '</td>'; 
                     echo '<td>' . $row['bandMemberName'] . '</td>'; 
                     echo '<td>' .  $row['bandMemberRole'] . '</td>';
-                    echo '<td>' . $row['bandName'] . '</td>';
                     echo '</tr>';
                 }
             ?>
         </table>
     </div>
 
+    <div id="tableSongs" style="display:none;">
+        <table class="adminTable">
+            <h1>Songs</h1>
+            <tr class="columnNames">
+                <th>ID</th>
+                <th>NO.</th>
+                <th>NAME</th>
+                <th>LENGTH</th>
+               
+            </tr>
+            <?php 
+                $currentAlbumName = "";
+                while ($row = mysqli_fetch_assoc($resultsongs)) 
+                {
+                    if ($currentAlbumName !==$row['albumName']) {
+                        $currentAlbumName = $row['albumName'];
+                        echo "<tr style='border-top: thick solid;'>";
+                        echo "<td colspan='5' style='font-size: 20px; font-weight: 900;'>" . $currentAlbumName . "</td>";
+                        echo "</tr>";
+                    }
+                    echo '<tr>';
+                    echo '<td class="id">' . $row['songId'] . '</td>'; 
+                    echo '<td>' . $row['songNumber'] . '</td>'; 
+                    echo '<td>' . $row['songName'] . '</td>'; 
+                    echo '<td>' .  $row['songLength'] . '</td>';
+                    
+                    echo '</tr>';
+                }
+            ?>
+        </table>
+    </div>
 
     <div id="tableFAQ" style="display:none;">
         <table class="adminTable">
@@ -1628,7 +1733,6 @@ include 'header.php';
             ?>
         </table>
     </div>
-
 
     <div id="tableMess" style="display:none;">
         <table class="adminTable">
@@ -1653,7 +1757,6 @@ include 'header.php';
         </table>
     </div>
     
-
     <div id="tableUsers" style="display:none;">
         <table class="adminTable">
             <h1>USERS</h1>
@@ -1708,6 +1811,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1745,6 +1849,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1780,6 +1885,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1815,6 +1921,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1850,6 +1957,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1885,6 +1993,7 @@ include 'header.php';
     $("#formSong1").show();
     $("#formSong2").show();
     $("#formSong3").show();
+    $("#tableSongs").show();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1920,6 +2029,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").show();
     $("#formFAQ3").show();
     $("#tableFAQ").show();
@@ -1955,6 +2065,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();
@@ -1990,6 +2101,7 @@ include 'header.php';
     $("#formSong1").hide();
     $("#formSong2").hide();
     $("#formSong3").hide();
+    $("#tableSongs").hide();
     $("#formFAQ1").hide();
     $("#formFAQ3").hide();
     $("#tableFAQ").hide();

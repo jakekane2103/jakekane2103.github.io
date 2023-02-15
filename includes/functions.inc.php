@@ -141,15 +141,15 @@ function emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description) {
 /*-----------ADD BOOK-----------*/
 /*------------------------------*/
 
-function addProductBook($conn, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year) {
-    $sql = "INSERT INTO productBooks (nazov, img, autor, cena, rating, pocetRating, linkRating, description, inStock, pocetStran, format, language, genre, year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+function addProductBook($conn, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions) {
+    $sql = "INSERT INTO productBooks (nazov, img, autor, cena, rating, pocetRating, linkRating, description, inStock, pocetStran, format, language, genre, year, publisher, dimensions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
 
-        mysqli_stmt_bind_param($stmt, "ssssssssssssss", $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year );
+        mysqli_stmt_bind_param($stmt, "ssssssssssssssss", $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../adminPage.php?error=none");
@@ -160,8 +160,8 @@ function addProductBook($conn, $nazov, $img, $autor, $cena, $rating, $pocetRatin
 /*-----------UPDATE BOOK-----------*/
 /*---------------------------------*/
 
-function updateProductBook($conn, $id, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year) {
-    $sql = "SELECT nazov, img, autor, cena, rating, pocetRating, linkRating, description, inStock, pocetStran, format, language, genre, year FROM productbooks WHERE id = ?";
+function updateProductBook($conn, $id, $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions) {
+    $sql = "SELECT nazov, img, autor, cena, rating, pocetRating, linkRating, description, inStock, pocetStran, format, language, genre, year, publisher, dimensions FROM productbooks WHERE id = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
@@ -185,17 +185,19 @@ function updateProductBook($conn, $id, $nazov, $img, $autor, $cena, $rating, $po
         if(empty($language)) $language = $row['language'];
         if(empty($genre)) $genre = $row['genre'];
         if(empty($year)) $year = $row['year'];
+        if(empty($publisher)) $publisher = $row['publisher'];
+        if(empty($dimensions)) $dimensions = $row['dimensions'];
 
     }
     mysqli_stmt_close($stmt);
 
-    $sql = "UPDATE productbooks SET nazov = ?, img = ?, autor = ?, cena = ?, rating = ?, pocetRating = ?, linkRating = ?, description = ?, inStock = ?, pocetStran = ?, format = ?, language = ?, genre = ?, year = ? WHERE id = ?;";
+    $sql = "UPDATE productbooks SET nazov = ?, img = ?, autor = ?, cena = ?, rating = ?, pocetRating = ?, linkRating = ?, description = ?, inStock = ?, pocetStran = ?, format = ?, language = ?, genre = ?, year = ?, publisher = ?, dimensions = ? WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "ssssssssssssssi", $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $id);
+    mysqli_stmt_bind_param($stmt, "ssssssssssssssssi", $nazov, $img, $autor, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $pocetStran, $format, $language, $genre, $year, $publisher, $dimensions, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");
@@ -244,15 +246,15 @@ function deleteProductBook($conn, $id) {
 /*----------ADD MOVIE-----------*/
 /*------------------------------*/
 
-function addProductMovie($conn, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre) {
-    $sql = "INSERT INTO productmovies (nazov, img, director, cena, rating, pocetRating, linkRating, description, inStock, length, format, audio, age, composer, year, cast0, cast1, cast2, genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+function addProductMovie($conn, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $studio) {
+    $sql = "INSERT INTO productmovies (nazov, img, director, cena, rating, pocetRating, linkRating, description, inStock, length, format, audio, age, composer, year, cast0, cast1, cast2, genre, studio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
 
-        mysqli_stmt_bind_param($stmt, "sssssssssssssssssss", $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre);
+        mysqli_stmt_bind_param($stmt, "ssssssssssssssssssss", $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $studio);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../adminPage.php?error=none");
@@ -273,8 +275,8 @@ function emptyInputMovie($nazov, $img, $director, $cena, $rating, $description) 
     return $result;
 }
 
-function updateProductMovie($conn, $id, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre) {
-    $sql = "SELECT nazov, img, director, cena, rating, pocetRating, linkRating, description, inStock, length, format, audio, age, composer, year, cast0, cast1, cast2, genre FROM productmovies WHERE id = ?";
+function updateProductMovie($conn, $id, $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $studio) {
+    $sql = "SELECT nazov, img, director, cena, rating, pocetRating, linkRating, description, inStock, length, format, audio, age, composer, year, cast0, cast1, cast2, genre, studio FROM productmovies WHERE id = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
@@ -303,17 +305,18 @@ function updateProductMovie($conn, $id, $nazov, $img, $director, $cena, $rating,
         if(empty($cast1)) $cast1 = $row['cast1'];
         if(empty($cast2)) $cast2 = $row['cast2'];
         if(empty($genre)) $genre = $row['genre'];
+        if(empty($studio)) $studio = $row['studio'];
 
     }
     mysqli_stmt_close($stmt);
 
-    $sql = "UPDATE productmovies SET nazov = ?, img = ?, director = ?, cena = ?, rating = ?, pocetRating = ?, linkRating = ?, description = ?, inStock = ?, length = ?, format = ?, audio = ?, age = ?, composer = ?, year = ?, cast0 = ?, cast1 = ?, cast2 = ?, genre = ? WHERE id = ?;";
+    $sql = "UPDATE productmovies SET nazov = ?, img = ?, director = ?, cena = ?, rating = ?, pocetRating = ?, linkRating = ?, description = ?, inStock = ?, length = ?, format = ?, audio = ?, age = ?, composer = ?, year = ?, cast0 = ?, cast1 = ?, cast2 = ?, genre = ?, studio = ? WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "sssssssssssssssssssi", $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $id);
+    mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssi", $nazov, $img, $director, $cena, $rating, $pocetRating, $linkRating, $description, $inStock, $length, $format, $audio, $age, $composer, $year, $cast0, $cast1, $cast2, $genre, $studio, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");
@@ -398,8 +401,8 @@ function addProductMusic($conn, $albumName, $albumImg, $genre, $bandId, $format,
 /*--------------------------------*/
 
 
-function updateProductMusic($conn, $id, $albumName, $albumImg, $genre, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock) {
-    $sql = "SELECT albumName, albumImg, genre, format, price, length, releaseDate, recordLabel, recordChart, inStock FROM productmusic WHERE id = ?";
+function updateProductMusic($conn, $id, $albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock) {
+    $sql = "SELECT albumName, albumImg, genre, bandId, format, price, length, releaseDate, recordLabel, recordChart, inStock FROM productmusic WHERE id = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
@@ -412,6 +415,7 @@ function updateProductMusic($conn, $id, $albumName, $albumImg, $genre, $format, 
         if(empty($albumName)) $albumName = $row['albumName'];
         if(empty($albumImg)) $albumImg = $row['albumImg'];
         if(empty($genre)) $genre = $row['genre'];
+        if(empty($bandId)) $bandId = $row['bandId'];
         if(empty($format)) $format = $row['format'];
         if(empty($price)) $price = $row['price'];
         if(empty($length)) $length = $row['length'];
@@ -422,13 +426,13 @@ function updateProductMusic($conn, $id, $albumName, $albumImg, $genre, $format, 
     }
     mysqli_stmt_close($stmt);
 
-    $sql = "UPDATE productmusic SET albumName = ?, albumImg = ?, genre = ?, format = ?, price = ?, length = ?, releaseDate = ?, recordLabel = ?, recordChart = ?, inStock = ? WHERE id = ?;";
+    $sql = "UPDATE productmusic SET albumName = ?, albumImg = ?, genre = ?, bandId = ?, format = ?, price = ?, length = ?, releaseDate = ?, recordLabel = ?, recordChart = ?, inStock = ? WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "ssssssssssi", $albumName, $albumImg, $genre, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock, $id);
+    mysqli_stmt_bind_param($stmt, "sssssssssssi", $albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");
@@ -477,9 +481,9 @@ function deleteProductMusic($conn, $id) {
 /*------------------------------*/
 /*------------BANDS-------------*/
 /*------------------------------*/
-function emptyInputBand($bandName, $bandFormed, $bandCountry) {
+function emptyInputBand($bandName, $bandFormed, $bandCountry, $bandPhoto) {
     $result;
-    if (empty($bandName) || empty($bandFormed) || empty($bandCountry)) {
+    if (empty($bandName) || empty($bandFormed) || empty($bandCountry) || empty($bandPhoto)) {
         $result = true;
     }
     else {
@@ -508,15 +512,15 @@ function idExistsBand($conn, $bandId) {
 
 
 
-function addBand($conn, $bandName, $bandFormed, $bandCountry){
-    $sql = "INSERT INTO band (bandName, bandFormed, bandCountry) VALUES (?, ?, ?);";
+function addBand($conn, $bandName, $bandFormed, $bandCountry, $bandPhoto){
+    $sql = "INSERT INTO band (bandName, bandFormed, bandCountry, bandPhoto) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sss", $bandName, $bandFormed, $bandCountry);
+    mysqli_stmt_bind_param($stmt, "ssss", $bandName, $bandFormed, $bandCountry, $bandPhoto);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");
@@ -525,8 +529,8 @@ function addBand($conn, $bandName, $bandFormed, $bandCountry){
 
 
 
-function updateBand($conn, $bandId, $bandName, $bandFormed, $bandCountry) {
-    $sql = "SELECT bandId, bandName, bandFormed, bandCountry FROM band WHERE bandId = ?";
+function updateBand($conn, $bandId, $bandName, $bandFormed, $bandCountry, $bandPhoto) {
+    $sql = "SELECT bandId, bandName, bandFormed, bandCountry, bandPhoto FROM band WHERE bandId = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
@@ -540,17 +544,18 @@ function updateBand($conn, $bandId, $bandName, $bandFormed, $bandCountry) {
         if(empty($bandName)) $bandName = $row['bandName'];
         if(empty($bandFormed)) $bandFormed = $row['bandFormed'];
         if(empty($bandCountry)) $bandCountry = $row['bandCountry'];
+        if(empty($bandPhoto)) $bandPhoto = $row['bandPhoto'];
         
     }
     mysqli_stmt_close($stmt);
 
-    $sql = "UPDATE band SET bandName = ?, bandFormed = ?, bandCountry = ? WHERE bandId = ?;";
+    $sql = "UPDATE band SET bandName = ?, bandFormed = ?, bandCountry = ?, bandPhoto = ? WHERE bandId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../adminPage.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "sssi", $bandName, $bandFormed, $bandCountry, $bandId);
+    mysqli_stmt_bind_param($stmt, "ssssi", $bandName, $bandFormed, $bandCountry, $bandPhoto, $bandId);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../adminPage.php?error=none");
@@ -693,22 +698,6 @@ function idExistsSong($conn, $songId) {
 }
 
 
-function idExistsSongAlbum($conn, $albumId) {
-    $sql = "SELECT albumId FROM songs WHERE albumId = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        return false;
-    } else {
-        mysqli_stmt_bind_param($stmt, "i", $albumId);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-        if (mysqli_stmt_num_rows($stmt) > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
 
 
 
@@ -772,7 +761,7 @@ function updateSong($conn, $songId, $songNumber, $songName, $songLength, $albumI
 }
 
 
-function deleteSong($conn, $bandMemberId) {
+function deleteSong($conn, $songId) {
     $sql = "DELETE FROM songs WHERE songId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

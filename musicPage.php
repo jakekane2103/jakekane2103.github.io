@@ -1,7 +1,68 @@
 <?php
     $page = "music";
     include 'header.php';
+
+    require_once 'includes/dbh.inc.php';
+    require_once 'includes/functions.inc.php';
+
+    $id = $_GET['id'];
+
+    $query =    "SELECT * 
+                FROM productmusic
+                JOIN band ON productmusic.bandId = band.bandId
+                JOIN bandmember ON bandmember.bandId = band.bandId
+                JOIN songs ON songs.albumId = productmusic.id
+                WHERE productmusic.id = $id;";
+
+    $resultprodukt = mysqli_query($conn, $query);  
+    $product = mysqli_fetch_assoc($resultprodukt);
+    if ($product) {
+    $albumName = $product['albumName'];
+    $albumImg = $product['albumImg'];
+    $genre = $product['genre'];
+    $bandId = $product['bandId'];
+    $format = $product['format'];
+    $price = $product['price'];
+    $length = $product['length'];
+    $releaseDate = $product['releaseDate'];
+    $recordLabel = $product['recordLabel'];
+    $recordChart = $product['recordChart'];
+    $inStock = $product['inStock'];
+    $bandId = $product['bandId'];
+    $bandName = $product['bandName'];
+    $bandFormed = $product['bandFormed'];
+    $bandCountry = $product['bandCountry'];
+    $bandPhoto = $product['bandPhoto'];
+    $bandMemberId = $product['bandMemberId'];
+    $bandMemberName = $product['bandMemberName'];
+    $bandMemberRole = $product['bandMemberRole'];
+    $songId = $product['songId'];
+    $songNumber = $product['songNumber'];
+    $songName = $product['songName'];
+    $songLength = $product['songLength'];
+    $albumId = $product['albumId'];
+
+    $bandMembers = array();
+
+    while ($product = mysqli_fetch_assoc($resultprodukt)) {
+    $bandMembers[] = array(
+        'name' => $product['bandMemberName'],
+        'role' => $product['bandMemberRole']
+    );
+    }
+
+    $songs = array();
+    // Replace this with your database query to fetch songs
+    $songs = mysqli_query($conn, "SELECT * FROM songs WHERE songs.albumId = $id;");
+
+
+}
+
+    else {
+        echo "NO PRODUCT FOUND";
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,254 +74,263 @@
     <link rel="stylesheet" href="musicPage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
-    <title>Bookshop/Movies/Inception</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
+    <title>Bookshop</title>
 </head>
 
 <body>
-
-
     <section>
-        
-        <div class="bookPage">
-
-            <div class="bookBox0">
-                <img src="images/Ridetl.png" alt="">
-               
-                <div class="text">
-                    <h2>Ride the Lightning</h2>
-                    <div class="ratingBook">
-                        <p class="stars">★</p>
-                        <a>4.06 / 5 (28,703 ratings on </a>
-                        <a href="https://rateyourmusic.com/release/album/metallica/ride-the-lightning/">RYM</a>
-                        <a>)</a>
-                    </div>
-                    <div class="band">
-                        <img src="images/metallica.jpg" alt="">
-                    </div>
-                    <div class="author">
-                        <p>Artist: </p>
-                    </div>
-                    <div class="author1">
-                        <p>	Metallica</p>
-                    </div>
-                    <br>
-
-                    <div class="author">
-                        <p>Type: </p>
-                    </div>
-                    <div class="author1">
-                        <p>Album</p>
-                    </div>
-                    <br>
-
-                    <div class="author">
-                        <p>Genre: </p>
-                    </div>
-                    <div class="author1">
-                        <p>Thrash Metal</p>
-                    </div>
-                    <br>
-                    
-                    <div class="author">
-                        <p>Length: </p>
-                    </div>
-                    <div class="author1">
-                        <p>47:25</p>
-                    </div>
-                    <br>
-                    
-                    <div class="author">
-                        <p>Released: </p>
-                    </div>
-                    <div class="author1">
-                        <p>30 July 1984</p>
-                    </div>
-                    
-                    <div class="descBook">
-                       
-                      <div class="tracklist">
-                        <li>1. Fight Fire With Fire</li>
-                        <p> 4:44</p>
-                        <br>
-                        <li>2. Ride the Lightning</li>
-                        <p>6:37</p>
-                        <br>
-                        <li>3. For Whom the Bell Tolls</li>
-                        <p> 5:11</p>
-                        <br>
-                        <li>4. Fade to Black</li>
-                        <p>6:55</p>
-                        <br>
-                        <li>5. Trapped Under Ice</li>
-                        <p>4:04</p>
-                        <br>
-                        <li>6. Escape</li>
-                        <p>4:24</p>
-                        <br>
-                        <li>7. Creeping Death</li>
-                        <p>6:36</p>
-                        <br>
-                        <li>8. The Call of Ktulu</li>
-                        <p>8:55</p>
-                        <img src="images/rideback.jpg" alt="">
-                      </div>  
-                    </div>
-                    <div class="bandMember">
-                        <br>
-                        <div class="author">
-                            <p>James Hetfield – </p>
-                        </div>
-                        <div class="author1">
-                            <p>	lead vocals, rhythm guitar</p>
-                        </div>
-                        <br>
-    
-                        <div class="author">
-                            <p>Kirk Hammett – </p>
-                        </div>
-                        <div class="author1">
-                            <p>lead guitar, backing vocals&emsp;</p>
-                        </div>
-                        <br>
-    
-                        <div class="author">
-                            <p>Cliff Burton –  </p>
-                        </div>
-                        <div class="author1">
-                            <p>bass, backing vocals</p>
-                        </div>
-                        <br>
+        <div class="musicPage">
+            <div class="musicBox0">
+                <div class="box0_upperLeft">
+                    <img src="<?php echo $albumImg ?>" alt="">
+                </div>
+                    <div class="box0_upperRight">
+                        <div class="left">
+                        <h2><?php echo $albumName ?></h2>
                         
                         <div class="author">
-                            <p>Lars Ulrich –  </p>
+                            <p>Artist: </p>
                         </div>
                         <div class="author1">
-                            <p>drums, percussion</p>
+                            <p>	<?php echo $bandName ?> </p>
+                        </div>
+                        <br>
+
+                        <div class="author">
+                            <p>Format: </p>
+                        </div>
+                        <div class="author1">
+                            <p><?php echo $format ?></p>
+                        </div>
+                        <br>
+
+                        <div class="author">
+                            <p>Genre: </p>
+                        </div>
+                        <div class="author1">
+                            <p><?php echo $genre ?></p>
+                        </div>
+                        <br>
+
+                        <div class="author">
+                            <p>Length: </p>
+                        </div>
+                        <div class="author1">
+                            <p><?php echo $length ?></p>
+                        </div>
+                        <br>
+
+                        <div class="author">
+                            <p>Released: </p>
+                        </div>
+                        <div class="author1">
+                            <p><?php echo $releaseDate ?></p>
                         </div>
 
+                        </div>
+                        
+
+                        <div class="right">
+                            <img src="<?php echo $bandPhoto ?>" alt="">
+                        </div>
+                    </div>   
+
+                    <div class="box0_bottomRight">
+
+                        <div class="tracklist">
+                            <div class="tracksLabel">
+                                <span class='songNumber'>No.</span>
+                                <span class='songName'>Title</span>
+                                <span class='songLength'>Length</span>
+                            </div>
+                            
+                            <?php
+                                // Check if there are any songs in the result set
+                                if (mysqli_num_rows($songs) > 0) {
+                                   // Loop through each song in the result set
+                                   while ($song = mysqli_fetch_assoc($songs)) {
+                                    echo "<div class='track'>";
+                                    echo "<span class='songNumber'>" . $song['songNumber'] . ".</span>";
+                                    echo "<span class='songName'>" . $song['songName'] . "</span>";
+                                    echo "<span class='songLength'>" . $song['songLength'] . "</span>";
+                                    echo "</div>";
+                                   }
+                                }
+                            ?>
+                        </div>  
+                    </div>
+                    <div class="box0_bottomLeft">
+                            <?php
+                                $uniqueBandMembers = array();
+                                foreach ($bandMembers as $bandMember) {
+                                    if (!in_array($bandMember['name'], $uniqueBandMembers)) {
+                                        $uniqueBandMembers[] = $bandMember['name'];
+                                        echo "<br>";
+                                        echo "<div class='member'>";
+                                        echo "<p>" . $bandMember['name'] . "-</p>";
+                                        echo "</div>";
+                                        echo "<div class='role'>";
+                                        echo "<p> " . $bandMember['role'] . "</p>";
+                                        echo "</div>";
+                                    }
+                                }
+                            ?>
                     </div>
                 </div>
 
-            </div>
-
-            <div class="bookBox1">
+                <div class="musicBox1">
                 <div class="textMoney">
-                    <h2>27.99 €</h2>
-                    <h3>In Stock</h3>
-                    <div class="one">
+                    <h2><?php echo $price ?>€</h2>
+                    <h3>
+                        <?php 
+                            if($inStock > 0) {
+                                echo '<p class="inStock">In Stock</p>';
+                            }
+                            else if($inStock == 0){
+                                echo '<p class="outOfStock">Out of Stock</p>';
+                            }
+                        ?>
+                    </h3>
+                </div>
+                <div class="textBot">
+                    <div>
                         <p>Free delivery worldwide</p>
                     </div>
-                    <p>Available. Expected delivery to Slovakia in 16-21 business days.</p>
-                    <p>Order now for expected delivery to Slovakia by Christmas</p>
-                    <div class="bookBtn">
+                    
+                    <p>Available. Expected delivery to Slovakia in 6-11 business days.</p>
+                    <p>Order now for expected delivery by 31. 4. 2023</p>
+                    <div class="musicBtn">
                         <a href="">Add to cart</a>
                     </div>
                     <br>
-                    <div class="bookBtn1">
+                    <div class="musicBtn1">
                         <a href="">Add to wishlist</a>
                     </div>
 
                 </div>
-            </div>
-
-            <div class="bookBox2">
-                <h2>Product Details</h2>
-                <div class="textDesc0">
-
-
-                    <div class="details">
-                        <p>Format: </p>
-                    </div>
-                    <div class="details1">
-                        <p>Hardback | 1248 pages</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Dimensions: </p>
-                    </div>
-                    <div class="details1">
-                        <p>149 x 228 x 82mm | 1,980g</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Publication date </p>
-                    </div>
-                    <div class="details1">
-                        <p>14 Oct 2021</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Publisher: </p>
-                    </div>
-                    <div class="details1">
-                        <p>Blackened Studios</p>
-                    </div>
-                    <br>
-
-                    <div class="details">
-                        <p>Publication City/Country: </p>
-                    </div>
-                    <div class="details1">
-                        <p>Los Angeles, USA</p>
-                    </div>
-
                 </div>
 
-                <div class="textDesc1">
+                <div class="musicBox2">
+                    <h2>Product Details</h2>
+                    <div class="textDesc0">
 
-                    <div class="details">
-                        <p>Edition: </p>
-                    </div>
-                    <div class="details1">
-                        <p>Special edition</p>
-                    </div>
-                    <br>
 
-                    <div class="details">
-                        <p>Edition Statement: </p>
-                    </div>
-                    <div class="details1">
-                        <p>Deluxe single-volume illustrated edition</p>
-                    </div>
-                    <br>
+                        <div class="details">
+                            <p>Format: </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php echo $format ?></p>
+                        </div>
+                        <br>
 
-                    <div class="details">
-                        <p>ISBN10: </p>
-                    </div>
-                    <div class="details1">
-                        <p>0008471290</p>
-                    </div>
-                    <br>
+                        <div class="details">
+                            <p>Genre: </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php echo $genre ?></p>
+                        </div>
+                        <br>
 
-                    <div class="details">
-                        <p>ISBN13: </p>
-                    </div>
-                    <div class="details1">
-                        <p>9780008471293</p>
-                    </div>
-                    <br>
+                        <div class="details">
+                            <p>Release Date </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php echo $releaseDate ?></p>
+                        </div>
+                        <br>
 
-                    <div class="details">
-                        <p>Bestsellers rank: </p>
+                        <div class="details">
+                            <p>Record Label: </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php echo $recordLabel ?></p>
+                        </div>
+                        <br>
                     </div>
-                    <div class="details1">
-                        <p>183</p>
-                    </div>
-                    <br>
 
+                    <div class="textDesc1">
+
+                        <div class="details">
+                            <p>Edition: </p>
+                        </div>
+                        <div class="details1">
+                            <p>Standard edition</p>
+                        </div>
+                        <br>
+
+                        <div class="details">
+                            <p>Our Catalogue Number: </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php echo $id ?></p>
+                        </div>
+                        <br>
+
+                        <div class="details">
+                            <p>Recorded In: </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php echo $bandCountry ?></p>
+                        </div>
+                        <br>
+
+                        <div class="details">
+                            <p>Record Chart: </p>
+                        </div>
+                        <div class="details1">
+                            <p><?php if($recordChart < 200) {
+                               echo $recordChart;
+                            }
+                            else {
+                                echo "Not";
+                            }
+                             ?> on Billboard 200</p>
+                        </div>
+                        <br>
+
+                    </div>
                 </div>
             </div>
         </div>
-
-        </div>
-
-
-
     </section>
 </body>
 
+
+<script>
+    // Get the height of container-1
+    const container1 = document.querySelector('.musicBox0');
+    const container1Height = container1.offsetHeight;
+  
+    // Set the height of container-2 to be equal to container-1
+    const container2 = document.querySelector('.musicBox1');
+    container2.style.height = `${container1Height}px`;
+
+
+
+    const title = document.querySelector('h2');
+
+    if (title.textContent.length < 20) {
+      title.style.fontSize = '180%';
+    } else if (title.textContent.length < 29) {
+      title.style.fontSize = '160%';
+    }
+    else
+    title.style.fontSize = '145%';
+
+
+    function showScrollbar() {
+    var table = document.querySelector(".tracklist");
+    var tableHeight = table.offsetHeight;
+    var tableContentHeight = table.scrollHeight;
+
+    if (tableContentHeight > tableHeight) {
+      table.style.overflowY = "scroll";
+    } else {
+      table.style.overflowY = "hidden";
+    }
+}
+
+</script>
 
 </html>

@@ -4,6 +4,7 @@ font-family:'Open Sans', sans-serif;
 
 }
 
+
 .sideAds{
     display: flex;
     flex-direction: column;
@@ -11,19 +12,8 @@ float: left;
 width: 28.9%;
 }
 
-
-
-        /*             ----------------------------           */
-.products{
-    float: right;
-    width: 71%;
-    margin-bottom: 50px;
-    
-}
-
 .christmasAd, .anniversary, .visitUs{
     padding: 4% 0 3%;
-    margin: 10% 34% 5% 7%;
     background-color: #434552;
     position: relative;
     color: white;
@@ -68,17 +58,23 @@ width: 28.9%;
 }
 
 .freeShiping img{
-    position: absolute;
-    margin: -72.7% 0 0 -3.9%;
     width: 50%;
 }
 
 
+.products{
+    float: right;
+    width: 69%;
+    margin-right: 2%;
+    margin-bottom: 50px;
+    
+}
 
 .bestSellers, .newReleases, .upcomingReleases{
     margin: 3% 0 2% -9%;
     padding-bottom: 3%;
-    width: 105%;
+    width: auto;
+
     border-bottom: 5px solid #4E505Ded;
 }
 
@@ -111,7 +107,7 @@ width: 28.9%;
     width: 100%;
 }
 
-.column a, .column1 a, .column2 a{
+.column a{
     margin: 5px 0 10px;
     width: 60%;
     text-decoration: none;
@@ -120,11 +116,7 @@ width: 28.9%;
 }
 
 
-.column, .column1, .column2{
-    
-}
-
-.column img, .column1 img, .column2 img{
+.column img{
     margin: 10px;
  width: 90%;
  height: auto;
@@ -134,41 +126,31 @@ width: 28.9%;
 .title{
     
     color: black;
-    font-size: 90%;
+    font-size: 110%;
     text-align: center;
     font-weight: bold;
-    width: 220px;
+    width: 250px;
+    margin-left: 5%;
 }
 
 .author{
     color: black;
     text-align: center;
-    margin: -20px 0 6px 20px;
-    font-size: 18px;
-  
+    font-size: 90%;
+    font-style: italic;
+    margin-top: -8%;
+   
 }
 .bookPrice{
-    
+    margin-top: 2%;
+    margin-left: 3%;
     color: red;
     text-align: center;
     font-weight: bold;
-    font-size: 19px;
-    margin-left: 20px;
+    font-size: 100%;
 }
 
-.column img:hover, .column1 img:hover, .column2 img:hover{
+.column img:hover{
     width: 95%;
     transition: 0.3s;
-}
-
-
-
-/*
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-*{
-    text-decoration: none;
 }
