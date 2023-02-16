@@ -6,6 +6,8 @@
     require_once 'includes/functions.inc.php';
 
     $id = $_GET['id'];
+    $userId = $_SESSION['userid'];
+    $productType = 'music';
 
     $query =    "SELECT * 
                 FROM productmusic
@@ -201,7 +203,12 @@
                     <p>Available. Expected delivery to Slovakia in 6-11 business days.</p>
                     <p>Order now for expected delivery by 31. 4. 2023</p>
                     <div class="musicBtn">
-                        <a href="">Add to cart</a>
+                    <form action="includes/cart.inc.php" method="post">
+                            <input type="hidden" name="productId" value="<?php echo $id ?>">
+                            <input type="hidden" name="userId" value="<?php echo $userId ?>">
+                            <input type="hidden" name="productType" value="<?php echo $productType ?>">
+                            <button type="submit" name="addToCartMusic">Add to cart</button>
+                        </form>
                     </div>
                     <br>
                     <div class="musicBtn1">

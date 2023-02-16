@@ -30,58 +30,33 @@
     <section>
        
         <div class="filter">
-            <div class="price">
-
+        <div class="cost">
                 <div class="choices">
                     <div id="myBtnContainer">
-                        <h3>Price </h3>
-                        <a class="btn" onclick="filterSelection('under20')">Under 20€ </a> <br>
-                        <a class="btn" onclick="filterSelection('20to30')"> 20€ to 30€ </a> <br>
-                        <a class="btn" onclick="filterSelection('30to50')"> 30€ to 50€ </a> <br>
-                        <a class="btn" onclick="filterSelection('above50')"> Above 50€ </a> <br>
-
+                        <h3>Price</h3>
+                        <input class="priceRange" type="text" placeholder="From"> 
+                        <input class="priceRange" type="text" placeholder="To">
+                        <button class="priceFilterBtn">Filter Price</button>
                     </div>
 
                 </div>
             </div>
-
             <div class="language">
 
                 <div class="choices">
                     <div id="myBtnContainer">
                     <h3>Released</h3>
-                    <a class="btn" onclick="filterSelection('50')">1959 and earlier</a> <br>
                             <a class="btn" onclick="filterSelection('60')">1960-1969</a> <br>
                             <a class="btn" onclick="filterSelection('70')">1970-1979</a> <br>
                             <a class="btn" onclick="filterSelection('80')">1980-1989</a> <br>
                             <a class="btn" onclick="filterSelection('90')">1990-1990</a> <br>
                             <a class="btn" onclick="filterSelection('00')">2001-2009</a> <br>
                             <a class="btn" onclick="filterSelection('10')">2010-2019</a> <br>
-                            <a class="btn" onclick="filterSelection('20')">2020-2022</a>
+                            <a class="btn" onclick="filterSelection('20')">2020-now</a>
                 </div>
             </div>
             </div>
 
-
-
-            <div class="choices">
-                <h3>Rating</h3>
-
-                <div class="rate">
-
-                    <input class="btn" onclick="filterSelection('5')" type="radio" id="star5" name="rate" value="5" />
-                    <label for="star5" title="text">5 stars</label>
-                    <input class="btn" onclick="filterSelection('4')" type="radio" id="star4" name="rate" value="4" />
-                    <label for="star4" title="text">4 stars</label>
-                    <input class="btn" onclick="filterSelection('3')" type="radio" id="star3" name="rate" value="3" />
-                    <label for="star3" title="text">3 stars</label>
-                    <input class="btn" onclick="filterSelection('2')" type="radio" id="star2" name="rate" value="2" />
-                    <label for="star2" title="text">2 stars</label>
-                    <input class="btn" onclick="filterSelection('1')" type="radio" id="star1" name="rate" value="1" />
-                    <label for="star1" title="text">1 star</label>
-                </div>
-            </div>
-            <br><br><br>
             <div class="cover">
 
                 <div class="choices">

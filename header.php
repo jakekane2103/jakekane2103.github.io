@@ -24,7 +24,7 @@
                     <a href="help.php" <?php if($page == "help") echo "class='active'"; ?>>Help</a>
                 </div>
                 <div class="webName">
-                    <h1>Name</h1>
+                    <h1>Kane's Media</h1>
                 </div>
                 <div class="upperRight">
                     <a href="stores.php" <?php if($page == "stores") echo "class='active'"; ?>>Stores</a> &emsp;&emsp;

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Libre+Baskerville&family=Michroma&family=Noto+Sans+HK:wght@300&family=Noto+Serif&family=Open+Sans:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Babylonica&display=swap');
 *{
 font-family:'Open Sans', sans-serif;
 
@@ -33,9 +35,10 @@ font-family:'Open Sans', sans-serif;
 
 .header1 img{             /*Tolkien logo*/
     position: absolute;
-    width: 4.3%;
+    width: 80px;
+    max-width: 30%;
     padding: 0.1% 0.2% 0.2%;
-    margin-left: 9%;
+    margin-left: 8%;
     background-color: red;
     border-radius: 90%;
 }
@@ -112,8 +115,14 @@ font-family:'Open Sans', sans-serif;
     text-align: center;
     display: inline;
     margin: auto;
-    font-size: 125%;
+    font-size: 145%;
+    
 }
+
+.webName h1{
+    font-family: 'Babylonica', cursive;
+}
+
 
 .upperRight{
     text-align: right;

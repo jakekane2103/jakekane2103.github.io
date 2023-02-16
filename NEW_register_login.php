@@ -50,6 +50,11 @@ include 'header.php';
                             </div>
 
                             <div class="form-group">
+                                <label for="email">Address</label>
+                                <input type="text" class="form-control" name="address" />
+                            </div>
+
+                            <div class="form-group">
                                 <label for="uid">Username</label>
                                 <input type="text" class="form-control"  name="uid" />
                             </div>

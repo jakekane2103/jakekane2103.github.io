@@ -284,15 +284,7 @@ if (isset($_POST["submitMusic"])) {
             
         require_once 'dbh.inc.php';
         require_once 'functions.inc.php';
-        
-        $inputFields = emptyInputMusic($albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock);
-        if ($inputFields !== false) {
-            foreach ($inputFields as $key => $value) {
-                if (empty($value)) {
-                    $inputFields[$key] = null;
-                }
-            }
-        }
+  
         
         $format = ucwords($format);
         $albumName = ucwords($albumName);

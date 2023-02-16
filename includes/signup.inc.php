@@ -4,6 +4,7 @@ if (isset($_POST["submit"])) {
 
     $name = $_POST["name"];
     $email = $_POST["email"];
+    $address = $_POST["address"];
     $username = $_POST["uid"];
     $pwd = $_POST["pwd"];
     $pwdRepeat = $_POST["pwdrepeat"];
@@ -11,7 +12,7 @@ if (isset($_POST["submit"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if(emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
+    if(emptyInputSignup($name, $email, $address, $username, $pwd, $pwdRepeat) !== false) {
         header("location: ../NEW_register_login.php?error=emptyinput");
         exit();
     }
@@ -36,7 +37,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    createUser($conn, $name, $email, $username, $pwd);
+    createUser($conn, $name, $email, $address, $username, $pwd);
 
 }
 else{

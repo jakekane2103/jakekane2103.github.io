@@ -33,12 +33,12 @@ font-family:'Open Sans', sans-serif;
     width: 60%;
     display: inline-block;
     padding: 20px;
-    margin: 6px 0 10px 160px;
+    margin: 6px 0 10px 140px;
 }
 
 .bookBox0 img{
     
-    width: 30%;
+    width: 38%;
     float: left;
     margin-right: 30px;
     height: fit-content;
@@ -98,7 +98,7 @@ font-family:'Open Sans', sans-serif;
 .descBook{
     margin-right: 10px;
     border-top: solid rgb(185, 185, 185) 1px;
-    
+    font-size: 90%;
     padding: 20px;
     width: 96.5%;
 }
@@ -157,7 +157,7 @@ font-family:'Open Sans', sans-serif;
     margin-top: 30%;
 } 
 
-.bookBtn a{
+.bookBtn button{
     text-decoration: none;
     color: black;
     border: 1px solid black;
@@ -169,7 +169,7 @@ font-family:'Open Sans', sans-serif;
 }
 
 
-.bookBtn a:hover{
+.bookBtn button:hover{
     border: 1px solid blue;
     color: white;
     background: blue;
@@ -181,7 +181,7 @@ font-family:'Open Sans', sans-serif;
     margin-top: 20%;
 } 
 
-.bookBtn1 a{
+.bookBtn1 button{
     
     text-decoration: none;
     color: black;
@@ -194,7 +194,7 @@ font-family:'Open Sans', sans-serif;
     cursor: pointer;
 }
 
-.bookBtn1 a:hover{
+.bookBtn1 button:hover{
     border: 1px solid red;
     color: white;
     background: red;
@@ -204,11 +204,12 @@ font-family:'Open Sans', sans-serif;
 
 /*-----bookBox2-----*/
 .bookBox2{
-    margin: 0 0 0 160px;
+    margin: 0 0 0 140px;
     border: solid 2px #4E505Ded;    
     background-color: white;
-    width: 82.8%;
+    width: 83.4%;
     float: left;
+    margin-bottom: 0;
 }
 
 .bookBox2 h2{
@@ -249,5 +250,4 @@ font-family:'Open Sans', sans-serif;
 
 body {
     overflow-x: hidden;
-    overflow-y: hidden;
 }

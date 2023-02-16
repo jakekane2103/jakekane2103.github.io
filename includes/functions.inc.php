@@ -1,47 +1,41 @@
 <?php
 
 
-function emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) {
-    $result;
-    if (empty($name) || empty($email) || empty($username) || empty($pwd) || empty($pwdRepeat) ) {
+function emptyInputSignup($name, $email, $address, $username, $pwd, $pwdRepeat) {
+    $result = false;
+    if (empty($name) || empty($email) || empty($address) || empty($username) || empty($pwd) || empty($pwdRepeat) ) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+  
     return $result;
 }
 
 function invalidUid($username) {
-    $result;
+    $result = false;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+ 
     return $result;
 }
 
 function invalidEmail($email) {
-    $result;
-    if (!filter_var($email, FILTER_VALIdATE_EMAIL)) {
+    $result = false;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+  
     return $result;
 }
 
+
+
 function pwdMatch($pwd, $pwdRepeat) {
-    $result;
+    $result = false;
     if ($pwd !== $pwdRepeat) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+  
     return $result;
 }
 
@@ -69,8 +63,8 @@ function uidExists($conn, $username, $email) {
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $name, $email, $username, $pwd) {
-    $sql = "INSERT INTO users (usersName, usersEmail, usersUid, usersPwd) VALUES (?, ?, ?, ?);";
+function createUser($conn, $name, $email, $address, $username, $pwd) {
+    $sql = "INSERT INTO users (usersName, usersEmail, userAddress, usersUid, usersPwd) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../NEW_register_login.php?error=stmtfailed");
@@ -79,7 +73,7 @@ function createUser($conn, $name, $email, $username, $pwd) {
 
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $username, $hashedPwd);
+    mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $address, $username, $hashedPwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../NEW_register_login.php?error=none");
@@ -87,13 +81,11 @@ function createUser($conn, $name, $email, $username, $pwd) {
 }
 
 function emptyInputLogin($username, $pwd) {
-    $result;
+    $result = false;
     if (empty($username) || empty($pwd)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+
     return $result;
 }
 
@@ -127,13 +119,11 @@ function loginUser($conn, $username, $pwd) {
 }
 
 function emptyInputProduct($nazov, $img, $autor, $cena, $rating, $description) {
-    $result;
+    $result = false;
     if (empty($nazov) || empty($img) || empty($autor) || empty($cena) || empty($rating) || empty($description) ) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+  
     return $result;
 }
 
@@ -265,13 +255,11 @@ function addProductMovie($conn, $nazov, $img, $director, $cena, $rating, $pocetR
 /*----------UPDATE MOVIE-----------*/
 /*---------------------------------*/
 function emptyInputMovie($nazov, $img, $director, $cena, $rating, $description) {
-    $result;
+    $result = false;
     if (empty($nazov) || empty($img) || empty($director) || empty($cena) || empty($rating) || empty($description) ) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+ 
     return $result;
 }
 
@@ -367,14 +355,12 @@ function deleteProductMovie($conn, $id) {
 /*--------------------------------*/
 
 function emptyInputMusic($albumName, $albumImg, $genre, $bandId, $format, $price, $length, $releaseDate, $recordLabel, $recordChart, $inStock) {
-    $result;
+    $result = false;
     if (empty($albumName) || empty($albumImg) || empty($genre) || empty($bandId) || empty($format) || empty($length) || 
         empty($releaseDate) || empty($recordLabel) || empty($recordChart) || empty($inStock)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+
     return $result;
 }
 
@@ -482,13 +468,11 @@ function deleteProductMusic($conn, $id) {
 /*------------BANDS-------------*/
 /*------------------------------*/
 function emptyInputBand($bandName, $bandFormed, $bandCountry, $bandPhoto) {
-    $result;
+    $result = false;
     if (empty($bandName) || empty($bandFormed) || empty($bandCountry) || empty($bandPhoto)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+   
     return $result;
 }
 
@@ -602,13 +586,11 @@ function idExistsBandMember($conn, $bandMemberId) {
 
 
 function emptyInputBandMember($bandMemberName, $bandMemberRole, $bandId) {
-    $result;
+    $result = false;
     if (empty($bandMemberName) || empty($bandMemberRole) || empty($bandId)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+   
     return $result;
 }
 
@@ -702,13 +684,11 @@ function idExistsSong($conn, $songId) {
 
 
 function  emptyInputSong($songNumber, $songName, $songLength, $albumId) {
-    $result;
+    $result = false;
     if (empty(($songNumber) || $songName) || empty($songLength) || empty($albumId)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+  
     return $result;
 }
 
@@ -783,13 +763,11 @@ function deleteSong($conn, $songId) {
 /*------------------------------*/
 
 function emptyInputFaq($question, $answer) {
-    $result;
+    $result = false;
     if (empty($question) || empty($answer)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+  
     return $result;
 }
 
@@ -842,13 +820,11 @@ function deleteFaq($conn, $id) {
 /*--------CONTACT US---------*/
 
 function emptyInputMessage($name, $email, $message) {
-    $result;
+    $result = false;
     if (empty($name) || empty($email) || empty($message)) {
         $result = true;
     }
-    else {
-        $result = false;
-    }
+   
     return $result;
 }
 
@@ -882,4 +858,165 @@ function deleteMess($conn, $id) {
         header("location: ../adminPage.php?success=deleted");
         exit();
     }
+}
+
+
+
+/*--------------------------------*/
+/*-------ADD BOOK TO CART---------*/
+/*--------------------------------*/
+
+function addToCartBook($conn, $productId, $userId, $productType) {
+    $sql = "SELECT * FROM users WHERE usersId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../books.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (!$row = mysqli_fetch_assoc($result)) {
+        // User with the given ID does not exist in the database
+        header("location: ../books.php?error=usernotfound");
+        exit();
+    }
+
+    // User with the given ID exists in the database, proceed with adding book to cart
+    $sql = "INSERT INTO cart (productId, userId, productType) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../books.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sss", $productId, $userId, $productType);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../books.php?error=none" );
+    exit();
+}
+
+
+function removeFromCart($conn, $productId) {
+    $sql = "DELETE FROM cart WHERE productId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../cart.php?error=sqlerror");
+        exit();
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $productId);
+        mysqli_stmt_execute($stmt);
+        header("location: ../cart.php?success=deleted");
+        exit();
+    }
+}
+
+function alreadyInCart($conn, $productId, $productType) {
+    $sql = "SELECT * FROM cart WHERE productType = ? and productId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../cart.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $productType, $productId);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+
+/*--------------------------------*/
+/*-------ADD MOVIE TO CART--------*/
+/*--------------------------------*/
+
+function addToCartMovie($conn, $productId, $userId, $productType) {
+    $sql = "SELECT * FROM users WHERE usersId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../books.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (!$row = mysqli_fetch_assoc($result)) {
+        // User with the given ID does not exist in the database
+        header("location: ../movies.php?error=usernotfound");
+        exit();
+    }
+
+    // User with the given ID exists in the database, proceed with adding book to cart
+    $sql = "INSERT INTO cart (productId, userId, productType) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../movies.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sss", $productId, $userId, $productType);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../movies.php?error=none" );
+    exit();
+}
+
+
+
+/*--------------------------------*/
+/*-------ADD MUSIC TO CART--------*/
+/*--------------------------------*/
+
+function addToCartMusic($conn, $productId, $userId, $productType) {
+    $sql = "SELECT * FROM users WHERE usersId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../music.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (!$row = mysqli_fetch_assoc($result)) {
+        // User with the given ID does not exist in the database
+        header("location: ../music.php?error=usernotfound");
+        exit();
+    }
+
+    // User with the given ID exists in the database, proceed with adding book to cart
+    $sql = "INSERT INTO cart (productId, userId, productType) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../music.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sss", $productId, $userId, $productType);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../music.php?error=none" );
+    exit();
+}
+
+
+function deleteCart($conn, $userId) {
+    $sql = "DELETE FROM cart WHERE userId = $userId;";
+    mysqli_query($conn, $sql);
+
+    // Close the database connection
+    mysqli_close($conn);
 }

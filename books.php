@@ -5,8 +5,10 @@
     require_once 'includes/dbh.inc.php';
     require_once 'includes/functions.inc.php';
 
+
     $query = "SELECT * FROM productbooks";
     $resultprodukt = mysqli_query($conn, $query);  
+
 ?>
     
     
@@ -32,16 +34,13 @@
     <section>
        
         <div class="filter">
-            <div class="price">
-
+            <div class="cost">
                 <div class="choices">
                     <div id="myBtnContainer">
                         <h3>Price</h3>
-                        <a class="btn" onclick="filterSelection('under10')">Under 10€ </a> <br>
-                        <a class="btn" onclick="filterSelection('10to20')"> 10€ to 20€ </a> <br>
-                        <a class="btn" onclick="filterSelection('20to50')"> 20€ to 50€ </a> <br>
-                        <a class="btn" onclick="filterSelection('above50')"> Above 50€ </a> <br>
-
+                        <input class="priceRange" type="text" placeholder="From"> 
+                        <input class="priceRange" type="text" placeholder="To">
+                        <button class="priceFilterBtn">Filter Price</button>
                     </div>
 
                 </div>
@@ -61,23 +60,6 @@
                 </div>
             </div>
 
-            <div class="choices">
-                <h3>Rating</h3>
-            </div>
-            <div class="rate">
-
-                <input class="btn" onclick="filterSelection('5')" type="button" id="star5" name="rate" value="5" />
-                <label for="star5" title="text">5 stars</label>
-                <input class="btn" onclick="filterSelection('4')" type="button" id="star4" name="rate" value="4" />
-                <label for="star4" title="text">4 stars</label>
-                <input class="btn" onclick="filterSelection('3')" type="button" id="star3" name="rate" value="3" />
-                <label for="star3" title="text">3 stars</label>
-                <input class="btn" onclick="filterSelection('2')" type="button" id="star2" name="rate" value="2" />
-                <label for="star2" title="text">2 stars</label>
-                <input class="btn" onclick="filterSelection('1')" type="button" id="star1" name="rate" value="1" />
-                <label for="star1" title="text">1 star</label>
-            </div>
-            <br><br><br>
             <div class="cover">
 
                 <div class="choices">
@@ -146,10 +128,10 @@
                                         echo '<span style="font-size: 110%">' . $item['nazov'] . '</span>';
                                     }
                                     else if (strlen($item['nazov']) < 20) {
-                                        echo '<span style="font-size: 100%">' . $item['nazov'] . '</span>';
+                                        echo '<span style="font-size: 110%">' . $item['nazov'] . '</span>';
                                     }
                                     else {
-                                        echo '<span style="font-size: 90%">' . $item['nazov'] . '</span>';
+                                        echo '<span style="font-size: 100%">' . $item['nazov'] . '</span>';
                                     }
                                 ?>
                             </h4>
@@ -160,7 +142,7 @@
                     </div>
                     <div class="lowerProductInfo">
                         <p class="price"> <?= $item['cena'] ?>€ </p>
-                        <p> 
+                        <p class="inStock"> 
                             <?php 
                                 if($item['inStock'] > 0) {
                                     echo '<p class="inStock">In Stock</p>';

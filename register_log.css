@@ -14,9 +14,9 @@ font-family:'Open Sans', sans-serif;
 .back{
     background-image: radial-gradient(rgba(34, 34, 34, 0.548), rgba(23, 45, 133, 0.699)), url(images/lock.jpg);
     background-repeat: repeat;
-    height: 1000px;
-    background-size: 1440px 894px;
-    margin-left: -300px;
+    height: 800px;
+    background-size: 1140px 700px;
+    margin-left: -250px;
   }
 
 .formBtn button{

@@ -6,6 +6,9 @@
     require_once 'includes/functions.inc.php';
 
     $id = $_GET['id'];
+    $userId = $_SESSION['userid'];
+    $productType = 'movie';
+
 
     $query = "SELECT * FROM productmovies where id = $id;";
     $resultprodukt = mysqli_query($conn, $query);  
@@ -143,7 +146,12 @@
                     <p>Available. Expected delivery to Slovakia in 6-11 business days.</p>
                     <p>Order now for expected delivery by 31. 1. 2022</p>
                     <div class="movieBtn">
-                        <a href="">Add to cart</a>
+                        <form action="includes/cart.inc.php" method="post">
+                            <input type="hidden" name="productId" value="<?php echo $id ?>">
+                            <input type="hidden" name="userId" value="<?php echo $userId ?>">
+                            <input type="hidden" name="productType" value="<?php echo $productType ?>">
+                            <button type="submit" name="addToCartMovie">Add to cart</button>
+                        </form>
                     </div>
                     <br>
                     <div class="movieBtn1">
@@ -219,6 +227,18 @@
 
 
     </section>
+
+    <script>
+const container1 = document.querySelector('.movieBox0');
+    const container1Height = container1.offsetHeight;
+  
+    // Set the height of container-2 to be equal to container-1
+    const container2 = document.querySelector('.movieBox1');
+    container2.style.height = `${container1Height}px`;
+
+</script>
+
+
 </body>
 
 

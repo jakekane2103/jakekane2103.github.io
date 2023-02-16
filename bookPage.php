@@ -6,6 +6,8 @@
     require_once 'includes/functions.inc.php';
     
     $id = $_GET['id'];
+    $userId = $_SESSION['userid'];
+    $productType = 'book';
 
     $query = "SELECT * FROM productbooks where id = $id;";
     $resultprodukt = mysqli_query($conn, $query);  
@@ -27,7 +29,7 @@
     $publisher = $product['publisher'];
     $dimensions = $product['dimensions'];
     
-
+    
     $genre = explode(",", $product['genre']);
     $paragraphs = explode("/p", $description);
 ?>
@@ -124,11 +126,18 @@
                     <p>Available. Expected delivery to Slovakia in 6-11 business days.</p>
                     <p>Order now for expected delivery by 31. 1. 2022</p>
                     <div class="bookBtn">
-                        <a href="">Add to cart</a>
+                        <form action="includes/cart.inc.php" method="post">
+                            <input type="hidden" name="productId" value="<?php echo $id ?>">
+                            <input type="hidden" name="userId" value="<?php echo $userId ?>">
+                            <input type="hidden" name="productType" value="<?php echo $productType ?>">
+                            <button type="submit" name="addToCartBook">Add to cart</button>
+                        </form>
                     </div>
                     
                     <div class="bookBtn1">
-                        <a href="">Add to wishlist</a>
+                        <form action="includes/cart.inc.php" method="post">
+                            <button type="submit" name="addToWishlist">Add to wishlist</button>
+                        </form>
                     </div>
 
                 </div>
@@ -211,6 +220,11 @@ const container1 = document.querySelector('.bookBox0');
     // Set the height of container-2 to be equal to container-1
     const container2 = document.querySelector('.bookBox1');
     container2.style.height = `${container1Height}px`;
+
+    if (error) {
+        alert("Product already in cart!");
+    }
+
 
 </script>
 

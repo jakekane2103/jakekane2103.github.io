@@ -29,7 +29,7 @@ font-family:'Open Sans', sans-serif;
     width: 65%;
     height: auto;
     padding: 20px;
-    margin: 20px 0 10px 110px;
+    margin: 20px 0 10px 90px;
     border: solid 2px #4E505Ded;
     text-align: left;
     float: left;
@@ -209,14 +209,13 @@ font-family:'Open Sans', sans-serif;
 }
 
 
+
 .musicBtn{
-    text-align: center;  
-    margin-top: 30%; 
-    margin-bottom: 5%;  
+    text-align: center;
+    margin-top: 30%;
 } 
 
-.musicBtn a{
-    display: inline-block;
+.musicBtn button{
     text-decoration: none;
     color: black;
     border: 1px solid black;
@@ -225,12 +224,10 @@ font-family:'Open Sans', sans-serif;
     padding: 18px 96px;
     font-size: 18px;
     cursor: pointer;
-    margin-top: 5%;
-    
 }
 
 
-.musicBtn a:hover{
+.musicBtn button:hover{
     border: 1px solid blue;
     color: white;
     background: blue;
@@ -267,10 +264,10 @@ font-family:'Open Sans', sans-serif;
 
 /*-----musicBox2-----*/
 .musicBox2{
-    margin: 0 0 0 110px;
+    margin: 0 0 0 90px;
     border: solid 2px #4E505Ded;    
     background-color: white;
-    width: 87.8%;
+    width: 88.5%;
     float: left;
 }
 
