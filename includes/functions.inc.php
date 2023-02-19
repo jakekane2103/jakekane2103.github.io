@@ -865,7 +865,6 @@ function deleteMess($conn, $id) {
 /*--------------------------------*/
 /*-------ADD BOOK TO CART---------*/
 /*--------------------------------*/
-
 function addToCartBook($conn, $productId, $userId, $productType) {
     $sql = "SELECT * FROM users WHERE usersId = ?;";
     $stmt = mysqli_stmt_init($conn);
@@ -879,24 +878,25 @@ function addToCartBook($conn, $productId, $userId, $productType) {
     $result = mysqli_stmt_get_result($stmt);
     if (!$row = mysqli_fetch_assoc($result)) {
         // User with the given ID does not exist in the database
-        header("location: ../books.php?error=usernotfound");
+        header("location: ../cart.php?error=usernotfound");
         exit();
     }
 
     // User with the given ID exists in the database, proceed with adding book to cart
-    $sql = "INSERT INTO cart (productId, userId, productType) VALUES (?, ?, ?);";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
+    $sql1 = "INSERT INTO cart (productId, userId, productType) VALUES (?, ?, ?);";
+    $stmt1 = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt1, $sql1)) {
         header("location: ../books.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sss", $productId, $userId, $productType);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    header("location: ../books.php?error=none" );
+    mysqli_stmt_bind_param($stmt1, "sss", $productId, $userId, $productType);
+    mysqli_stmt_execute($stmt1);
+    mysqli_stmt_close($stmt1);
+    header("location: ../books.php?error=none");
     exit();
 }
+
 
 
 function removeFromCart($conn, $productId) {
@@ -946,7 +946,7 @@ function addToCartMovie($conn, $productId, $userId, $productType) {
     $sql = "SELECT * FROM users WHERE usersId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../books.php?error=stmtfailed");
+        header("location: ../movie.php?error=stmtfailed");
         exit();
     }
 
@@ -955,7 +955,7 @@ function addToCartMovie($conn, $productId, $userId, $productType) {
     $result = mysqli_stmt_get_result($stmt);
     if (!$row = mysqli_fetch_assoc($result)) {
         // User with the given ID does not exist in the database
-        header("location: ../movies.php?error=usernotfound");
+        header("location: ../cart.php?error=usernotfound");
         exit();
     }
 
@@ -993,7 +993,7 @@ function addToCartMusic($conn, $productId, $userId, $productType) {
     $result = mysqli_stmt_get_result($stmt);
     if (!$row = mysqli_fetch_assoc($result)) {
         // User with the given ID does not exist in the database
-        header("location: ../music.php?error=usernotfound");
+        header("location: ../cart.php?error=usernotfound");
         exit();
     }
 
@@ -1012,11 +1012,65 @@ function addToCartMusic($conn, $productId, $userId, $productType) {
     exit();
 }
 
+/*--------------------------------*/
+/*-------------ORDER--------------*/
+/*--------------------------------*/
+// Adds a new order to the orders table and returns the order ID
+function addOrder($conn, $userId, $totalPrice) {
+    $stmt = mysqli_stmt_init($conn);
+    $query = "INSERT INTO orders (userId, totalPrice) VALUES (?, ?)";
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, "ii", $userId, $totalPrice);
+        mysqli_stmt_execute($stmt);
+        $orderId = mysqli_stmt_insert_id($stmt);
+        mysqli_stmt_close($stmt);
+        return $orderId;
+    } else {
+        die("Failed to prepare statement: " . mysqli_error($conn));
+    }
+}
 
+// Retrieves the product IDs for the current user's cart
+function getCartProductIds($conn, $userId) {
+    $productIds = array();
+    $query = "SELECT productId FROM cart WHERE userId = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $productIds[] = $row['productId'];
+        }
+        mysqli_stmt_close($stmt);
+    } else {
+        die("Failed to prepare statement: " . mysqli_error($conn));
+    }
+    return $productIds;
+}
+
+// Adds a new order item to the orderitems table
+function addOrderItem($conn, $orderId, $productId) {
+    $stmt = mysqli_stmt_init($conn);
+    $query = "INSERT INTO orderitems (orderId, productId) VALUES (?, ?)";
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, "ii", $orderId, $productId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        die("Failed to prepare statement: " . mysqli_error($conn));
+    }
+}
+
+// Deletes all cart items for the current user
 function deleteCart($conn, $userId) {
-    $sql = "DELETE FROM cart WHERE userId = $userId;";
-    mysqli_query($conn, $sql);
-
-    // Close the database connection
-    mysqli_close($conn);
+    $stmt = mysqli_stmt_init($conn);
+    $query = "DELETE FROM cart WHERE userId = ?";
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        die("Failed to prepare statement: " . mysqli_error($conn));
+    }
 }

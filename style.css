@@ -5,73 +5,99 @@ font-family:'Open Sans', sans-serif;
 }
 
 
-.sideAds{
+.sideAdsProducts {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-float: left;
-width: 28.9%;
+}
+
+.php{
+    margin-top: 5%;
+    float: left;
+    width: 330px;
+    padding-left: 1%;
+    
+}
+
+
+.php h2{
+    margin-top: 2px;
+    font-family: 'Libre Baskerville', serif;
+    text-decoration: none;
+    font-size: 200%;
+    color: black;
+    margin-bottom: 0;
+    text-align:center;
+    border-bottom: #2b2d45 solid 2px;   
+}
+
+
+.products{
+    float: right;
+    width: 1150px;
+    margin-left: 1%;
+    margin-bottom: 50px;
+    
+    
 }
 
 .christmasAd, .anniversary, .visitUs{
     padding: 4% 0 3%;
     background-color: #434552;
-    position: relative;
     color: white;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    border-bottom: 5px solid white;
     
 }
 
 .christmasAd:hover, .anniversary:hover, .visitUs:hover{
-    background-color: #545668;
-    border-bottom: orange 9px solid;
+    background-color: #2b2d45;
+    border-bottom: rgb(205, 133, 0) 12px solid;
     transition: 0.2s;
     padding: 4% 0 1.4%;
 }
 
 
 .christmasAd img, .anniversary img, .visitUs img{
+    justify-content: center;
     width: 100%;
-    display: block;
     margin-left: auto;
     margin-right: auto;
     padding: 0 0 5px;
     
 }
 
-.christmasAd h3, .visitUs h3{
+.christmasAd h3, .visitUs h3, .anniversary h3{
+    font-family: 'Libre Baskerville', serif;
     text-decoration: none;
-    font-size: 150%;
+    font-size: 160%;
     color: white;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 12%;
-    position: absolute;
-    text-align: center;
-    text-shadow: #000000 2px 2px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 2%;
+    text-align:center;
 }
 
 .christmasAd p, .anniversary p, .visitUs p{
+    font-family: 'Libre Baskerville', serif;
     text-decoration: none;
-    font-size: 90%;
+    font-size: 100%;
     color: white;
     padding: 1.5%;
     text-align: center;
 }
 
-.freeShiping img{
-    width: 50%;
+* {
+    text-decoration: none;
 }
 
-
-.products{
-    float: right;
-    width: 69%;
-    margin-right: 2%;
-    margin-bottom: 50px;
-    
-}
+/*------------------------------*/
+/*----------PRODUCTS------------*/
+/*------------------------------*/
 
 .bestSellers, .newReleases, .upcomingReleases{
-    margin: 3% 0 2% -9%;
+    margin: 3% 0 2% 2%;
     padding-bottom: 3%;
     width: auto;
 

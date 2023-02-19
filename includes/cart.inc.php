@@ -82,17 +82,38 @@ if(isset($_POST["addToCartMusic"])) {
 }
 
 
+/*-----------------------------*/
+/*------------ORDER------------*/
+/*-----------------------------*/
 
 if (isset($_POST["order"])) { 
     $userId = $_POST["userId"];
+    $totalPrice = $_POST["totalPrice"];
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
+    // Insert a new order into the orders table
+    $orderId = addOrder($conn, $userId, $totalPrice);
+
+    // Retrieve the product IDs from the products table
+    $productIds = getCartProductIds($conn, $userId);
+/*
+    // Insert each product ID into the order_items table, associated with the new order ID
+    foreach ($productIds as $productId) {
+        echo "Product ID: " . $productId . "<br>";
+        addOrderItem($conn, $orderId, $productId);
+    }
+*/
+
+    // Delete the cart for the current user
     deleteCart($conn, $userId);
-    header("Location: ../cart.php?orderSuccessful");
+
+    // Redirect to the cart page with an order success message
+    header("location: ../cart.php?order");
     exit();
 }
+
 
 
 

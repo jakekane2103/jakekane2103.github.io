@@ -43,36 +43,29 @@ include 'header.php';
                                 <label for="name">Full Name</label>
                                 <input type="text" class="form-control" name="name" />
                             </div>
-                      
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" name="email" />
                             </div>
-
                             <div class="form-group">
                                 <label for="email">Address</label>
                                 <input type="text" class="form-control" name="address" />
                             </div>
-
                             <div class="form-group">
                                 <label for="uid">Username</label>
                                 <input type="text" class="form-control"  name="uid" />
                             </div>
-                            
                             <div class="form-group">
                                 <label for="pwd">Password</label>
                                 <input type="password" class="form-control"  name="pwd" />
                             </div>
-
                             <div class="form-group">
                                 <label for="pwdrepeat">Repeat Password</label>
                                 <input type="password" class="form-control"  name="pwdrepeat" />
                             </div>
-
                             <div class="formBtn">
                                 <button type="submit" name="submit">Sign Up</button>
                             </div>
-                            
                         </form>
 
 

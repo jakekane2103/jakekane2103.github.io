@@ -4,14 +4,15 @@
 
     require_once 'includes/dbh.inc.php';
     require_once 'includes/functions.inc.php';
-    $userId = $_SESSION['userid'];
-
-    if ($_SESSION['userid'] == null) {
-        
-        header("location: ./NEW_login.php?noLogin");
-        
+    if (isset($_SESSION['userid']))
+    {
+        $userId = $_SESSION['userid'];
+    }     
+    else
+    {
+        $userId = 0;
     }
-    
+   
     $querybook = "SELECT * FROM cart
     JOIN productbooks on productbooks.id = cart.productId WHERE productType = 'book' AND userId = $userId;";
     $stmt = mysqli_prepare($conn, $querybook);
@@ -47,7 +48,7 @@
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use">
-    <title>Bookshop: Cart</title>
+    <title>Bookshop/Cart</title>
 </head>
 <body>
     <section>
@@ -56,14 +57,25 @@
             <div class="cartBox">
                 <div class="top">
                     <div class="cartTitle">
-                        <h1>Your Cart (<?php echo mysqli_num_rows($resultcartbook) + mysqli_num_rows($resultcartmovie); ?>)</h1>
+                        <h1>Your Cart (<?php echo mysqli_num_rows($resultcartbook) + mysqli_num_rows($resultcartmovie) + mysqli_num_rows($resultcartmusic); ?>)</h1>
                     </div>
                 </div>
         
                 <div class="cartProducts">
+
+                <?php
+                    if (!isset($_SESSION['userid']))
+                    {
+                        echo '<div class="warning">
+                                <h1>You Need To Login to Add Products to the Cart!</h1>
+                            </div>';
+                    }     
+                    else
+                    
+                ?>
                     
                     <?php foreach ($resultcartbook as $book) : ?>
-                        <?php $counter++; ?>
+                        
                         <div class="book">
                             <?php $totalPrice += $book['cena']; ?>
                             <a class="cartClick" href="bookPage.php?id=<?php echo $book['productId']; ?>">
@@ -84,15 +96,16 @@
                                 <p class="price"> <?php echo $book['cena'] ?>€ </p>
                             </a>
                             <form method="post" action="includes/cart.inc.php">
+                                
                                 <input type="hidden" name="productId" value="<?php echo $book['productId']; ?>">
                                 <button type="submit" class="removeBtn" name="removeFromCart">Remove</button>
                             </form>  
                         </div>
-                        <?php if ($counter % 5 == 0) echo '<br>'; ?>
+                       
                     <?php endforeach; ?>
                    
                     <?php foreach ($resultcartmovie as $movie) : ?>
-                        <?php $counter++; ?>
+                       
                         <div class="book">
                             <?php $totalPrice += $movie['cena']; ?>
                             <a class="cartClick" href="moviePage.php?id=<?php echo $movie['productId']; ?>">
@@ -124,7 +137,7 @@
                     <?php endforeach; ?>
 
                     <?php foreach ($resultcartmusic as $music) : ?>
-                        <?php $counter++; ?>
+                       
                         <div class="book">
                             <?php $totalPrice += $music['price']; ?>
                             <a class="cartClick" href="musicPage.php?id=<?php echo $music['productId']; ?>">
@@ -152,7 +165,7 @@
                             </form>  
                             
                         </div>
-                        <?php if ($counter % 5 == 0) echo '<br>'; ?>
+                      
                     <?php endforeach; ?>
                     
                     
@@ -162,9 +175,10 @@
                     <div class="order">
                         <p class="totalPrice">Total Price:  <?php echo $totalPrice ?>€</p>
                         <div class="orderBtn">
-                            <form action="includes/cart.inc.php" method="post">
+                            <form method="post" action="includes/cart.inc.php">
                                 <input type="hidden" name="userId" value="<?php echo $userId ?>">
-                                <button type="submit" name="order">Order</button>
+                                <input type="hidden" name="totalPrice" value="<?php echo $totalPrice ?>">
+                                <button type="submit" name="order">Place Order</button>
                             </form>
                         </div>
                     </div>
@@ -190,4 +204,5 @@
         alert("Product already in cart!");
     }
 </script>
+
 </html>

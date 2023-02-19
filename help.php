@@ -33,7 +33,8 @@
         <?php 
             while ($row = mysqli_fetch_assoc($resultfaq)) 
             {
-                echo '<button type="button" class="collapsible">' . $row['question'] . '</button>';
+                echo '<button type="button" class="collapsible">
+                ' . $row['question'] . '</button>';
                 echo '<div class="content">'; 
                 echo '<p>' . $row['answer'] . '</p>'; 
                 echo '</div>';

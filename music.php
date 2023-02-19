@@ -5,10 +5,73 @@
     require_once 'includes/dbh.inc.php';
     require_once 'includes/functions.inc.php';
 
-    $sql = "SELECT * FROM productmusic
+     // Get the search query from the URL parameters
+     $query = isset($_GET['query']) ? $_GET['query'] : '';
+
+     // Construct the SQL query to get the products
+     $sql = "SELECT * FROM productmusic
             JOIN band ON productmusic.bandId = band.bandId";
-        
-    $resultprodukt = mysqli_query($conn, $sql);
+     if (!empty($query)) {
+       // Add a WHERE clause to filter the results by the search query
+       $sql .= " WHERE albumName LIKE '%$query%'";
+     }
+ 
+     // Execute the SQL query and fetch the results
+     $result = mysqli_query($conn, $sql);
+ 
+     if (!$result) {
+       die("Error: " . mysqli_error($conn));
+     }
+ 
+     // Fetch the results as an associative array
+     $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+
+         /*---------------------------------*/
+    /*-------------FILTERED------------*/
+    /*---------------------------------*/
+
+// Get filter parameters from POST request
+$band = isset($_POST['band']) ? $_POST['band'] : '';
+$format = isset($_POST['format']) ? $_POST['format'] : '';
+$genre = isset($_POST['genre']) ? $_POST['genre'] : '';
+$inStock = isset($_POST['inStock']) ? $_POST['inStock'] : '';
+$priceFrom = isset($_POST['priceFrom']) ? $_POST['priceFrom'] : '';
+$priceTo = isset($_POST['priceTo']) ? $_POST['priceTo'] : '';
+
+
+
+// Construct the SQL query
+$sql = "SELECT * FROM productmusic
+        JOIN band ON band.bandId = productmusic.bandId WHERE 1=1";
+
+if ($band) {
+    $sql .= " AND bandName = '$band'";
+}
+
+if ($format) {
+    $sql .= " AND format = '$format'";
+}
+
+if ($genre) {
+    $sql .= " AND genre = '$genre'";
+}
+
+if ($inStock) {
+    $sql .= " AND inStock = '$inStock'";
+}
+
+if ($priceFrom) {
+    $sql .= " AND price >= $priceFrom";
+}
+
+if ($priceTo) {
+    $sql .= " AND price <= $priceTo";
+}
+
+// Execute the query and display the results
+$products = $conn->query($sql);
+
 ?>
 
 
@@ -29,76 +92,87 @@
 <body>
     <section>
        
+    <form method="post">
         <div class="filter">
-        <div class="cost">
-                <div class="choices">
-                    <div id="myBtnContainer">
+            <div class="cost">
+                <div id="myBtnContainer">
+                    <div class="choices">
                         <h3>Price</h3>
-                        <input class="priceRange" type="text" placeholder="From"> 
-                        <input class="priceRange" type="text" placeholder="To">
-                        <button class="priceFilterBtn">Filter Price</button>
                     </div>
-
+                    <input type="number" step="0.01" class="priceRange" name="priceFrom" placeholder="From" min="1">
+                    <input type="number" step="0.01" class="priceRange" name="priceTo" placeholder="To" min="1">
                 </div>
-            </div>
-            <div class="language">
 
+            </div>
+
+            <div class="language">
                 <div class="choices">
                     <div id="myBtnContainer">
-                    <h3>Released</h3>
-                            <a class="btn" onclick="filterSelection('60')">1960-1969</a> <br>
-                            <a class="btn" onclick="filterSelection('70')">1970-1979</a> <br>
-                            <a class="btn" onclick="filterSelection('80')">1980-1989</a> <br>
-                            <a class="btn" onclick="filterSelection('90')">1990-1990</a> <br>
-                            <a class="btn" onclick="filterSelection('00')">2001-2009</a> <br>
-                            <a class="btn" onclick="filterSelection('10')">2010-2019</a> <br>
-                            <a class="btn" onclick="filterSelection('20')">2020-now</a>
+                      <h3>Band</h3>
+                        <label><input type="radio" name="band" value="AC/DC">AC/DC</label><br>
+                        <label><input type="radio" name="band" value="Guns N' Roses">Guns N' Roses</label><br>
+                        <label><input type="radio" name="band" value="Megadeth">Megadeth</label><br>
+                        <label><input type="radio" name="band" value="Metallica">Metallica</label><br>
+                        <label><input type="radio" name="band" value="Nirvana">Nirvana</label><br>
+                        <label><input type="radio" name="band" value="Pink Floyd">Pink Floyd</label><br>
+                        
+                    </div>
+                  </div>
                 </div>
-            </div>
-            </div>
 
             <div class="cover">
 
                 <div class="choices">
-                    <h3>Type</h3>
-                    <a class="btn" onclick="filterSelection('vi')">Vinyl</a> <br>
-                    <a class="btn" onclick="filterSelection('c')">CD</a> <br>
-                    <a class="btn" onclick="filterSelection('d')">Digital</a>
+                    <h3>Format</h3>
+                    <label><input type="radio" name="format" value="CD">CD</label><br>
+                    <label><input type="radio" name="format" value="Digital">Digital</label><br>
+                    <label><input type="radio" name="format" value="Vinyl">Vinyl</label><br>
+                    
                 </div>
             </div>
 
             <div class="availability">
                 <div class="choices">
                     <h3>Availability</h3>
-                    <a class="btn" onclick="filterSelection('in')">In Stock</a> <br>
-                    <a class="btn" onclick="filterSelection('pre')">Pre-order</a> <br>
-                    <a class="btn" onclick="filterSelection('out')">Out of Stock</a>
+                    <label><input type="radio" name="inStock" value="1" >In Stock</label><br>
+                    <label><input type="radio" name="inStock" value="null" >Out of Stock</label><br>
+                </div>
+            </div>
+
+
+            <div class="genre">
+                <div class="choices">
+                    <h3>Genre</h3>
+                    <label><input type="radio" name="genre" value="Country">Country</label><br>
+                    <label><input type="radio" name="genre" value="Metal">Metal</label><br>
+                    <label><input type="radio" name="genre" value="OST">OST</label><br>
+                    <label><input type="radio" name="genre" value="Pop">Pop</label><br>
+                    <label><input type="radio" name="genre" value="Rap">Rap</label><br>
+                    <label><input type="radio" name="genre" value="Rock">Rock</label><br>
                 </div>
 
-            </div>
+              
+                    <div class="btn">
+                        <button class="filterBtn" type="submit">Filter</button>
+                    </div>
 
-            <div class="genre"></div>
-            <div class="choices">
-                <h3>Genre</h3>
-                <a class="btn" onclick="filterSelection('bl')">Blues</a>
-                <a class="btn" onclick="filterSelection('cl')">Classical</a><br>
-                <a class="btn" onclick="filterSelection('co')">Country</a><br>
-                <a class="btn" onclick="filterSelection('ja')">Jazz</a><br>
-                <a class="btn" onclick="filterSelection('me')">Metal</a><br>
-                <a class="btn" onclick="filterSelection('os')">OST</a> <br>
-                <a class="btn" onclick="filterSelection('pu')">Punk</a><br>
-                <a class="btn" onclick="filterSelection('ro')">Rock</a><br>
+                    <div class="btnReset">
+                        <button class="filterBtn">Reset Filters</button>
+                    </div>
             </div>
-            <div class="reset">
-                <a class="btn" onclick="filterSelection('all')">Reset Filters</a>
-            </div>
+        
 
+               
         </div>
+    </form>
 
        
         <div class="albums">
-            <?php $i = 1; ?>
-            <?php foreach ($resultprodukt as $item) : ?>
+            <?php $i = 1; 
+            // Filters have been applied, so use $results to display the products
+            if (count($_POST) > 0) { 
+            ?>
+            <?php foreach ($products as $item) : ?>
               <div class="album" style="background-color: <?php echo (($i - 1) / 4 % 2 == 0) ? '#e6e6e6' : '#d4d3d3'; ?>">
                 <a href="musicPage.php?id=<?php echo $item['id']; ?>">
                   <img class="productImg" src="<?php echo $item['albumImg'] ?>" alt="">
@@ -108,7 +182,23 @@
                 <p class="bookPrice"><?php echo $item['price'] ?> €</p>
               </div>
               <?php $i++; ?>
-            <?php endforeach; ?>
+            <?php endforeach; 
+            }
+
+            else {
+            ?>
+            <?php foreach ($results as $item) : ?>
+              <div class="album" style="background-color: <?php echo (($i - 1) / 4 % 2 == 0) ? '#e6e6e6' : '#d4d3d3'; ?>">
+                <a href="musicPage.php?id=<?php echo $item['id']; ?>">
+                  <img class="productImg" src="<?php echo $item['albumImg'] ?>" alt="">
+                </a>
+                <h3 style="white-space: nowrap;" class="title"><?php echo $item['albumName'] ?></h3>
+                <h4><?php echo $item['bandName'] ?></h4>
+                <p class="bookPrice"><?php echo $item['price'] ?> €</p>
+              </div>
+              <?php $i++; ?>
+            <?php endforeach; 
+            }?>
         </div>
     </section>
 

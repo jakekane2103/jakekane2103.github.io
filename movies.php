@@ -5,8 +5,79 @@
     require_once 'includes/dbh.inc.php';
     require_once 'includes/functions.inc.php';
 
-    $query = "SELECT * FROM productmovies";
-    $resultprodukt = mysqli_query($conn, $query); 
+
+    // Get the search query from the URL parameters
+    $query = isset($_GET['query']) ? $_GET['query'] : '';
+
+    // Construct the SQL query to get the products
+    $sql = "SELECT * FROM productmovies";
+    if (!empty($query)) {
+      // Add a WHERE clause to filter the results by the search query
+      $sql .= " WHERE nazov LIKE '%$query%'";
+    }
+
+    // Execute the SQL query and fetch the results
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+      die("Error: " . mysqli_error($conn));
+    }
+
+    // Fetch the results as an associative array
+    $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+
+
+    /*---------------------------------*/
+    /*-------------FILTERED------------*/
+    /*---------------------------------*/
+
+// Get filter parameters from POST request
+$audio = isset($_POST['audio']) ? $_POST['audio'] : '';
+$format = isset($_POST['format']) ? $_POST['format'] : '';
+$genre = isset($_POST['genre']) ? $_POST['genre'] : '';
+$inStock = isset($_POST['inStock']) ? $_POST['inStock'] : '';
+$priceFrom = isset($_POST['priceFrom']) ? $_POST['priceFrom'] : '';
+$priceTo = isset($_POST['priceTo']) ? $_POST['priceTo'] : '';
+
+
+
+// Construct the SQL query
+$sql = "SELECT * FROM productmovies WHERE 1=1";
+
+if ($audio) {
+    $sql .= " AND audio = '$audio'";
+}
+
+if ($format) {
+    $sql .= " AND format = '$format'";
+}
+
+if ($genre) {
+    $genres = explode('|', $genre);
+    $genreSql = "";
+    foreach ($genres as $genre) {
+        $genreSql .= " OR genre LIKE '%$genre%'";
+    }
+    $genreSql = ltrim($genreSql, " OR");
+    $sql .= " AND ($genreSql)";
+}
+
+if ($inStock) {
+    $sql .= " AND inStock = '$inStock'";
+}
+
+if ($priceFrom) {
+    $sql .= " AND cena >= $priceFrom";
+}
+
+if ($priceTo) {
+    $sql .= " AND cena <= $priceTo";
+}
+
+// Execute the query and display the results
+$products = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -25,89 +96,89 @@
 
 <body>
     <section>
-        
-    <div class="filter">
-    <div class="cost">
-                <div class="choices">
-                    <div id="myBtnContainer">
+    <form method="post">
+        <div class="filter">
+            <div class="cost">
+                <div id="myBtnContainer">
+                    <div class="choices">
                         <h3>Price</h3>
-                        <input class="priceRange" type="text" placeholder="From"> 
-                        <input class="priceRange" type="text" placeholder="To">
-                        <button class="priceFilterBtn">Filter Price</button>
                     </div>
-
+                    <input type="number" step="0.01" class="priceRange" name="priceFrom" placeholder="From" min="1">
+                    <input type="number" step="0.01" class="priceRange" name="priceTo" placeholder="To" min="1">
                 </div>
+
             </div>
 
             <div class="language">
-
                 <div class="choices">
                     <div id="myBtnContainer">
-                        <h3>Audio</h3>
-                        <a class="btn" onclick="filterSelection('english')">English</a> <br>
-                        <a class="btn" onclick="filterSelection('french')">French</a> <br>
-                        <a class="btn" onclick="filterSelection('german')">German</a> <br>
-                        <a class="btn" onclick="filterSelection('czech')">Czech</a>
-
+                      <h3>Audio</h3>
+                        <label><input type="radio" name="audio" value="english">English</label><br>
+                        <label><input type="radio" name="audio" value="french">French</label><br>
+                        <label><input type="radio" name="audio" value="german">German</label><br>
+                        <label><input type="radio" name="audio" value="slovak">Slovak</label><br>
+                        <label><input type="radio" name="audio" value="czech">Czech</label><br>
                     </div>
+                  </div>
                 </div>
-            </div>
 
-           
             <div class="cover">
 
                 <div class="choices">
-                    <h3>Cover</h3>
-                    <a class="btn" onclick="filterSelection('hard')">Hardback</a> <br>
-                    <a class="btn" onclick="filterSelection('paper')">Paperback</a>
-                </div>
-            </div>
-
-            <div class="condition">
-
-                <div class="choices">
-                    <h3>Condition</h3>
-                    <a class="btn" onclick="filterSelection('new')">New</a> <br>
-                    <a class="btn" onclick="filterSelection('used')">Used</a>
-
+                    <h3>Format</h3>
+                    <label><input type="radio" name="format" value="BLUE-RAY">Blue-Ray</label><br>
+                    <label><input type="radio" name="format" value="DIGITAL">Digital</label><br>
+                    <label><input type="radio" name="format" value="DVD">DVD</label><br>
+                    
                 </div>
             </div>
 
             <div class="availability">
                 <div class="choices">
                     <h3>Availability</h3>
-                    <a class="btn" onclick="filterSelection('in')">In Stock</a> <br>
-                    <a class="btn" onclick="filterSelection('pre')">Pre-order <br></a>
-                    <a class="btn" onclick="filterSelection('out')">Out of Stock</a>
+                    <label><input type="radio" name="inStock" value="1" >In Stock</label><br>
+                    <label><input type="radio" name="inStock" value="null" >Out of Stock</label><br>
+                </div>
+            </div>
+
+
+            <div class="genre">
+                <div class="choices">
+                    <h3>Genre</h3>
+                    <label><input type="radio" name="genre" value="Action">Action</label><br>
+                    <label><input type="radio" name="genre" value="Adventure">Adventure</label><br>
+                    <label><input type="radio" name="genre" value="Anime">Anime</label><br>
+                    <label><input type="radio" name="genre" value="Cartoon">Cartoon</label><br>
+                    <label><input type="radio" name="genre" value="Comedy">Comedy</label><br>
+                    <label><input type="radio" name="genre" value="Drama">Drama</label><br>
+                    <label><input type="radio" name="genre" value="Fantasy">Fantasy</label><br>
+                    <label><input type="radio" name="genre" value="Horror">Horror </label><br>
+                    <label><input type="radio" name="genre" value="Mystery">Mystery</label><br>
+                    <label><input type="radio" name="genre" value="Romance">Romance </label><br>
+                    <label><input type="radio" name="genre" value="Sci-fi">Sci-Fi</label><br>
+                    <label><input type="radio" name="genre" value="Western">Western</label>
                 </div>
 
+              
+                    <div class="btn">
+                        <button class="filterBtn" type="submit">Filter</button>
+                    </div>
+
+                    <div class="btnReset">
+                        <button class="filterBtn">Reset Filters</button>
+                    </div>
             </div>
-
-            <div class="genre"></div>
-            <div class="choices">
-                <h3>Genre</h3>
-                <a class="btn" onclick="filterSelection('adv')">Adventure</a>
-                <a class="btn" onclick="filterSelection('fan')">Fantasy</a> <br>
-                <a class="btn" onclick="filterSelection('mys')">Mystery</a> <br>
-                <a class="btn" onclick="filterSelection('poe')">Poetry</a> <br>
-                <a class="btn" onclick="filterSelection('hor')">Horror </a> <br>
-                <a class="btn" onclick="filterSelection('rom')">Romance <br></a>
-                <a class="btn" onclick="filterSelection('sci')">Sci-Fi</a>
-            </div>
-
-            <div class="reset">
-                <a class="btn" onclick="filterSelection('all')">Reset Filters</a>
-            </div>
-        </div>
-
-
         
 
+               
         </div>
-
+    </form>
 
     <div class="movies">
-        <?php foreach ($resultprodukt as $item) : ?>
+    <?php
+        // Filters have been applied, so use $results to display the products
+        if (count($_POST) > 0) { 
+         foreach ($products as $item) : ?>
             <div class="movie">
                 <img class="productImg" src="<?= $item['img'] ?>" alt="">
                 <div class="info">
@@ -149,8 +220,54 @@
                 </div>
                 
             </div>
-        <?php endforeach; ?>
+        <?php endforeach; } 
+        else {
+            foreach ($results as $item) : ?>
+               <div class="movie">
+                   <img class="productImg" src="<?= $item['img'] ?>" alt="">
+                   <div class="info">
+                       <div class="upperProductInfo">
+                           
+                           <a href="moviePage.php?id=<?php echo $item['id']; ?>">
+                               <h4 class="name">
+                                   <?php 
+                                       if (strlen($item['nazov']) < 16) {
+                                               echo '<span style="font-size: 110%">' . $item['nazov'] . '</span>';
+                                           }
+                                           else if (strlen($item['nazov']) < 20) {
+                                               echo '<span style="font-size: 100%">' . $item['nazov'] . '</span>';
+                                           }
+                                           else {
+                                               echo '<span style="font-size: 90%">' . $item['nazov'] . '</span>';
+                                           } 
+                                   ?>
+                               </h4>
+                           </a>
+                           
+                           <p class="author"> <?= $item['director'] ?> </p>
+                           <p class="description"> <?= $item['description'] ?> </p>
+                       </div>
+                       <div class="lowerProductInfo">
+                           <p class="price"> <?= $item['cena'] ?>€ </p>
+                           <p class="inStock"> 
+                               <?php 
+                                   if($item['inStock'] > 0) {
+                                       echo '<p class="inStock">In Stock</p>';
+                                   }
+                                   else if($item['inStock'] == 0){
+                                       echo '<p class="outOfStock">Out of Stock</p>';
+                                   }
+                               ?> 
+                            </p>
+                       </div>
+                       
+                   </div>
+                   
+               </div>
+           <?php endforeach; } ?>
+       
     </div>
+   
 
 </body>
 

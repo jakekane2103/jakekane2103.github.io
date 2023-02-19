@@ -19,9 +19,9 @@ font-family:'Open Sans', sans-serif;
 
 .filter{
     padding: 15px 0 0 5px;
-    width: 12%;
-    max-width: 60%;
-    height: 1200px;
+    width: 15%;
+    max-width: 65%;
+    height: 1350px;
     max-height: 200%;
     border: 4px solid #5d4e4e;
     background-color: #f4f4f4;
@@ -33,53 +33,52 @@ font-family:'Open Sans', sans-serif;
 
 .priceRange{
     padding: 1%;
+    margin-left: 5%;
     margin-bottom: 3%;
     font-size: 100%;
-    width: 90%;
+    width: 50%;
 }
 
 .choices{
     padding: 5px;
     border-top: #4E505D 2px solid;
-    width: 250px;
+    width: 355px;
     max-width: 60%;
 
 }
 
-.choicesLanguage{
-    padding: 5px;
-}
-
-
-.choices a{
-    margin: 15px 25px 0 18px;
+.choices label{
+    margin-left: 10%;
     text-decoration: none;
     color: black;
     font-size: 110%;
     font-weight: 600;
     cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: -15px;
 }
 
-.choices a.visited{
+.choices label:hover{
+    text-decoration: none;
     color: red;
-    margin: 15px 45px 0 10px;
-     
 }
 
 .choices h3{
-    
     padding: 0 0 0 10px;
     font-size: 160%;
     font-weight: bolder;
 }
 
-.choices a:hover{
-    margin: 15px 45px 0 10px;
-    text-decoration: none;
-    color: red;
+.btn {
+    margin-top: 10%;
+    width: 63.7%;
+    border-top: #4E505D 2px solid;
+    text-align: center;
 }
 
-.reset a{
+.btn button{
+    margin-top: 5%;
     text-decoration: none;
     color: black;
     border: 1px solid black;
@@ -90,28 +89,43 @@ font-family:'Open Sans', sans-serif;
     font-weight: bolder;
 }
 
-.reset a:hover{
+.btn button:hover{
     color: white;
-    border: 1px solid #f44336;
-    background-color: #f44336;
+    border: 1px solid #ff1100;
+    background-color: #ff1100;
 }
 
-.filterDiv {
-    display: none; /* Hidden by default */
+.btnReset {
+    margin-top: 3%;
+    width: 63.7%;
+    text-align: center;
 }
-  
-/* The "show" class is added to the filtered elements */
-.show {
-      width: 100%;
-    display: block;
+
+.btnReset button{
+    margin-top: 5%;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 12px 24px;
+    font-size: 20px;
+    background: rgb(215, 215, 215);
+    cursor: pointer;
+    font-weight: bolder;
 }
+
+.btnReset button:hover{
+    color: white;
+    border: 1px solid #0051ff;
+    background-color: #0051ff;
+}
+
 
 /*---------------------------------------------------------------*/
 
 .movies {
     display: flex;
     flex-wrap: wrap;
-    width: 86%;
+    width: 84%;
     float: right;
 }
   

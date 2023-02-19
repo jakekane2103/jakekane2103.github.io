@@ -5,7 +5,9 @@
 
 
 .all{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.308), rgba(26, 38, 146, 0.411)), url(images/profileBack.jpg);
     margin-top: 1%;
+
 }
 /*-----------------LEFT----------------------*/
 
@@ -46,42 +48,49 @@
     float: right;
     margin-right: 7%;
     width: 60%;
-    background-color: rgb(250, 211, 163);
+    background-color: rgba(0, 0, 0, 0.701);
     height: 48.8%;
 }
 
 .userInfo{
   text-align: left;
   margin-left: 7%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 
 .info {
-    width: 200%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150%;
     display: flex;
     
-    margin-top: 23%;
+    margin-top: 7%;
     border-bottom: 1px rgb(150, 150, 150) solid;
 }
 
 .info h2{
+    color: white;
     font-size: 280%;
 }
 
 .php{
+    color: white;
     font-size: 200%;
-    margin-left: 15%;
     margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .phpM{
+    color: white;
     font-size: 200%;
     margin-left: 24.3%;
     margin-top: 3%;
 }
 
 .phpN{
+    color: white;
     font-size: 200%;
     margin-left: 16%;
     margin-top: 3%;
@@ -106,4 +115,9 @@
     margin-top: 5%;
     font-size: 250%;
     font-weight: 900;
+}
+
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
 }

@@ -6,7 +6,16 @@
     require_once 'includes/functions.inc.php';
     
     $id = $_GET['id'];
-    $userId = $_SESSION['userid'];
+
+    if (isset($_SESSION['userid']))
+    {
+        $userId = $_SESSION['userid'];
+    }     
+    else
+    {
+        $userId = 0;
+    }
+    
     $productType = 'book';
 
     $query = "SELECT * FROM productbooks where id = $id;";
